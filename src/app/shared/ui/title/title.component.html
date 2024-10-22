@@ -1,0 +1,19 @@
+<ng-container>
+  @switch (tag) {
+    @case ('h1') {
+      <h1 [ngClass]="[sizeClass, className]">{{ text }}</h1>
+    }
+    @case ('h2') {
+      <h2 [ngClass]="[sizeClass, className]">{{ text }}</h2>
+    }
+    @case ('h3') {
+      <h3 [ngClass]="[sizeClass, className]">{{ text }}</h3>
+    }
+    @case ('h4') {
+      <h4 [ngClass]="[sizeClass, className]">{{ text }}</h4>
+    }
+    @case ('h5') {
+      <h5 [ngClass]="[sizeClass, className]">{{ text }}</h5>
+    }
+  }
+</ng-container>

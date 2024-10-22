@@ -1,0 +1,18 @@
+<div class="relative inline-block">
+  <ng-content select="[popover-trigger]"></ng-content>
+
+  @if (isOpen) {
+  <div
+    class="absolute z-50 w-72 rounded-md border bg-popover p-4 shadow-md"
+    [ngClass]="[
+      align === 'center' ? 'left-1/2 transform -translate-x-1/2' : '',
+      side === 'bottom' ? 'top-full mt-' + sideOffset : '',
+      side === 'top' ? 'bottom-full mb-' + sideOffset : '',
+      side === 'left' ? 'right-full mr-' + sideOffset : '',
+      side === 'right' ? 'left-full ml-' + sideOffset : ''
+    ]"
+  >
+    <ng-content></ng-content>
+  </div>
+  }
+</div>

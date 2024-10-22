@@ -225,3 +225,4 @@ export const products = [
     categoryId: 5,
   },
 ];
+// TODO - расформировать
