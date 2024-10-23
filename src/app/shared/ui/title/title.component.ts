@@ -11,9 +11,9 @@ type TitleSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   styleUrl: './title.component.scss',
 })
 export class TitleComponent {
-  @Input() text: string = '';
-  @Input() size: TitleSize = 'sm'; //required
-  @Input() className: string = '';
+  @Input({ required: true }) text: string = '';
+  @Input() size: TitleSize = 'sm';
+  @Input() class?: string;
 
   get tag() {
     const mapTagBySize: Record<TitleSize, string> = {

@@ -1,0 +1,60 @@
+@if(mode === 'filter') {
+<ul class="max-w-fit flex items-center gap-1.5 rounded-xl bg-gray-50 p-1">
+  <li class="link link-active"><a href="">Все</a></li>
+  <li class="link"><a href="">Мясные</a></li>
+  <li class="link"><a href="">Острые</a></li>
+  <li class="link"><a href="">Сладкие</a></li>
+  <li class="link"><a href="">Вегетарианские</a></li>
+  <li class="link"><a href="">C курицей</a></li>
+  <li class="link">
+    <a href="" class="icon gap-1">
+      Еще
+      <svg
+        class="lucide lucide-chevron-down w-4 h-4 inline-block"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </a>
+  </li>
+</ul>
+}
+
+@if (mode === 'sort') {
+<div class="max-w-fit flex items-center gap-1.5 rounded-xl bg-gray-50 p-1">
+  <app-popover [isOpen]="false" align="end" side="left" [sideOffset]="1">
+    <button popover-trigger class="link icon gap-1.5">
+      <svg
+        class="lucide lucide-arrow-down-up w-4 h-4 inline-block"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="m3 16 4 4 4-4" />
+        <path d="M7 20V4" />
+        <path d="m21 8-4-4-4 4" />
+        <path d="M17 4v16" />
+      </svg>
+      Сортировка:
+      <span class="text-primary">рейтингу</span>
+    </button>
+    <ul>
+      <li>Это содержимое поповера</li>
+    </ul>
+  </app-popover>
+</div>
+}

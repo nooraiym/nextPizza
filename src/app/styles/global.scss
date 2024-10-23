@@ -1,0 +1,45 @@
+.btn {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus:outline-none focus:ring-2 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.btn-size {
+  @apply h-11 px-4 py-2;
+}
+.btn-size-sm {
+  @apply h-9 rounded-md px-3;
+}
+.btn-size-lg {
+  @apply h-12 rounded-md px-8;
+}
+
+.icon {
+  @apply flex items-center justify-center;
+}
+
+.btn-default {
+  @apply bg-primary text-primary-foreground hover:bg-primary/90;
+}
+.btn-destructive {
+  @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+}
+.btn-outline {
+  @apply border border-primary rounded-xl text-primary bg-transparent hover:bg-secondary;
+}
+.btn-secondary {
+  @apply bg-secondary text-primary hover:bg-secondary/50;
+}
+.btn-ghost {
+  @apply hover:bg-secondary hover:text-secondary-foreground;
+}
+
+.btn-active {
+  @apply active:bg-white active:shadow-lg active:shadow-gray-300/50;
+}
+
+// links
+.link {
+  @apply px-5 py-2 whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus:outline-none focus:ring-2 disabled:pointer-events-none disabled:opacity-50;
+}
+.link-active {
+  @apply bg-white shadow-md shadow-gray-300/70 text-primary
+}
