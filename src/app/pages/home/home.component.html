@@ -7,10 +7,19 @@
       <app-selection mode="filter"></app-selection>
       <app-selection mode="sort"></app-selection>
     </div>
-    <div class="container">
-        <app-sidemenu class="flex flex-col max-w-60 gap-8" />
+    <div class="container flex gap-12">
+      <app-sidemenu class="flex flex-col max-w-60 h-screen gap-8" />
 
-      <div id="content"></div>
+      <div id="content">
+        <div
+          class="py-16 w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          @for (product of products; track $index) {
+          <product-card [product]="product" />
+          }
+        </div>
+        <pagination class="flex justify-start items-center gap-8 pb-20" />
+      </div>
     </div>
   </div>
 </div>
