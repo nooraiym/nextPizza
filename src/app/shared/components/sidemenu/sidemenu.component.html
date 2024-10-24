@@ -1,0 +1,19 @@
+<h3 class="text-xl font-extrabold pt-8">Фильтрация</h3>
+<app-filtering mode="category" class="pb-6 break" />
+
+<div>
+  <h4 class="font-bold pb-4">Цена от и до:</h4>
+  <app-filtering mode="cost" class="flex gap-4 pb-6 break" />
+</div>
+
+<div>
+  <h4 class="font-bold pb-4">Ингредиенты:</h4>
+  <app-filtering mode="ingredients" class="flex gap-4 pb-6 break" />
+</div>
+
+<div>
+  <h4 class="font-bold pb-4">Тип теста:</h4>
+  <app-filtering mode="typeOfCrust" class="flex gap-4" />
+</div>
+
+<button class="btn btn-size btn-default">Применить</button>
