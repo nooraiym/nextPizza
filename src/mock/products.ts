@@ -1,4 +1,5 @@
 export type Product = {
+  id: number;
   name: string;
   description: string;
   imageUrl: string;
@@ -157,4 +158,4 @@ export const products = [
     cost: 195,
     categoryId: 5,
   },
-];
+].map((obj, index) => ({ id: index + 1, ...obj }));
