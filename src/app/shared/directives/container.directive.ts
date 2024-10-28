@@ -12,6 +12,8 @@ export class ContainerDirective implements OnInit {
   ngOnInit() {
     const defaultClasses = [
       'container',
+      'min-h-screen',
+      'bg-white',
       'mx-auto',
       'max-w-[1280px]',
       'mt-5',
