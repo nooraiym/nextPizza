@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SearchInputComponent } from '../search-input/search-input.component';
 
 @Component({
@@ -10,5 +10,5 @@ import { SearchInputComponent } from '../search-input/search-input.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  hasSearch = true;
+  @Input({ required: true }) mode: 'main' | 'profile' = 'main';
 }

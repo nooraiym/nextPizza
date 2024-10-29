@@ -3,6 +3,8 @@ import { HomeComponent } from './pages/home/components/home/home.component';
 import { HomeLayoutComponent } from './pages/home/layout/layout.component';
 import { PageNotFoundComponent } from './pages/page-not-found/components/page-not-found.component';
 import { NotFoundLayoutComponent } from './pages/page-not-found/layout/layout.component';
+import { ProfileComponent } from './pages/profile/components/profile/profile.component';
+import { ProfileLayoutComponent } from './pages/profile/profile-layout/profile-layout.component';
 
 export const routes: Routes = [
   {
@@ -11,13 +13,16 @@ export const routes: Routes = [
     children: [{ path: '', component: HomeComponent }],
   },
   {
+    path: 'profile',
+    component: ProfileLayoutComponent,
+    children: [{ path: '', component: ProfileComponent }],
+  },
+  {
     path: '**',
     component: NotFoundLayoutComponent,
     children: [{ path: '**', component: PageNotFoundComponent }],
   },
 ];
-
-// 404
 
 // home
 // home/product
