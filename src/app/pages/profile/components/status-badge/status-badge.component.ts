@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './status-badge.component.scss',
 })
 export class StatusBadgeComponent {
-  @Input() status?:  'paid' | 'rejected';
+  @Input() status?: 'pending' | 'paid' | 'rejected';
 }

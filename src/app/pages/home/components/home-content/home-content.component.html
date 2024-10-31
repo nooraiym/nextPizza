@@ -1,0 +1,10 @@
+<div class="main-grid" >
+  @for (product of products; track $index) {
+    @if (isLoading) {
+      <skeleton />
+    } @else {
+      <product-card [product]="product" />
+    }
+  }
+</div>
+<pagination class="flex justify-start items-center gap-8 pb-20" />

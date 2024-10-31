@@ -26,7 +26,7 @@
   @apply border border-primary text-primary bg-transparent hover:bg-secondary;
 }
 .btn-secondary {
-  @apply bg-secondary text-primary hover:bg-secondary hover:bg-opacity-50;
+  @apply bg-secondary text-primary hover:bg-accent hover:bg-opacity-50;
 }
 .btn-ghost {
   @apply text-primary hover:bg-secondary hover:text-secondary-foreground;

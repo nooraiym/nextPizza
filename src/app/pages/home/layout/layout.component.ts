@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
-import { SelectionComponent } from '../../../shared/components/selection/selection.component';
-import { SidemenuComponent } from '../../../shared/components/sidemenu/sidemenu.component';
+import { NavigationComponent } from '../components/navigation/navigation.component';
+import { SidemenuComponent } from '../components/sidemenu/sidemenu.component';
+import { SortComponent } from '../components/sort/sort.component';
 
 @Component({
   selector: 'home-layout',
@@ -10,7 +11,8 @@ import { SidemenuComponent } from '../../../shared/components/sidemenu/sidemenu.
   imports: [
     RouterOutlet,
     HeaderComponent,
-    SelectionComponent,
+    NavigationComponent,
+    SortComponent,
     SidemenuComponent,
   ],
   templateUrl: './layout.component.html',

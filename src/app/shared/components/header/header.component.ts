@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { SearchInputComponent } from '../search-input/search-input.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 @Component({
   selector: 'app-header',

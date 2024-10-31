@@ -1,0 +1,4 @@
+<h2 class="text-4xl font-extrabold py-8">Мои заказы</h2>
+@for (order of ordersList; track $index) {
+  <order [orderData]="order" />
+}
