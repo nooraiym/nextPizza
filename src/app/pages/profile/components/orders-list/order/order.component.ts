@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { OrderItemComponent } from '../../order-item/order-item.component';
 import { StatusBadgeComponent } from '../../status-badge/status-badge.component';
-import { OrderItemComponent } from '../order-item/order-item.component';
 import { Order } from '../orders-list.component';
 
 @Component({

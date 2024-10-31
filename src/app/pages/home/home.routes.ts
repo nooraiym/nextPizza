@@ -3,5 +3,5 @@ import { HomeContentComponent } from './components/home-content/home-content.com
 
 export const routes: Routes = [
   { path: '', component: HomeContentComponent },
-  { path: '/product/:productId' },
+  // { path: '/product/:productId' },
 ];
