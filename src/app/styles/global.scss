@@ -1,3 +1,9 @@
+@import "./_buttons";
+@import "./_checkboxes";
+@import "./_inputs";
+@import "./_links";
+@import "./_lists";
+
 //main grid
 .main-grid {
   @apply py-16 w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8;
@@ -6,79 +12,4 @@
 // breaker
 .break {
   @apply border-b border-gray-100;
-}
-
-// buttons
-.btn {
-  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:text-gray-300 disabled:border-gray-300;
-}
-
-.btn-size {
-  @apply h-11 px-4 py-2;
-}
-.btn-size-sm {
-  @apply h-9 rounded-md px-3;
-}
-.btn-size-lg {
-  @apply h-12 rounded-md px-8;
-}
-
-.icon {
-  @apply flex items-center justify-center;
-}
-
-.btn-default {
-  @apply bg-primary text-primary-foreground hover:bg-primary hover:bg-opacity-90;
-}
-.btn-destructive {
-  @apply bg-destructive text-destructive-foreground hover:bg-destructive hover:bg-opacity-90;
-}
-.btn-outline {
-  @apply border border-primary text-primary bg-transparent hover:bg-secondary;
-}
-.btn-secondary {
-  @apply bg-secondary text-primary hover:bg-secondary hover:bg-opacity-50;
-}
-.btn-ghost {
-  @apply text-primary hover:bg-secondary hover:text-secondary-foreground;
-}
-.btn-active {
-  @apply active:bg-white active:shadow-lg active:shadow-gray-300/50;
-}
-
-// links
-.link {
-  @apply px-5 py-2 whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus:outline-none focus:ring-2 disabled:pointer-events-none disabled:opacity-50;
-}
-.link-active {
-  @apply bg-white shadow-md shadow-gray-300/70 text-primary;
-}
-
-// checkboxes
-.checkbox {
-  @apply w-6 h-6 bg-gray-100 rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-all duration-300 ease-in-out;
-}
-.checkbox:checked {
-  @apply bg-primary;
-}
-.checkbox:focus {
-  @apply outline-none;
-}
-.checkbox:checked:after {
-  content: "";
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>');
-  @apply w-4 h-4;
-}
-
-// lists
-.list {
-  @apply flex flex-col gap-4;
-}
-.list-item {
-  @apply flex gap-3 items-center;
-}
-
-// inputs
-.input {
-  @apply flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }

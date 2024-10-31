@@ -1,0 +1,14 @@
+.checkbox {
+  @apply w-6 h-6 bg-gray-100 rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-all duration-300 ease-in-out;
+}
+.checkbox:checked {
+  @apply bg-primary;
+}
+.checkbox:focus {
+  @apply outline-none;
+}
+.checkbox:checked:after {
+  content: "";
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>');
+  @apply w-4 h-4;
+}
