@@ -32,7 +32,7 @@
           </svg>
           Войти
         </button>
-        <button class="btn btn-size btn-outline icon">
+        <button (click)="toggleCart()" class="btn btn-size btn-outline icon">
           <svg
             class="lucide lucide-shopping-cart w-4 h-4"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,4 +72,5 @@
       </button>
     }
   </div>
+  <side-cart [isOpen]="isCartOpen" (closeCart)="closeCart()" />
 </header>
