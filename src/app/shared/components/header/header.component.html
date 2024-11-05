@@ -54,22 +54,48 @@
     }
 
     @if (mode === 'profile') {
-      <button class="btn btn-size btn-outline icon gap-2 ml-auto">
-        <svg
-          class="lucide lucide-user w-4 h-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+      <div class="relative ml-auto">
+        <button
+          (click)="toggleDropdown()"
+          class="btn btn-size btn-outline icon gap-2"
         >
-          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
-        Профиль
-      </button>
+          <svg
+            class="lucide lucide-user w-4 h-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Профиль
+        </button>
+
+        @if (isDropdownOpen) {
+          <div
+            class="absolute right-0 top-12 w-44 bg-white rounded-lg shadow z-10"
+          >
+            <ul class="py-2 text-sm text-gray-700">
+              <li>
+                <a routerLink="/profile" class="link-dropdown">Мой профиль</a>
+              </li>
+              <li>
+                <a routerLink="/profile/my-orders" class="link-dropdown">Заказы</a>
+              </li>
+              <li>
+                <a href="#" class="link-dropdown">Настройки</a>
+              </li>
+              <li>
+                <a href="#" class="link-dropdown">Выйти</a>
+              </li>
+            </ul>
+          </div>
+        }
+      </div>
     }
   </div>
   <side-cart [isOpen]="isCartOpen" (closeCart)="closeCart()" />

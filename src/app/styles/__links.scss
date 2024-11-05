@@ -4,3 +4,6 @@
 .link-active {
   @apply bg-white shadow-md shadow-gray-300/70 text-primary;
 }
+.link-dropdown {
+  @apply block px-4 py-2 hover:bg-accent hover:text-primary;
+}
