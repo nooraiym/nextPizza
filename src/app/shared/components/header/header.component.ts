@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthModalComponent } from '../auth-modal/auth-modal.component';
+import { AuthActionsComponent } from './auth-actions/auth-actions.component';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
-import { AuthModalComponent } from "../auth-modal/auth-modal.component";
+import { UserActionsComponent } from './user-actions/user-actions.component';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +17,8 @@ import { AuthModalComponent } from "../auth-modal/auth-modal.component";
     SearchInputComponent,
     SideCartComponent,
     AuthModalComponent,
+    AuthActionsComponent,
+    UserActionsComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
