@@ -4,11 +4,18 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
+import { AuthModalComponent } from "../auth-modal/auth-modal.component";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, SearchInputComponent, SideCartComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    SearchInputComponent,
+    SideCartComponent,
+    AuthModalComponent,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -18,6 +25,7 @@ export class HeaderComponent implements OnDestroy {
 
   isCartOpen = false;
   isDropdownOpen = false;
+  isAuthModalOpen = false;
 
   constructor(private eRef: ElementRef, private router: Router) {
     this.routerSubscription = this.router.events.subscribe((event) => {
@@ -37,6 +45,14 @@ export class HeaderComponent implements OnDestroy {
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  openAuthModal() {
+    this.isAuthModalOpen = true;
+  }
+
+  closeAuthModal() {
+    this.isAuthModalOpen = false;
   }
 
   ngOnDestroy() {
