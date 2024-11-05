@@ -14,7 +14,7 @@ export class FilterComponent {
   ingredients = [
     { id: 'cheeseSouce', name: 'Сырный соус' },
     { id: 'mozzarella', name: 'Моцарелла' },
-    { id: 'garlic', name: 'Моцарелла' },
+    { id: 'garlic', name: 'Чеснок' },
     { id: 'pickles', name: 'Маринованные огурчики' },
     { id: 'onions', name: 'Красный лук' },
     { id: 'tomatoes', name: 'Томаты' },
