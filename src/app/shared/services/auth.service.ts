@@ -16,6 +16,10 @@ export class AuthService {
 
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
+  constructor() {
+    this.isLoggedInSubject.next(this.hasToken());
+  }
+
   private setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
     this.isLoggedInSubject.next(true);
@@ -43,8 +47,14 @@ export class AuthService {
     return this.isLoggedInSubject.value;
   }
 
-  register(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users`, { email, password });
+  register(name: string, email: string, password: string): Observable<any> {
+    return this.http
+      .post<{ message: string; token: string }>(`${this.apiUrl}/users`, {
+        name,
+        email,
+        password,
+      })
+      .pipe(tap((response) => this.setToken(response.token)));
   }
 
   logout(): void {
