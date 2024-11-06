@@ -1,0 +1,72 @@
+@switch (mode) {
+  @case ('category') {
+    <ul class="list">
+      <li class="list-item">
+        <input
+          checked
+          class="checkbox"
+          id="checkbox-collect"
+          value=""
+          type="checkbox"
+        />
+        <label for="checkbox-collect">Можно собирать</label>
+      </li>
+      <li class="list-item">
+        <input
+          class="checkbox"
+          id="checkbox-new"
+          value=""
+          type="checkbox"
+        />
+        <label for="checkbox-new">Новинки</label>
+      </li>
+    </ul>
+  }
+  @case ('cost') {
+    <input id="costFrom" type="number" value="" class="input relative" placeholder="0" />
+    <span class="absolute text-gray-300 top-2 right-36">₽</span>
+    <input id="costTo" type="number" value="" class="input" placeholder="1950" />
+    <span class="absolute text-gray-300 top-2 right-3.5">₽</span>
+  }
+  @case ('ingredients') {
+    <ul class="list">
+      @for (ingredient of ingredients; track ingredient.id) {
+        <li class="list-item">
+          <input
+            class="checkbox"
+            [id]="ingredient.id"
+            value=""
+            type="checkbox"
+          />
+          <label for="checkbox-collect">{{ ingredient.name }}</label>
+        </li>
+      }
+      <button class="btn btn-size btn-ghost" >
+        <span class="mr-auto">+ Показать всё</span>
+      </button>
+    </ul>
+  }
+  @case ('typeOfCrust') {
+    <ul class="list">
+      <li class="list-item">
+        <input
+          checked
+          class="checkbox"
+          id="checkbox-traditionalCrust"
+          value=""
+          type="checkbox"
+        />
+        <label for="checkbox-traditionalCrust">Tpaдиционное</label>
+      </li>
+      <li class="list-item">
+        <input
+          class="checkbox"
+          id="checkbox-thinCrust"
+          value=""
+          type="checkbox"
+        />
+        <label for="checkbox-thinCrust">Тонкое</label>
+      </li>
+    </ul>
+  }
+}

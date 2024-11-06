@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import "./app/styles/global.scss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+@layer base {
+  :root {
+    --foreground: #0C0A09;
+
+    --card:#FFFFFF;
+    --card-foreground: #0C0A09;
+
+    --popover: #FFFFFF;
+    --popover-foreground: #0C0A09;
+
+    --primary: #FF5E00;
+    --primary-foreground: #F4F1EE;
+
+    --secondary: #FFFAF5;
+    --secondary-foreground: #1C1917;
+
+    --muted: #F5F5F4;
+    --muted-foreground: #78716C;
+
+    --accent: #FFF5ED;
+    --accent-foreground: #1C1917;
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FAFAF9;
+
+    --border: #E7E5E4;
+    --input: #E6E6E6;
+    --ring: #F97316;
+    --radius: 18px;
+  }
+}

@@ -1,0 +1,51 @@
+<article class="max-w-sm bg-white border-transparent rounded-lg flex flex-col h-full">
+  <a [routerLink]="['products', product.id]">
+    <img
+      class="rounded-xl bg-secondary w-full h-auto object-cover hover:translate-y-1"
+      [src]="product.imageUrl"
+      alt="Product's image"
+    />
+  </a>
+  <main class="p-5 pb-0 flex-grow">
+    <h5
+      class="mb-2 font-bold tracking-tight text-gray-900"
+      [ngClass]="{
+        'text-2xl': mode === 'main',
+        'text-xl': mode === 'product-details'
+      }"
+    >
+      {{ product.name }}
+    </h5>
+    <p
+      class="mb-3 text-gray-300"
+      [ngClass]="{
+        'text-default': mode === 'main',
+        'text-sm': mode === 'product-details'
+      }"
+    >
+      {{ product.description }}
+    </p>
+  </main>
+  <footer class="flex justify-between items-center p-5 pt-0">
+    <p class="text-lg">
+      от
+      <span class="font-extrabold">{{ product.cost }} ₽</span>
+    </p>
+    <button class="btn btn-size btn-secondary gap-1.5">
+      <svg
+        class="lucide lucide-plus w-4 h-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="M12 5v14" />
+      </svg>
+      Добавить
+    </button>
+  </footer>
+</article>

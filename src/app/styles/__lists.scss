@@ -1,0 +1,6 @@
+.list {
+  @apply flex flex-col gap-4;
+}
+.list-item {
+  @apply flex gap-3 items-center;
+}
