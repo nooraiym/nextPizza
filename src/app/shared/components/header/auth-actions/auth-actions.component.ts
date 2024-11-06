@@ -8,12 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './auth-actions.component.scss',
 })
 export class AuthActionsComponent {
-  @Output() toggleCart = new EventEmitter<void>();
   @Output() openAuthModal = new EventEmitter<void>();
-
-  toggleSideCart() {
-    this.toggleCart.emit();
-  }
 
   openAuthModalView() {
     this.openAuthModal.emit();
