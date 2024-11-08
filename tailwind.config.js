@@ -4,38 +4,44 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        border: "var(--border)",
-        input: "var(--input)",
-        ring: "var(--ring)",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-        primary: {
-          DEFAULT: "var(--primary)",
-          foreground: "var(--primary-foreground)",
+        brand: {
+          primary: {
+            normal: "var(--color-brand-primary)",
+            light: "var(--color-brand-primary-hover)",
+          },
+          secondary: {
+            normal: "var(--color-brand-secondary)",
+            light: "var(--color-brand-secondary-hover)",
+          },
         },
-        secondary: {
-          DEFAULT: "var(--secondary)",
-          foreground: "var(--secondary-foreground)",
+        surface: {
+          primary: "var(--color-ui-surface-primary)",
+          secondary: "var(--color-ui-surface-secondary)",
+          border: "var(--color-ui-border)",
         },
-        destructive: {
-          DEFAULT: "var(--destructive)",
-          foreground: "var(--destructive-foreground)",
+        text: {
+          primary: "var(--color-ui-text-primary)",
+          secondary: "var(--color-ui-text-secondary)",
+          tertiary: "var(--color-ui-text-tertiary)",
+          accent: "var(--color-ui-text-accent)",
+          error: "var(--color-ui-text-error)",
         },
-        muted: {
-          DEFAULT: "var(--muted)",
-          foreground: "var(--muted-foreground)",
+        input: {
+          primary: "var(--color-ui-input-primary)",
+          secondary: "var(--color-ui-input-secondary)",
+          background: "var(--color-ui-input)",
         },
-        accent: {
-          DEFAULT: "var(--accent)",
-          foreground: "var(--accent-foreground)",
-        },
-        popover: {
-          DEFAULT: "var(--popover)",
-          foreground: "var(--popover-foreground)",
-        },
-        card: {
-          DEFAULT: "var(--card)",
-          foreground: "var(--card-foreground)",
+        badge: {
+          bg: {
+            neutral: "var(--color-ui-badge-bg-neutral)",
+            success: "var(--color-ui-badge-bg-success)",
+            error: "var(--color-ui-badge-bg-error)",
+          },
+          text: {
+            neutral: "var(--color-ui-badge-text-neutral)",
+            success: "var(--color-ui-badge-text-success)",
+            error: "var(--color-ui-badge-text-error)",
+          },
         },
       },
     },

@@ -6,7 +6,7 @@
 }
 
 <div
-  class="flex rounded-xl flex-1 justify-between relative h-11"
+  class="custom-rounded flex flex-1 justify-between relative h-11"
   [ngClass]="focused ? 'z-30' : ''"
 >
   <svg
@@ -25,7 +25,7 @@
   </svg>
 
   <input
-    class="rounded-xl outline-none w-full bg-gray-50 pl-11"
+    class="custom-rounded outline-none w-full bg-gray-50 pl-11"
     type="text"
     placeholder="Найти пиццу..."
     (focus)="onInputFocus()"

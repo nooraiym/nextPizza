@@ -1,11 +1,11 @@
 .checkbox {
-  @apply w-6 h-6 bg-gray-100 rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-all duration-300 ease-in-out;
+  @apply w-6 h-6 bg-input-secondary rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-colors duration-150 ease-in-out;
 }
 .checkbox:checked {
-  @apply bg-primary;
+  @apply bg-brand-primary-normal;
 }
 .checkbox:focus {
-  @apply outline-none;
+  @apply outline-none focus:ring-1 focus:ring-brand-primary-light invalid:border-red-500 invalid:text-red-600 focus:invalid:border-red-500 focus:invalid:ring-red-500;
 }
 .checkbox:checked:after {
   content: "";

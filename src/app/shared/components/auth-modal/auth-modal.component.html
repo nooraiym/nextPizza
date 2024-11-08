@@ -1,10 +1,12 @@
 <!-- TODO: добавить закрытие по клику на бекграунд -->
 <div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-  <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full relative">
+  <div
+    class="custom-shadow custom-rounded bg-surface-primary p-8 max-w-md w-full relative"
+  >
     <div class="flex justify-between items-start mb-4 gap-5">
       <div>
         <h2 class="text-xl font-semibold">
-          {{ isLoginMode ? 'Вход в аккаунт' : 'Регистрация' }}
+          {{ isLoginMode ? "Вход в аккаунт" : "Регистрация" }}
         </h2>
         <p class="mb-3 text-gray-400 text-default">
           Сохраним адрес доставки и расскажем о персональных акциях
@@ -32,10 +34,14 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       @if (!isLoginMode) {
-        <div class="mb-4">
-          <label class="block text-sm font-medium mb-1">Имя</label>
-          <input type="text" formControlName="name" class="w-full border rounded px-3 py-2" />
-        </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Имя</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full border rounded px-3 py-2"
+        />
+      </div>
       }
 
       <div class="mb-4">
@@ -77,16 +83,19 @@
         }
       </div>
 
-      <button type="submit" class="w-full btn btn-size btn-default">
-        {{ isLoginMode ? 'Войти' : 'Регистрация' }}
+      <button type="submit" class="w-full btn btn-size btn-primary">
+        {{ isLoginMode ? "Войти" : "Регистрация" }}
       </button>
     </form>
 
-
     <p class="text-sm text-center mt-4">
-      {{ isLoginMode ? 'Нет аккаунта?' : 'Уже зарегистрированы?' }}
-      <a href="#" (click)="toggleAuthMode()" class="text-primary ml-1 hover:underline">
-        {{ isLoginMode ? 'Регистрация' : 'Войти' }}
+      {{ isLoginMode ? "Нет аккаунта?" : "Уже зарегистрированы?" }}
+      <a
+        href="#"
+        (click)="toggleAuthMode()"
+        class="text-brand-primary-normal ml-1 hover:underline"
+      >
+        {{ isLoginMode ? "Регистрация" : "Войти" }}
       </a>
     </p>
 

@@ -1,7 +1,12 @@
 .btn {
-  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:text-gray-300 disabled:border-gray-300;
+  @apply custom-rounded inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors;
 }
-
+.btn:focus {
+  @apply custom-focus;
+}
+.btn:disabled {
+  @apply disabled:pointer-events-none disabled:text-text-tertiary disabled:border-surface-border
+}
 .btn-size {
   @apply h-11 px-4 py-2;
 }
@@ -11,26 +16,15 @@
 .btn-size-lg {
   @apply h-12 rounded-md px-8;
 }
-
-.icon {
-  @apply flex items-center justify-center;
-}
-
-.btn-default {
-  @apply bg-primary text-primary-foreground hover:bg-primary hover:bg-opacity-90;
-}
-.btn-destructive {
-  @apply bg-destructive text-destructive-foreground hover:bg-destructive hover:bg-opacity-90;
-}
-.btn-outline {
-  @apply border border-primary text-primary bg-transparent hover:bg-secondary;
+.btn-primary {
+  @apply bg-brand-primary-normal text-text-accent hover:bg-brand-primary-light hover:bg-opacity-90;
 }
 .btn-secondary {
-  @apply bg-secondary text-primary hover:bg-accent hover:bg-opacity-50;
+  @apply bg-brand-secondary-normal text-brand-primary-normal hover:bg-brand-secondary-light;
+}
+.btn-outline {
+  @apply border border-brand-primary-normal text-brand-primary-normal bg-transparent hover:bg-brand-secondary-normal;
 }
 .btn-ghost {
-  @apply text-primary hover:bg-secondary hover:text-secondary-foreground;
-}
-.btn-active {
-  @apply active:bg-white active:shadow-lg active:shadow-gray-300/50;
+  @apply text-brand-primary-normal hover:bg-transparent hover:text-text-primary;
 }

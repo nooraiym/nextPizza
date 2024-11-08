@@ -1,6 +1,6 @@
 <article class="flex gap-11 w-full">
   <div
-    class="w-full md:w-1/2 rounded-xl bg-secondary flex justify-center items-center"
+    class="custom-rounded w-full md:w-1/2 bg-surface-secondary flex justify-center items-center"
   >
     <img
       class="w-full h-auto object-cover pl-5 pt-5"
@@ -20,11 +20,11 @@
     </p>
 
     <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
-      <fieldset class="product-details__fieldset">
+      <fieldset class="fieldset">
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
+            'radio-active':
               orderForm.get('size')?.value === '25'
           }"
         >
@@ -37,9 +37,9 @@
           25 см
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
+            'radio-active':
               orderForm.get('size')?.value === '30'
           }"
         >
@@ -53,9 +53,9 @@
           30 см
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
+            'radio-active':
               orderForm.get('size')?.value === '35'
           }"
         >
@@ -69,11 +69,11 @@
         </label>
       </fieldset>
 
-      <fieldset class="product-details__fieldset">
+      <fieldset class="fieldset">
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
+            'radio-active':
               orderForm.get('crust')?.value === 'traditional'
           }"
         >
@@ -87,9 +87,9 @@
           Традиционное
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
+            'radio-active':
               orderForm.get('crust')?.value === 'thin'
           }"
         >
@@ -105,17 +105,16 @@
 
       <p class="text-lg font-semibold py-4">Ингредиенты</p>
       <div class="w-full max-w-2xl mx-auto pb-16">
-        <!-- Карусель с опциями -->
         <div class="flex gap-3 overflow-x-auto space-x-4 py-2 items-stretch">
           @for (option of options; track $index) {
           <div class="flex-shrink-0 w-36">
             <button
               type="button"
               (click)="toggleOption(option)"
-              class="w-full h-full p-4 rounded-xl transition duration-300 ease-in-out transform"
+              class="custom-rounded w-full h-full p-4 transition duration-300 ease-in-out transform"
               [ngClass]="{
-                'border border-primary ': option.selected,
-                'bg-white text-gray-700': !option.selected
+                'border border-brand-primary-normal ': option.selected,
+                'bg-surface-primary text-gray-700': !option.selected
               }"
             >
               <img [src]="option.imageUrl" alt="" />
@@ -127,7 +126,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-size btn-default">
+      <button type="submit" class="btn btn-size btn-primary">
         Добавить в корзину за {{ totalPrice }} ₽
       </button>
     </form>

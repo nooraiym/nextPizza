@@ -4,14 +4,14 @@
   (click)="close()"
 ></div>
 <div
-  class="fixed top-0 right-0 w-80 h-screen bg-white shadow-lg z-50 flex flex-col"
+  class="custom-shadow fixed top-0 right-0 w-80 h-screen bg-white z-50 flex flex-col"
 >
   @if (empty) {
     <div class="h-screen flex flex-col justify-center items-center px-10">
       <img class="w-28 pb-5" src="assets/images/empty-box.png" alt="Empty cart image" />
       <p class="text-xl font-semibold pb-2">Корзина пустая</p>
       <p class="text-gray-300 text-center pb-9">Добавьте хотя бы одну пиццу, чтобы совершить заказ</p>
-      <button class="btn btn-size btn-default icon gap-2"
+      <button class="btn btn-size btn-primary icon gap-2"
       (click)="close()">
         <svg
           class="lucide lucide-move-left w-4 h-4"
