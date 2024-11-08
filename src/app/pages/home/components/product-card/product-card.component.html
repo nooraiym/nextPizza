@@ -1,7 +1,7 @@
-<article class="custom-rounded max-w-sm bg-surface-primary border-transparent flex flex-col h-full">
+<article class="product-card">
   <a [routerLink]="['products', product.id]">
     <img
-      class="custom-rounded bg-surface-secondary w-full h-auto object-cover hover:translate-y-1"
+      class="product-card-image"
       [src]="product.imageUrl"
       alt="Product's image"
     />
@@ -32,19 +32,7 @@
       <span class="font-extrabold">{{ product.cost }} ₽</span>
     </p>
     <button class="btn btn-size btn-secondary gap-1.5">
-      <svg
-        class="lucide lucide-plus w-4 h-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M5 12h14" />
-        <path d="M12 5v14" />
-      </svg>
+      <lucide-angular [img]="Plus" class="w-4 h-4" />
       Добавить
     </button>
   </footer>

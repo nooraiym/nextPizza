@@ -1,0 +1,6 @@
+.product-card {
+  @apply custom-rounded max-w-sm bg-surface-primary border-transparent flex flex-col h-full;
+}
+.product-card-image {
+  @apply custom-rounded bg-surface-secondary w-full h-auto object-cover hover:translate-y-1;
+}

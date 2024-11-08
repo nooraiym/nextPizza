@@ -2,24 +2,12 @@
   (click)="toggleDropdownMenu()"
   class="btn btn-size btn-outline icon gap-2"
 >
-  <svg
-    class="lucide lucide-user w-4 h-4"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
+  <lucide-angular [img]="User" class="w-4 h-4" />
   Профиль
 </button>
 
 @if (isDropdownOpen) {
-  <dropdown
-    class="custom-shadow custom-rounded absolute right-0 top-12 w-44 bg-white z-10"
-  />
+<dropdown
+  class="custom-shadow custom-rounded absolute right-0 top-12 w-44 bg-white z-10"
+/>
 }
