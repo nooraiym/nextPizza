@@ -1,20 +1,19 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { LucideAngularModule, User } from 'lucide-angular';
-import { DropdownComponent } from '../dropdown/dropdown.component';
+import { DropdownMenuComponent } from '../../dropdown-menu/dropdown-menu.component';
 
 @Component({
   selector: 'user-actions',
   standalone: true,
-  imports: [LucideAngularModule, DropdownComponent],
+  imports: [LucideAngularModule, DropdownMenuComponent],
   templateUrl: './user-actions.component.html',
   styleUrl: './user-actions.component.scss',
 })
 export class UserActionsComponent {
   readonly User = User;
-  @Input({ required: true }) isDropdownOpen!: boolean;
-  @Output() toggleDropdown = new EventEmitter<void>();
+  isDropdownOpen = false;
 
-  toggleDropdownMenu() {
-    this.toggleDropdown.emit();
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

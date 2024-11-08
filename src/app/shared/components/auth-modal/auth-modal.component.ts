@@ -18,11 +18,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AuthModalComponent {
   @Output() close = new EventEmitter<void>();
-
   private authService = inject(AuthService);
   private router = inject(Router);
   loginForm: FormGroup;
-
   errorMessage: string | null = null;
   isLoginMode = true;
 
@@ -38,35 +36,35 @@ export class AuthModalComponent {
     this.isLoginMode = !this.isLoginMode;
     this.loginForm.reset();
   }
-
+  signIn(email: string, password: string) {
+    this.authService.login(email, password).subscribe({
+      next: () => {
+        this.close.emit();
+        this.router.navigate(['']);
+      },
+      error: () => {
+        this.errorMessage = 'Не удалось войти. Проверьте введенные данные';
+      },
+    });
+  }
+  signUp(name: string, email: string, password: string) {
+    this.authService.register(name, email, password).subscribe({
+      next: () => {
+        this.toggleAuthMode();
+      },
+      error: () => {
+        this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
+      },
+    });
+  }
   onSubmit() {
     const { name, email, password } = this.loginForm.value;
     if (this.loginForm.valid) {
-      this.authService.login(email, password).subscribe({
-        next: (response) => {
-          console.log('Login successful:', response);
-          this.close.emit();
-          this.router.navigate(['']);
-        },
-        error: (error) => {
-          this.errorMessage = 'Не удалось войти. Проверьте введенные данные';
-          console.error('Login error:', error);
-        },
-      });
+      this.signIn(email, password);
     } else {
-      this.authService.register(name, email, password).subscribe({
-        next: (response) => {
-          console.log('Registration successful:', response);
-          this.toggleAuthMode();
-        },
-        error: (error) => {
-          this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
-          console.error('Registration error:', error);
-        }
-      });
+      this.signUp(name, email, password);
     }
   }
-
   closeModal() {
     this.close.emit();
   }
