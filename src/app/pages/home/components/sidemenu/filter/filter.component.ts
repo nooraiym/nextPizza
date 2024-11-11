@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-type Mode = 'category' | 'cost' | 'ingredients' | 'typeOfCrust';
+import { FilterType } from './filter.model';
 
 @Component({
   selector: 'filter',
@@ -10,7 +9,8 @@ type Mode = 'category' | 'cost' | 'ingredients' | 'typeOfCrust';
   styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-  @Input({ required: true }) mode!: Mode;
+  @Input({ required: true }) filterType!: FilterType;
+  FilterType = FilterType;
   ingredients = [
     { id: 'cheeseSouce', name: 'Сырный соус' },
     { id: 'mozzarella', name: 'Моцарелла' },
