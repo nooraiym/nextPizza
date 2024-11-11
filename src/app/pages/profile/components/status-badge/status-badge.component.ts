@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './status-badge.component.scss',
 })
 export class StatusBadgeComponent {
+  //TODO: enum
   @Input() status?: 'pending' | 'paid' | 'rejected';
 }

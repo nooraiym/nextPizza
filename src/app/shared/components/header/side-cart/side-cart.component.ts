@@ -13,7 +13,7 @@ export class SideCartComponent {
   @Input() isOpen = false;
   @Output() closeCart = new EventEmitter<void>();
   empty = true;
-    isCartOpen = false;
+  isCartOpen = false;
 
   close() {
     this.closeCart.emit();

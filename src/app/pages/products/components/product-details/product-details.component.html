@@ -18,14 +18,12 @@
     <p class="mb-3 text-gray-300">
       {{ product.ingredients }}
     </p>
-
     <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
       <fieldset class="fieldset">
         <label
           class="radio-base"
           [ngClass]="{
-            'radio-active':
-              orderForm.get('size')?.value === '25'
+            'radio-active': orderForm.get('size')?.value === '25'
           }"
         >
           <input
@@ -39,8 +37,7 @@
         <label
           class="radio-base"
           [ngClass]="{
-            'radio-active':
-              orderForm.get('size')?.value === '30'
+            'radio-active': orderForm.get('size')?.value === '30'
           }"
         >
           <input
@@ -55,8 +52,7 @@
         <label
           class="radio-base"
           [ngClass]="{
-            'radio-active':
-              orderForm.get('size')?.value === '35'
+            'radio-active': orderForm.get('size')?.value === '35'
           }"
         >
           <input
@@ -68,13 +64,11 @@
           35 см
         </label>
       </fieldset>
-
       <fieldset class="fieldset">
         <label
           class="radio-base"
           [ngClass]="{
-            'radio-active':
-              orderForm.get('crust')?.value === 'traditional'
+            'radio-active': orderForm.get('crust')?.value === 'traditional'
           }"
         >
           <input
@@ -89,8 +83,7 @@
         <label
           class="radio-base"
           [ngClass]="{
-            'radio-active':
-              orderForm.get('crust')?.value === 'thin'
+            'radio-active': orderForm.get('crust')?.value === 'thin'
           }"
         >
           <input
@@ -102,7 +95,6 @@
           Тонкое
         </label>
       </fieldset>
-
       <p class="text-lg font-semibold py-4">Ингредиенты</p>
       <div class="w-full max-w-2xl mx-auto pb-16">
         <div class="flex gap-3 overflow-x-auto space-x-4 py-2 items-stretch">
@@ -125,7 +117,6 @@
           }
         </div>
       </div>
-
       <button type="submit" class="btn btn-size btn-primary">
         Добавить в корзину за {{ totalPrice }} ₽
       </button>

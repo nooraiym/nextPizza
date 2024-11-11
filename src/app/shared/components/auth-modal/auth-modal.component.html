@@ -14,25 +14,22 @@
       </div>
       <img class="w-24" src="/assets/images/auth.png" alt="" />
     </div>
-
     <button (click)="closeModal()" class="text-white absolute top-0 -right-11">
       <svg class="w-10 h-10" aria-hidden="true">
         <use href="assets/sprite.svg#close-icon"></use>
       </svg>
     </button>
-
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       @if (!isLoginMode) {
-      <div class="mb-4">
-        <label class="block text-sm font-medium mb-1">Имя</label>
-        <input
-          type="text"
-          formControlName="name"
-          class="w-full border rounded px-3 py-2"
-        />
-      </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1">Имя</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="w-full border rounded px-3 py-2"
+          />
+        </div>
       }
-
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">E-mail</label>
         <input
@@ -44,14 +41,12 @@
               loginForm.get('email')?.invalid && loginForm.get('email')?.touched
           }"
         />
-        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched)
-        {
-        <div class="text-red-500 text-sm">
-          Пожалуйста, введите валидный e-mail.
-        </div>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <div class="text-red-500 text-sm">
+            Пожалуйста, введите валидный e-mail.
+          </div>
         }
       </div>
-
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Пароль</label>
         <input
@@ -64,19 +59,16 @@
               loginForm.get('password')?.touched
           }"
         />
-        @if (loginForm.get('password')?.invalid &&
-        loginForm.get('password')?.touched) {
-        <div class="text-red-500 text-sm">
-          Пароль должен содержать больше 6 символов.
-        </div>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="text-red-500 text-sm">
+            Пароль должен содержать больше 6 символов.
+          </div>
         }
       </div>
-
       <button type="submit" class="w-full btn btn-size btn-primary">
         {{ isLoginMode ? "Войти" : "Регистрация" }}
       </button>
     </form>
-
     <p class="text-sm text-center mt-4">
       {{ isLoginMode ? "Нет аккаунта?" : "Уже зарегистрированы?" }}
       <a
@@ -87,11 +79,10 @@
         {{ isLoginMode ? "Регистрация" : "Войти" }}
       </a>
     </p>
-
     @if (errorMessage) {
-    <div class="text-red-500 mt-2 text-center">
-      {{ errorMessage }}
-    </div>
+      <div class="text-red-500 mt-2 text-center">
+        {{ errorMessage }}
+      </div>
     }
   </div>
 </div>

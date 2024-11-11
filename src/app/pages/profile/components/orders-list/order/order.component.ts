@@ -20,8 +20,8 @@ import { Order } from '../orders-list.component';
 })
 export class OrderComponent {
   readonly ChevronDown = ChevronDown;
-  @Input({ required: true }) orderData!: Order;
   OrderItemType = OrderItemType;
+  @Input({ required: true }) orderData!: Order;
   isAccordionOpen = false;
 
   toggleAccordion() {

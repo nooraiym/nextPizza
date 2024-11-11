@@ -16,6 +16,7 @@ export type Order = {
   styleUrl: './orders-list.component.scss',
 })
 export class OrdersListComponent {
+  //TODO: mock
   ordersList: Order[] = [
     {
       id: 1,
