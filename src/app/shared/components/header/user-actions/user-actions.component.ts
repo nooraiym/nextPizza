@@ -13,7 +13,7 @@ export class UserActionsComponent {
   readonly User = User;
   isDropdownOpen = false;
 
-  toggleDropdown() {
+  handleToggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 }

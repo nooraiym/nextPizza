@@ -14,12 +14,12 @@
       </div>
       <img class="w-24" src="/assets/images/auth.png" alt="" />
     </div>
-    <button (click)="closeModal()" class="text-white absolute top-0 -right-11">
+    <button (click)="handleCloseModal()" class="text-white absolute top-0 -right-11">
       <svg class="w-10 h-10" aria-hidden="true">
         <use href="assets/sprite.svg#close-icon"></use>
       </svg>
     </button>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
       @if (!isLoginMode) {
         <div class="mb-4">
           <label class="block text-sm font-medium mb-1">Имя</label>
@@ -73,7 +73,7 @@
       {{ isLoginMode ? "Нет аккаунта?" : "Уже зарегистрированы?" }}
       <a
         href="#"
-        (click)="toggleAuthMode()"
+        (click)="handleToggleAuthMode()"
         class="text-brand-primary-normal ml-1 hover:underline"
       >
         {{ isLoginMode ? "Регистрация" : "Войти" }}

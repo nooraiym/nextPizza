@@ -49,16 +49,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isProfilePage(): boolean {
     return this.pageType === PageType.Profile;
   }
-  toggleCart() {
+  handleToggleCart() {
     this.isCartOpen = !this.isCartOpen;
   }
-  closeCart() {
+  handleCloseCart() {
     this.isCartOpen = false;
   }
-  openAuthModal() {
+  handleOpenAuthModal() {
     this.isAuthModalOpen = true;
   }
-  closeAuthModal() {
+  handleCloseAuthModal() {
     this.isAuthModalOpen = false;
   }
 

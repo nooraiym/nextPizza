@@ -18,7 +18,7 @@
     <p class="mb-3 text-gray-300">
       {{ product.ingredients }}
     </p>
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
+    <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
       <fieldset class="fieldset">
         <label
           class="radio-base"
@@ -102,7 +102,7 @@
           <div class="flex-shrink-0 w-36">
             <button
               type="button"
-              (click)="toggleOption(option)"
+              (click)="handleToggleOption(option)"
               class="custom-rounded w-full h-full p-4 transition duration-300 ease-in-out transform"
               [ngClass]="{
                 'border border-brand-primary-normal ': option.selected,

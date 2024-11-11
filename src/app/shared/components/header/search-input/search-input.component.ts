@@ -13,7 +13,7 @@ export class SearchInputComponent {
   readonly Search = Search;
   focused = false;
 
-  onInputFocus() {
+  handleInputFocus() {
     this.focused = true;
   }
 }

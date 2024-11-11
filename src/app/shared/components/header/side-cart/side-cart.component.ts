@@ -11,11 +11,11 @@ import { LucideAngularModule, MoveLeft } from 'lucide-angular';
 export class SideCartComponent {
   readonly MoveLeft = MoveLeft;
   @Input() isOpen = false;
-  @Output() closeCart = new EventEmitter<void>();
+  @Output() onCloseCart = new EventEmitter<void>();
   empty = true;
   isCartOpen = false;
 
-  close() {
-    this.closeCart.emit();
+  handleCloseCart() {
+    this.onCloseCart.emit();
   }
 }

@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class DropdownMenuComponent {
   private authService = inject(AuthService);
 
-  logOut(event: Event) {
+  handleLogOut(event: Event) {
     event.preventDefault();
     this.authService.logout();
   }

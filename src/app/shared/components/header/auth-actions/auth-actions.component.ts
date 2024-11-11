@@ -10,9 +10,9 @@ import { LucideAngularModule, User } from 'lucide-angular';
 })
 export class AuthActionsComponent {
   readonly User = User;
-  @Output() openAuthModal = new EventEmitter<void>();
+  @Output() onOpenAuthModal = new EventEmitter<void>();
 
-  openAuthModalView() {
-    this.openAuthModal.emit();
+  handleOpenAuthModal() {
+    this.onOpenAuthModal.emit();
   }
 }

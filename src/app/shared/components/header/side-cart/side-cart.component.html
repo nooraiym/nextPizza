@@ -1,7 +1,7 @@
 @if (isOpen) {
 <div
   class="fixed top-0 left-0 bottom-0 right-0 bg-black/50 z-30"
-  (click)="close()"
+  (click)="handleCloseCart()"
 ></div>
 <div
   class="custom-shadow fixed top-0 right-0 w-80 h-screen bg-white z-50 flex flex-col"
@@ -17,7 +17,7 @@
     <p class="text-gray-300 text-center pb-9">
       Добавьте хотя бы одну пиццу, чтобы совершить заказ
     </p>
-    <button class="btn btn-size btn-primary icon gap-2" (click)="close()">
+    <button class="btn btn-size btn-primary icon gap-2" (click)="handleCloseCart()">
       <lucide-angular [img]="MoveLeft" class="w-4 h-4" />
       Вернуться назад
     </button>

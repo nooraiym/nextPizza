@@ -24,7 +24,7 @@ export class OrderComponent {
   @Input({ required: true }) orderData!: Order;
   isAccordionOpen = false;
 
-  toggleAccordion() {
+  handleToggleAccordion() {
     this.isAccordionOpen = !this.isAccordionOpen;
   }
 }

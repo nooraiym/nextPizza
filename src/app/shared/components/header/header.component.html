@@ -1,5 +1,5 @@
 @if (isAuthModalOpen) {
-  <auth-modal (close)="closeAuthModal()" />
+  <auth-modal (onClose)="handleCloseAuthModal()" />
 }
 <header class="container mx-auto border-b border-gray-100">
   <div class="container flex items-center py-8">
@@ -26,14 +26,14 @@
       </div>
       <div class="flex gap-3">
         @if (!isAuthenticated) {
-          <auth-actions (openAuthModal)="openAuthModal()" />
+          <auth-actions (onOpenAuthModal)="handleOpenAuthModal()" />
         }
         @if (isAuthenticated) {
           <user-actions
             class="relative ml-auto"
           />
         }
-        <cart-actions (toggleCart)="toggleCart()" />
+        <cart-actions (onToggleCart)="handleToggleCart()" />
       </div>
     }
     @if (isProfilePage() && isAuthenticated) {
@@ -42,5 +42,5 @@
       />
     }
   </div>
-  <side-cart [isOpen]="isCartOpen" (closeCart)="closeCart()" />
+  <side-cart [isOpen]="isCartOpen" (onCloseCart)="handleCloseCart()" />
 </header>

@@ -32,11 +32,6 @@ export class ProductDetailsComponent {
     });
   }
 
-  toggleOption(option: any) {
-    option.selected = !option.selected;
-    this.updatePrice();
-  }
-
   updatePrice() {
     const selectedOptions = this.options.filter((opt) => opt.selected);
     const additionalPrice = selectedOptions.reduce(
@@ -45,8 +40,11 @@ export class ProductDetailsComponent {
     );
     this.totalPrice = this.basePrice + additionalPrice;
   }
-
-  onSubmit(e: Event) {
+  handleToggleOption(option: any) {
+    option.selected = !option.selected;
+    this.updatePrice();
+  }
+  handleSubmit(e: Event) {
     e.preventDefault();
     console.log('Выбранный размер:', this.orderForm.value.size);
     console.log('Выбранная корочка:', this.orderForm.value.crust);

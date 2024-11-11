@@ -13,7 +13,7 @@ export class AccessDeniedComponent {
   readonly MoveLeft = MoveLeft;
   private router = inject(Router);
 
-  onClick() {
+  handleRedirect() {
     this.router.navigate(['']);
   }
 }

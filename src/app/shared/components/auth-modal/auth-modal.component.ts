@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './auth-modal.component.scss',
 })
 export class AuthModalComponent {
-  @Output() close = new EventEmitter<void>();
+  @Output() onClose = new EventEmitter<void>();
   private authService = inject(AuthService);
   private router = inject(Router);
   loginForm: FormGroup;
@@ -32,14 +32,14 @@ export class AuthModalComponent {
     });
   }
 
-  toggleAuthMode() {
+  handleToggleAuthMode() {
     this.isLoginMode = !this.isLoginMode;
     this.loginForm.reset();
   }
   signIn(email: string, password: string) {
     this.authService.login(email, password).subscribe({
       next: () => {
-        this.close.emit();
+        this.onClose.emit();
         this.router.navigate(['']);
       },
       error: () => {
@@ -50,14 +50,14 @@ export class AuthModalComponent {
   signUp(name: string, email: string, password: string) {
     this.authService.register(name, email, password).subscribe({
       next: () => {
-        this.toggleAuthMode();
+        this.handleToggleAuthMode();
       },
       error: () => {
         this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
       },
     });
   }
-  onSubmit() {
+  handleSubmit() {
     const { name, email, password } = this.loginForm.value;
     if (this.loginForm.valid) {
       this.signIn(email, password);
@@ -65,7 +65,7 @@ export class AuthModalComponent {
       this.signUp(name, email, password);
     }
   }
-  closeModal() {
-    this.close.emit();
+  handleCloseModal() {
+    this.onClose.emit();
   }
 }
