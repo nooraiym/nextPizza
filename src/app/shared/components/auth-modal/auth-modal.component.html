@@ -1,7 +1,7 @@
-<!-- TODO: добавить закрытие по клику на бекграунд -->
-<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50" (click)="handleCloseModal()">
   <div
     class="custom-shadow custom-rounded bg-surface-primary p-8 max-w-md w-full relative"
+    (click)="$event.stopPropagation()"
   >
     <div class="flex justify-between items-start mb-4 gap-5">
       <div>
