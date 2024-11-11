@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { products } from '../../../../../mock/products';
 import { ProductCardComponent } from '../../../home/components/product-card/product-card.component';
+import { ProductCardType } from '../../../home/components/product-card/product-card.model';
 
 @Component({
   selector: 'recomendations',
@@ -10,5 +11,6 @@ import { ProductCardComponent } from '../../../home/components/product-card/prod
   styleUrl: './recomendations.component.scss',
 })
 export class RecomendationsComponent {
+  ProductCardType = ProductCardType;
   recomendations = products.slice(0, 8);
 }

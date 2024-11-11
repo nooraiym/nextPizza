@@ -10,8 +10,8 @@
     <h5
       class="mb-2 font-bold tracking-tight text-gray-900"
       [ngClass]="{
-        'text-2xl': mode === 'main',
-        'text-xl': mode === 'product-details'
+        'text-2xl': isMainType(),
+        'text-xl': isDetailedType()
       }"
     >
       {{ product.name }}
@@ -19,8 +19,8 @@
     <p
       class="mb-3 text-gray-300"
       [ngClass]="{
-        'text-default': mode === 'main',
-        'text-sm': mode === 'product-details'
+        'text-default': isMainType(),
+        'text-sm': isDetailedType()
       }"
     >
       {{ product.description }}

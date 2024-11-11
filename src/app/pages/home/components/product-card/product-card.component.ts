@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Product } from '../../../../../mock/products';
 import { LucideAngularModule, Plus } from 'lucide-angular';
+import { Product } from '../../../../../mock/products';
+import { ProductCardType } from './product-card.model';
 
 @Component({
   selector: 'product-card',
@@ -14,5 +15,13 @@ import { LucideAngularModule, Plus } from 'lucide-angular';
 export class ProductCardComponent {
   readonly Plus = Plus;
   @Input({ required: true }) product!: Product;
-  @Input({ required: true }) mode!: 'main' | 'product-details';
+  @Input({ required: true }) cardType!: ProductCardType;
+  ProductCardType = ProductCardType;
+
+  isMainType(): boolean {
+    return this.cardType === ProductCardType.Main;
+  }
+  isDetailedType(): boolean {
+    return this.cardType === ProductCardType.Detailed;
+  }
 }

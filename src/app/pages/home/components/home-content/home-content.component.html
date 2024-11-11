@@ -3,7 +3,7 @@
     @if (isLoading) {
       <skeleton />
     } @else {
-      <product-card mode="main" [product]="product" />
+      <product-card [cardType]="ProductCardType.Main" [product]="product" />
     }
   }
 </div>

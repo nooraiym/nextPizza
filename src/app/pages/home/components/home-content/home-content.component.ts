@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { products } from '../../../../../mock/products';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ProductCardType } from '../product-card/product-card.model';
 import { SkeletonComponent } from '../skeleton/skeleton.component';
 
 @Component({
@@ -12,6 +13,7 @@ import { SkeletonComponent } from '../skeleton/skeleton.component';
   styleUrl: './home-content.component.scss',
 })
 export class HomeContentComponent implements OnInit {
+  ProductCardType = ProductCardType;
   products = products;
   isLoading = true;
 
