@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OrderItemType } from '../../../profile.model';
 import { OrderItemComponent } from '../../order-item/order-item.component';
 
 @Component({
@@ -8,4 +9,6 @@ import { OrderItemComponent } from '../../order-item/order-item.component';
   templateUrl: './cart-details.component.html',
   styleUrl: './cart-details.component.scss',
 })
-export class CartDetailsComponent {}
+export class CartDetailsComponent {
+  OrderItemType = OrderItemType;
+}

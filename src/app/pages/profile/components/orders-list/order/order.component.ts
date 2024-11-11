@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { ChevronDown, LucideAngularModule } from 'lucide-angular';
+import { OrderItemType } from '../../../profile.model';
 import { OrderItemComponent } from '../../order-item/order-item.component';
 import { StatusBadgeComponent } from '../../status-badge/status-badge.component';
 import { Order } from '../orders-list.component';
-import { ChevronDown, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'order',
@@ -20,6 +21,7 @@ import { ChevronDown, LucideAngularModule } from 'lucide-angular';
 export class OrderComponent {
   readonly ChevronDown = ChevronDown;
   @Input({ required: true }) orderData!: Order;
+  OrderItemType = OrderItemType;
   isAccordionOpen = false;
 
   toggleAccordion() {

@@ -38,7 +38,7 @@
     >
       <div class="bg-white py-7 px-9 rounded-b-xl">
         @for (order of [1,2,3]; track $index) {
-        <order-item mode="my-orders" />
+        <order-item [itemType]="OrderItemType.MyOrders" />
         }
         <footer class="text-lg pt-4">
           Итого:

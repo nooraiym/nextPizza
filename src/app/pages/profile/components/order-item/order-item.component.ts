@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LucideAngularModule, Minus, Plus, X } from 'lucide-angular';
+import { OrderItemType } from '../../profile.model';
 
 @Component({
   selector: 'order-item',
@@ -12,5 +13,6 @@ export class OrderItemComponent {
   readonly Minus = Minus;
   readonly Plus = Plus;
   readonly X = X;
-  @Input({ required: true }) mode!: 'my-orders' | 'my-cart';
+  OrderItemType = OrderItemType;
+  @Input({ required: true }) itemType!: OrderItemType;
 }
