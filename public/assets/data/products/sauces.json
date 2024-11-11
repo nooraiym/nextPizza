@@ -1,0 +1,32 @@
+[
+  {
+    "id": 81,
+    "name": "Чесночный",
+    "new": false,
+    "description": "Фирменный соус с чесночным вкусом для бортиков пиццы и горячих закусок",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EEB05AC741F77388CF9BC3CF08F858.jpg",
+    "price": 70,
+    "weight": 25,
+    "categoryId": 8
+  },
+  {
+    "id": 82,
+    "name": "Барбекю",
+    "new": false,
+    "description": "Фирменный соус с дымным ароматом для бортиков пиццы и горячих закусок",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796ED4D250A7970905C657FB3AB3.jpg",
+    "price": 70,
+    "weight": 25,
+    "categoryId": 8
+  },
+  {
+    "id": 83,
+    "name": "Медово-горчичный",
+    "new": false,
+    "description": "Фирменный медово-горчичный соус для бортиков пиццы и горячих закусок",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE89B096F429569995CE09D19DA9F1.jpg",
+    "price": 70,
+    "weight": 25,
+    "categoryId": 8
+  }
+]

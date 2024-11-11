@@ -1,0 +1,52 @@
+[
+  {
+    "id": 51,
+    "name": "Ирландский Капучино",
+    "new": true,
+    "description": "Насыщенный кофе с бархатистой пенкой, дополненный мягкими нотками ирландского крема для изысканного вкуса",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61999EBDA59C10E216430A6093.webp",
+    "price": 205,
+    "weight": 300,
+    "categoryId": 5
+  },
+  {
+    "id": 52,
+    "name": "Кофе Карамельный капучино",
+    "new": false,
+    "description": "Если не шоколад, то карамель! А капучино с карамельным сиропом особенно хорош",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp",
+    "price": 195,
+    "weight": 300,
+    "categoryId": 5
+  },
+  {
+    "id": 53,
+    "name": "Кофе Кокосовый латте",
+    "new": false,
+    "description": "Много молока и кокоса. Уютный кокосовый латте на основе эспрессо",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp",
+    "price": 195,
+    "weight": 300,
+    "categoryId": 5
+  },
+  {
+    "id": 54,
+    "name": "Кофе Американо",
+    "new": false,
+    "description": "Горячий напиток на основе эспрессо",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp",
+    "price": 95,
+    "weight": 300,
+    "categoryId": 5
+  },
+  {
+    "id": 55,
+    "name": "Кофе Латте",
+    "new": false,
+    "description": "Когда хочется нежную молочную пенку, на помощь приходит классический латте",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp",
+    "price": 195,
+    "weight": 300,
+    "categoryId": 5
+  }
+]

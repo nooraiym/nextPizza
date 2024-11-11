@@ -1,0 +1,24 @@
+[
+  {
+    "id": 31,
+    "name": "Омлет с ветчиной и грибами",
+    "new": true,
+    "ingredients": [2, 6, 7],
+    "tags": [2, 6],
+    "description": "Горячий сытный омлет с поджаристой корочкой, ветчина, шампиньоны и моцарелла",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp",
+    "price": 240,
+    "categoryId": 3
+  },
+  {
+    "id": 32,
+    "name": "Омлет с пепперони",
+    "new": true,
+    "ingredients": [2],
+    "description": "Сытный и сбалансированный завтрак — омлет с поджаристой корочкой, пикантная пепперони, томаты и моцарелла",
+    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp",
+    "price": 230,
+    "weight": 110,
+    "categoryId": 2
+  }
+]
