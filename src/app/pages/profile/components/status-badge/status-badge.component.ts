@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { PaymentStatus } from './status-badge.model';
 
 @Component({
   selector: 'status-badge',
@@ -8,6 +9,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './status-badge.component.scss',
 })
 export class StatusBadgeComponent {
-  //TODO: enum
-  @Input() status?: 'pending' | 'paid' | 'rejected';
+  @Input() status!: PaymentStatus;
+  PaymentStatus = PaymentStatus;
 }
