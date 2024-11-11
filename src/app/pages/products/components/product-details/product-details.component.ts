@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { _ingredients } from '../../../../../mock/ingredients';
+import { IngredientSelectorComponent } from './ingredient-selector/ingredient-selector.component';
 
 @Component({
   selector: 'product-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, IngredientSelectorComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -40,8 +41,7 @@ export class ProductDetailsComponent {
     );
     this.totalPrice = this.basePrice + additionalPrice;
   }
-  handleToggleOption(option: any) {
-    option.selected = !option.selected;
+  handleSelectOption() {
     this.updatePrice();
   }
   handleSubmit(e: Event) {
