@@ -1,7 +1,6 @@
 @if (isAuthModalOpen) {
-<auth-modal (close)="closeAuthModal()" />
+  <auth-modal (onClose)="handleCloseAuthModal()" />
 }
-
 <header class="container mx-auto border-b border-gray-100">
   <div class="container flex items-center py-8">
     <div
@@ -14,40 +13,34 @@
         <h1 class="text-2xl uppercase font-black">Next Pizza</h1>
         <p class="text-sm text-gray-400 leading-3">
           {{
-            mode === "profile"
+            isProfilePage()
               ? "вкусней уже точно некуда"
               : "вкусней уже некуда"
           }}
         </p>
       </div>
     </div>
-
-    @if (mode === 'main') {
+    @if (isMainPage()) {
       <div class="mx-10 flex-1">
         <search-input />
       </div>
       <div class="flex gap-3">
         @if (!isAuthenticated) {
-          <auth-actions (openAuthModal)="openAuthModal()" />
+          <auth-actions (onOpenAuthModal)="handleOpenAuthModal()" />
         }
         @if (isAuthenticated) {
           <user-actions
             class="relative ml-auto"
-            (toggleDropdown)="toggleDropdown()"
-            [isDropdownOpen]="isDropdownOpen"
           />
         }
-        <cart-actions (toggleCart)="toggleCart()" />
+        <cart-actions (onToggleCart)="handleToggleCart()" />
       </div>
     }
-
-    @if (mode === 'profile' && isAuthenticated) {
+    @if (isProfilePage() && isAuthenticated) {
       <user-actions
         class="relative ml-auto"
-        (toggleDropdown)="toggleDropdown()"
-        [isDropdownOpen]="isDropdownOpen"
       />
     }
   </div>
-  <side-cart [isOpen]="isCartOpen" (closeCart)="closeCart()" />
+  <side-cart [isOpen]="isCartOpen" (onCloseCart)="handleCloseCart()" />
 </header>

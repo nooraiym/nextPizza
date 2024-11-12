@@ -1,11 +1,6 @@
-.product-details__fieldset {
-  @apply flex p-1 my-6 bg-gray-100 rounded-full;
+.radio-base {
+  @apply flex-1 px-4 py-2 text-text-secondary text-center cursor-pointer;
 }
-
-.product-details__label__base {
-  @apply flex-1 px-4 py-2 text-gray-700 text-center cursor-pointer;
-}
-
-.product-details__label__active {
-  @apply rounded-full bg-white shadow-md transition-colors duration-500 ease-in-out;
+.radio-active {
+  @apply custom-shadow rounded-full bg-surface-primary transition-colors duration-500 ease-in-out;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
-import { ContainerDirective } from '../../../shared/directives/container.directive';
+import { PageType } from '../../../shared/components/header/header.model';
 import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SidemenuComponent } from '../components/sidemenu/sidemenu.component';
 import { SortComponent } from '../components/sort/sort.component';
@@ -11,7 +11,6 @@ import { SortComponent } from '../components/sort/sort.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    ContainerDirective,
     HeaderComponent,
     NavigationComponent,
     SortComponent,
@@ -20,4 +19,6 @@ import { SortComponent } from '../components/sort/sort.component';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class HomeLayoutComponent {}
+export class HomeLayoutComponent {
+  PageType = PageType;
+}

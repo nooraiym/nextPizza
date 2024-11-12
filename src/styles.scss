@@ -18,32 +18,26 @@ body {
 
 @layer base {
   :root {
-    --foreground: #0C0A09;
-
-    --card:#FFFFFF;
-    --card-foreground: #0C0A09;
-
-    --popover: #FFFFFF;
-    --popover-foreground: #0C0A09;
-
-    --primary: #FF5E00;
-    --primary-foreground: #F4F1EE;
-
-    --secondary: #FFFAF5;
-    --secondary-foreground: #1C1917;
-
-    --muted: #F5F5F4;
-    --muted-foreground: #78716C;
-
-    --accent: #FFF5ED;
-    --accent-foreground: #1C1917;
-
-    --destructive: #EF4444;
-    --destructive-foreground: #FAFAF9;
-
-    --border: #E7E5E4;
-    --input: #E6E6E6;
-    --ring: #F97316;
-    --radius: 18px;
+    --color-brand-primary: #ff5e00;
+    --color-brand-primary-hover: #fb8039;
+    --color-brand-secondary: #fff7ee;
+    --color-brand-secondary-hover: #fef0e1;
+    --color-ui-surface-primary: #ffffff;
+    --color-ui-surface-secondary: #f4f1ee;
+    --color-ui-input: #e6e6e6;
+    --color-ui-input-primary: #f9fafb;
+    --color-ui-input-secondary: #ececec;
+    --color-ui-text-primary: #000000;
+    --color-ui-text-secondary: #575757;
+    --color-ui-text-tertiary: #b1b1b1;
+    --color-ui-text-accent: #ffffff;
+    --color-ui-text-error: #ef4444;
+    --color-ui-badge-bg-neutral: #fff3b4;
+    --color-ui-badge-bg-success: #eaf8f4;
+    --color-ui-badge-bg-error: #fff0ef;
+    --color-ui-badge-text-neutral: #917c12;
+    --color-ui-badge-text-success: #1bb486;
+    --color-ui-badge-text-error: #ff544a;
+    --color-ui-border: #e7e5e4;
   }
 }

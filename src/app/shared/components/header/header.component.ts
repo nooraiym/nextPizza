@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { AuthActionsComponent } from './auth-actions/auth-actions.component';
+import { CartActionsComponent } from './cart-actions/cart-actions.component';
+import { PageType } from './header.model';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
-import { CartActionsComponent } from "./cart-actions/cart-actions.component";
 
 @Component({
   selector: 'app-header',
@@ -27,24 +28,12 @@ import { CartActionsComponent } from "./cart-actions/cart-actions.component";
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private routerSubscription: Subscription;
+  @Input({ required: true }) pageType: PageType = PageType.Main;
   private authSubscription!: Subscription;
   private authService = inject(AuthService);
-
-  @Input({ required: true }) mode: 'main' | 'profile' = 'main';
-
   isCartOpen = false;
-  isDropdownOpen = false;
   isAuthModalOpen = false;
   isAuthenticated = false;
-
-  constructor(private router: Router) {
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isDropdownOpen = false;
-      }
-    });
-  }
 
   ngOnInit() {
     this.authSubscription = this.authService.isLoggedIn$.subscribe(
@@ -54,28 +43,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  toggleCart() {
+  isMainPage(): boolean {
+    return this.pageType === PageType.Main;
+  }
+  isProfilePage(): boolean {
+    return this.pageType === PageType.Profile;
+  }
+  handleToggleCart() {
     this.isCartOpen = !this.isCartOpen;
   }
-
-  closeCart() {
+  handleCloseCart() {
     this.isCartOpen = false;
   }
-
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
-  openAuthModal() {
+  handleOpenAuthModal() {
     this.isAuthModalOpen = true;
   }
-
-  closeAuthModal() {
+  handleCloseAuthModal() {
     this.isAuthModalOpen = false;
   }
 
   ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }

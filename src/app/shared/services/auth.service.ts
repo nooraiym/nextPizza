@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +10,9 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  private tokenKey = environment.tokenKey;
+  private apiUrl = environment.apiUrl;
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-
-  private apiUrl = 'http://localhost:3000/api/v1';
-  private tokenKey = 'authToken';
-
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
   constructor() {
@@ -33,6 +32,16 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
+  register(name: string, email: string, password: string): Observable<any> {
+    return this.http
+      .post<{ message: string; token: string }>(`${this.apiUrl}/users`, {
+        name,
+        email,
+        password,
+      })
+      .pipe(tap((response) => this.setToken(response.token)));
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http
       .post<{ token: string }>(`${this.apiUrl}/auth`, { email, password })
@@ -47,19 +56,9 @@ export class AuthService {
     return this.isLoggedInSubject.value;
   }
 
-  register(name: string, email: string, password: string): Observable<any> {
-    return this.http
-      .post<{ message: string; token: string }>(`${this.apiUrl}/users`, {
-        name,
-        email,
-        password,
-      })
-      .pipe(tap((response) => this.setToken(response.token)));
-  }
-
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    this.router.navigate(['']);
     this.isLoggedInSubject.next(false);
+    this.router.navigate(['']);
   }
 }

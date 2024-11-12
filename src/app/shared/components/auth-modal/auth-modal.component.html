@@ -1,43 +1,35 @@
-<!-- TODO: добавить закрытие по клику на бекграунд -->
-<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-  <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full relative">
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50" (click)="handleCloseModal()">
+  <div
+    class="custom-shadow custom-rounded bg-surface-primary p-8 max-w-md w-full relative"
+    (click)="$event.stopPropagation()"
+  >
     <div class="flex justify-between items-start mb-4 gap-5">
       <div>
         <h2 class="text-xl font-semibold">
-          {{ isLoginMode ? 'Вход в аккаунт' : 'Регистрация' }}
+          {{ isLoginMode ? "Вход в аккаунт" : "Регистрация" }}
         </h2>
         <p class="mb-3 text-gray-400 text-default">
           Сохраним адрес доставки и расскажем о персональных акциях
         </p>
       </div>
-      <img class="w-24" src="assets/images/auth.png" alt="" />
+      <img class="w-24" src="/assets/images/auth.png" alt="" />
     </div>
-
-    <button (click)="closeModal()" class="text-white absolute top-0 -right-11">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2"
-        stroke="currentColor"
-        class="w-10 h-10"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 18L18 6M6 6l12 12"
-        />
+    <button (click)="handleCloseModal()" class="text-white absolute top-0 -right-11">
+      <svg class="w-10 h-10" aria-hidden="true">
+        <use href="assets/sprite.svg#close-icon"></use>
       </svg>
     </button>
-
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
       @if (!isLoginMode) {
         <div class="mb-4">
           <label class="block text-sm font-medium mb-1">Имя</label>
-          <input type="text" formControlName="name" class="w-full border rounded px-3 py-2" />
+          <input
+            type="text"
+            formControlName="name"
+            class="w-full border rounded px-3 py-2"
+          />
         </div>
       }
-
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">E-mail</label>
         <input
@@ -49,14 +41,12 @@
               loginForm.get('email')?.invalid && loginForm.get('email')?.touched
           }"
         />
-        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched)
-        {
-        <div class="text-red-500 text-sm">
-          Пожалуйста, введите валидный e-mail.
-        </div>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <div class="text-red-500 text-sm">
+            Пожалуйста, введите валидный e-mail.
+          </div>
         }
       </div>
-
       <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Пароль</label>
         <input
@@ -69,31 +59,30 @@
               loginForm.get('password')?.touched
           }"
         />
-        @if (loginForm.get('password')?.invalid &&
-        loginForm.get('password')?.touched) {
-        <div class="text-red-500 text-sm">
-          Пароль должен содержать больше 6 символов.
-        </div>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="text-red-500 text-sm">
+            Пароль должен содержать больше 6 символов.
+          </div>
         }
       </div>
-
-      <button type="submit" class="w-full btn btn-size btn-default">
-        {{ isLoginMode ? 'Войти' : 'Регистрация' }}
+      <button type="submit" class="w-full btn btn-size btn-primary">
+        {{ isLoginMode ? "Войти" : "Регистрация" }}
       </button>
     </form>
-
-
     <p class="text-sm text-center mt-4">
-      {{ isLoginMode ? 'Нет аккаунта?' : 'Уже зарегистрированы?' }}
-      <a href="#" (click)="toggleAuthMode()" class="text-primary ml-1 hover:underline">
-        {{ isLoginMode ? 'Регистрация' : 'Войти' }}
+      {{ isLoginMode ? "Нет аккаунта?" : "Уже зарегистрированы?" }}
+      <a
+        href="#"
+        (click)="handleToggleAuthMode()"
+        class="text-brand-primary-normal ml-1 hover:underline"
+      >
+        {{ isLoginMode ? "Регистрация" : "Войти" }}
       </a>
     </p>
-
     @if (errorMessage) {
-    <div class="text-red-500 mt-2 text-center">
-      {{ errorMessage }}
-    </div>
+      <div class="text-red-500 mt-2 text-center">
+        {{ errorMessage }}
+      </div>
     }
   </div>
 </div>

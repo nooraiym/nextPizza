@@ -1,9 +1,10 @@
+<breadcrumb [productName]="product.name" />
 <article class="flex gap-11 w-full">
   <div
-    class="w-full md:w-1/2 rounded-xl bg-secondary flex justify-center items-center"
+    class="custom-rounded w-full md:w-1/2 bg-surface-secondary flex justify-center items-center"
   >
     <img
-      class="w-full h-auto object-cover pl-5 pt-5"
+      class="w-full max-w-[570px] h-auto object-cover pl-5 pt-5"
       [src]="product.imageUrl"
       alt="Product's image"
     />
@@ -13,19 +14,17 @@
       {{ product.name }}
     </h5>
     <p class="mb-3 text-gray-500">
-      25 см, традиционное тесто, {{ product.baseWeight }} г
+      30 см, традиционное тесто, {{ product.weight }} г
     </p>
     <p class="mb-3 text-gray-300">
-      {{ product.ingredients }}
+      {{ product.description }}
     </p>
-
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit($event)">
-      <fieldset class="product-details__fieldset">
+    <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
+      <fieldset class="fieldset">
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
-              orderForm.get('size')?.value === '25'
+            'radio-active': orderForm.get('size')?.value === '25'
           }"
         >
           <input
@@ -37,10 +36,9 @@
           25 см
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
-              orderForm.get('size')?.value === '30'
+            'radio-active': orderForm.get('size')?.value === '30'
           }"
         >
           <input
@@ -53,10 +51,9 @@
           30 см
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
-              orderForm.get('size')?.value === '35'
+            'radio-active': orderForm.get('size')?.value === '35'
           }"
         >
           <input
@@ -68,13 +65,11 @@
           35 см
         </label>
       </fieldset>
-
-      <fieldset class="product-details__fieldset">
+      <fieldset class="fieldset">
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
-              orderForm.get('crust')?.value === 'traditional'
+            'radio-active': orderForm.get('crust')?.value === 'traditional'
           }"
         >
           <input
@@ -87,10 +82,9 @@
           Традиционное
         </label>
         <label
-          class="product-details__label__base"
+          class="radio-base"
           [ngClass]="{
-            'product-details__label__active':
-              orderForm.get('crust')?.value === 'thin'
+            'radio-active': orderForm.get('crust')?.value === 'thin'
           }"
         >
           <input
@@ -102,32 +96,15 @@
           Тонкое
         </label>
       </fieldset>
-
-      <p class="text-lg font-semibold py-4">Ингредиенты</p>
-      <div class="w-full max-w-2xl mx-auto pb-16">
-        <!-- Карусель с опциями -->
-        <div class="flex gap-3 overflow-x-auto space-x-4 py-2 items-stretch">
+      <p class="text-lg font-semibold pb-4">Ингредиенты</p>
+      <div class="w-full max-w-2xl pb-16">
+        <div class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
           @for (option of options; track $index) {
-          <div class="flex-shrink-0 w-36">
-            <button
-              type="button"
-              (click)="toggleOption(option)"
-              class="w-full h-full p-4 rounded-xl transition duration-300 ease-in-out transform"
-              [ngClass]="{
-                'border border-primary ': option.selected,
-                'bg-white text-gray-700': !option.selected
-              }"
-            >
-              <img [src]="option.imageUrl" alt="" />
-              <div class="text-gray-700 py-1.5">{{ option.name }}</div>
-              <div class="text-sm text-gray-500">{{ option.price }} ₽</div>
-            </button>
-          </div>
+            <ingredient-selector [option]="option" class="flex-shrink-0 w-36" (onSelectoption)="handleSelectOption()"/>
           }
         </div>
       </div>
-
-      <button type="submit" class="btn btn-size btn-default">
+      <button type="submit" class="btn btn-size btn-primary">
         Добавить в корзину за {{ totalPrice }} ₽
       </button>
     </form>

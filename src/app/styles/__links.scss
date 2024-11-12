@@ -1,9 +1,15 @@
 .link {
-  @apply px-5 py-2 whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus:outline-none focus:ring-2 disabled:pointer-events-none disabled:opacity-50;
+  @apply custom-rounded px-5 py-2 whitespace-nowrap text-sm font-medium transition-colors;
 }
-.link-active {
-  @apply bg-white shadow-md shadow-gray-300/70 text-primary;
+.link:focus {
+  @apply focus:outline-none focus:ring-2;
 }
-.link-dropdown {
-  @apply block px-4 py-2 hover:bg-accent hover:text-primary;
+.link:disabled {
+  @apply disabled:pointer-events-none disabled:opacity-50;
+}
+.link-choosen {
+  @apply custom-shadow bg-text-accent text-brand-primary-normal;
+}
+.link-dropdown-menu-item {
+  @apply block px-4 py-2 hover:bg-brand-secondary-light hover:text-brand-primary-normal;
 }

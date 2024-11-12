@@ -1,16 +1,19 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { LucideAngularModule, ShoppingCart } from 'lucide-angular';
 
 @Component({
   selector: 'cart-actions',
   standalone: true,
-  imports: [],
+  imports: [LucideAngularModule],
   templateUrl: './cart-actions.component.html',
   styleUrl: './cart-actions.component.scss',
 })
 export class CartActionsComponent {
-  @Output() toggleCart = new EventEmitter<void>();
+  readonly ShoppingCart = ShoppingCart;
+  @Output() onToggleCart = new EventEmitter<void>();
+  isCartOpen = false;
 
-  toggleSideCart() {
-    this.toggleCart.emit();
+  handleToggleSideCart() {
+    this.onToggleCart.emit();
   }
 }

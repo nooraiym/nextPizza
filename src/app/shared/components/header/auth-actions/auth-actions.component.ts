@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { LucideAngularModule, User } from 'lucide-angular';
 
 @Component({
   selector: 'auth-actions',
   standalone: true,
-  imports: [],
+  imports: [LucideAngularModule],
   templateUrl: './auth-actions.component.html',
   styleUrl: './auth-actions.component.scss',
 })
 export class AuthActionsComponent {
-  @Output() openAuthModal = new EventEmitter<void>();
+  readonly User = User;
+  @Output() onOpenAuthModal = new EventEmitter<void>();
 
-  openAuthModalView() {
-    this.openAuthModal.emit();
+  handleOpenAuthModal() {
+    this.onOpenAuthModal.emit();
   }
 }

@@ -1,20 +1,26 @@
 <nav class="flex py-10 text-gray-700" aria-label="Breadcrumb">
-  <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+  <ol
+    class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+  >
     <li class="inline-flex items-center">
       <a
         routerLink="/"
-        class="inline-flex items-center text-sm text-gray-800 hover:text-primary"
+        class="inline-flex items-center text-sm text-gray-800 hover:text-brand-primary-normal"
       >
         Главная
       </a>
     </li>
     <li class="text-gray-300">/</li>
     <li>
-      <a routerLink="/" class="text-sm text-gray-800 hover:text-primary">Пиццы</a>
+      <a
+        routerLink="/"
+        class="text-sm text-gray-800 hover:text-brand-primary-normal"
+        >Пиццы</a
+      >
     </li>
     <li class="text-gray-300">/</li>
     <li aria-current="product-page">
-      <span class="text-sm text-gray-400">Пепперони фреш</span>
+      <span class="text-sm text-gray-400">{{ productName }}</span>
     </li>
   </ol>
 </nav>

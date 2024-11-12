@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { LucideAngularModule, Search } from 'lucide-angular';
 
 @Component({
   selector: 'search-input',
   standalone: true,
-  imports: [CommonModule],
+  imports: [LucideAngularModule, CommonModule],
   templateUrl: './search-input.component.html',
   styleUrl: './search-input.component.scss',
 })
 export class SearchInputComponent {
+  readonly Search = Search;
   focused = false;
 
-  onInputFocus() {
+  handleInputFocus() {
     this.focused = true;
   }
 }
