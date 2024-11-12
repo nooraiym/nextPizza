@@ -1,16 +1,6 @@
 @switch (filterType) {
-  @case (FilterType.Category) {
+  @case (FilterType.New) {
     <ul class="list">
-      <li class="list-item">
-        <input
-          checked
-          class="checkbox"
-          id="checkbox-collect"
-          value=""
-          type="checkbox"
-        />
-        <label for="checkbox-collect">Можно собирать</label>
-      </li>
       <li class="list-item">
         <input
           class="checkbox"
@@ -28,9 +18,23 @@
     <input id="costTo" type="number" value="" class="input" placeholder="1950" />
     <span class="absolute text-gray-300 top-2 right-3.5">₽</span>
   }
+  @case (FilterType.Category) {
+    <ul class="list">
+      <!-- TODO: расформировать весь компонент и подтягивать правильные данные -->
+      <li class="list-item">
+        <input
+        class="checkbox"
+        id="checkbox-traditionalCrust"
+        value=""
+        type="checkbox"
+        />
+        <label for="checkbox-traditionalCrust">Категории продуктов</label>
+      </li>
+    </ul>
+  }
   @case (FilterType.Ingredients) {
     <ul class="list">
-      @for (ingredient of ingredients; track ingredient.id) {
+      @for (ingredient of (showAllOptions ? ingredients : ingredients.slice(0, 5)); track ingredient.id) {
         <li class="list-item">
           <input
             class="checkbox"
@@ -38,35 +42,12 @@
             value=""
             type="checkbox"
           />
-          <label for="checkbox-collect">{{ ingredient.name }}</label>
+          <label [for]="ingredient.id">{{ ingredient.name }}</label>
         </li>
       }
-      <button class="btn btn-size btn-ghost" >
-        <span class="mr-auto">+ Показать всё</span>
+      <button class="btn btn-size btn-ghost" (click)="toggleShowAll()">
+        <span class="mr-auto">{{ showAllOptions ? 'Скрыть' : '+ Показать всё' }}</span>
       </button>
-    </ul>
-  }
-  @case (FilterType.TypeOfCrust) {
-    <ul class="list">
-      <li class="list-item">
-        <input
-          checked
-          class="checkbox"
-          id="checkbox-traditionalCrust"
-          value=""
-          type="checkbox"
-        />
-        <label for="checkbox-traditionalCrust">Tpaдиционное</label>
-      </li>
-      <li class="list-item">
-        <input
-          class="checkbox"
-          id="checkbox-thinCrust"
-          value=""
-          type="checkbox"
-        />
-        <label for="checkbox-thinCrust">Тонкое</label>
-      </li>
     </ul>
   }
 }

@@ -1,0 +1,10 @@
+<ul class="flex flex-col gap-1.5 p-2">
+  @for (tag of tags; track $index) {
+    <li
+      class="link-dropdown-menu-item text-sm"
+      [ngClass]="{ 'link-choosen': false }"
+    >
+      <a href="">{{ tag.name }}</a>
+    </li>
+  }
+  </ul>

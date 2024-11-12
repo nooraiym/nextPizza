@@ -1,4 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Product } from '../../../../shared/services/all-products/all-products.model';
 import { AllProductsService } from '../../../../shared/services/all-products/all-products.service';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -13,24 +14,31 @@ import { SkeletonComponent } from '../skeleton/skeleton.component';
   templateUrl: './home-content.component.html',
   styleUrl: './home-content.component.scss',
 })
-export class HomeContentComponent implements OnInit {
+export class HomeContentComponent implements OnInit, OnDestroy {
   ProductCardType = ProductCardType;
   private allProductsService = inject(AllProductsService);
+  private allProductsSubscription!: Subscription;
   products: Product[] = [];
   isLoading = true;
 
   ngOnInit() {
     setTimeout(() => {
-      this.allProductsService.getAllProducts().subscribe({
-        next: (data) => {
-          this.products = data;
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.error('Error loading products:', error);
-          this.isLoading = false;
-        },
-      });
+      this.allProductsSubscription = this.allProductsService
+        .getAllProducts()
+        .subscribe({
+          next: (data) => {
+            this.products = data;
+            this.isLoading = false;
+          },
+          error: (error) => {
+            console.error('Error loading products:', error);
+            this.isLoading = false;
+          },
+        });
     }, 1500);
+  }
+
+  ngOnDestroy(): void {
+    this.allProductsSubscription.unsubscribe();
   }
 }
