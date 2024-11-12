@@ -4,7 +4,7 @@
     "name": "Сорбет Турецкий гранат с клубникой",
     "new": false,
     "description": "Горячий восток в прохладном десерте. Оцените дуэт граната и сладкой клубники",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F1CFA3D45B1621E4A3497441F.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F1CFA3D45B1621E4A3497441F.avif",
     "price": 230,
     "weight": 300,
     "categoryId": 7
@@ -14,7 +14,7 @@
     "name": "Сырники с малиновым вареньем",
     "new": false,
     "description": "Любимый десерт многих наших гостей — румяные сырники из печи. Такие нежные, в меру сладкие и напоминающие детство",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D5FE8809BE8855C790C2397B237.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FE8809BE8855C790C2397B237.avif",
     "price": 140,
     "weight": 300,
     "categoryId": 7
@@ -24,7 +24,7 @@
     "name": "Бруслетики",
     "new": false,
     "description": "Это задорные сладкие рулетики, в которых закрутился микс из натуральной брусники и сгущенного молока",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF11EE37FA3B04B37D754690C0B180.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF11EE37FA3B04B37D754690C0B180.avif",
     "price": 260,
     "weight": 270,
     "categoryId": 7

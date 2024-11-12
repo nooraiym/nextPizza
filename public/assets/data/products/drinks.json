@@ -4,7 +4,7 @@
     "name": "Морс Клюква 👶",
     "new": false,
     "description": "Эта ягода хитра! Наш фирменный морс для любителей сладкой кислинки",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796ED07B177181EB7BE755980C4B.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED07B177181EB7BE755980C4B.avif",
     "price": 110,
     "weight": 450,
     "categoryId": 6
@@ -14,7 +14,7 @@
     "name": "Морс Черная Смородина 👶",
     "new": false,
     "description": "Для усиления ощущений от морса рекомендуем закрыть глаза и представить себя у бабушки в саду",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796ED037D6DDAEE0FAB95CF22A5A.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED037D6DDAEE0FAB95CF22A5A.avif",
     "price": 110,
     "weight": 450,
     "categoryId": 6
@@ -24,7 +24,7 @@
     "name": "Морс Вишня 👶",
     "new": false,
     "description": "Напиток со вкусом ностальгии — летние каникулы, теплые ночи и уютные дачные посиделки. А еще никаких косточек. Дизайн товара может отличаться",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796ED09AEF50BCB606364846E143.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED09AEF50BCB606364846E143.avif",
     "price": 110,
     "weight": 450,
     "categoryId": 6

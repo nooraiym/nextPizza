@@ -6,7 +6,7 @@
     "ingredients": [2, 11, 12, 14],
     "tags": [2],
     "description": "Пряная говядина, томаты, красный лук, моцарелла, фирменный соус альфредо, чеснок, итальянские травы",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF1CB7AB16CECF87C419EF9EEFACA0.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF1CB7AE8F7C7D9A4BB4450E6AAD2C.avif",
     "price": 350,
     "weight": 510,
     "categoryId": 1
@@ -18,7 +18,7 @@
     "ingredients": [2, 13, 15],
     "tags": [7],
     "description": "Креветки, ананасы, соус сладкий чили, сладкий перец, моцарелла, фирменный соус альфредо",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EF01FD3C2AC8E791770181C4A9C04D.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF01FD41356844BE988F2C05579851.avif",
     "price": 370,
     "weight": 630,
     "categoryId": 1
@@ -30,7 +30,7 @@
     "ingredients": [2, 3],
     "tags": [5, 9, 10],
     "description": "Моцарелла, сыры чеддер и пармезан, соус альфредо",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D5F837255B58B25A62C60FFDB38.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F83DA62959F8F6A9E151DD3A2.avif",
     "price": 170,
     "weight": 490,
     "categoryId": 1
@@ -42,7 +42,7 @@
     "ingredients": [2, 9, 15],
     "tags": [2, 3],
     "description": "Пикантные колбаски чоризо из цыпленка, зеленый перец, моцарелла, томатный соус",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D5FBD0756A6AAA0BBEBA01B343A.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FBD71E15F840FB37AB9651AF0.avif",
     "price": 300,
     "weight": 490,
     "categoryId": 1
@@ -54,7 +54,7 @@
     "ingredients": [2, 3, 6, 12],
     "tags": [2, 6, 9],
     "description": "Цыпленок, шампиньоны, ароматный грибной соус, лук, сухой чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D5FD6097096B601585D57F44A6F.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FD668CBACBF4C3ED9D3EAF676.avif",
     "price": 370,
     "weight": 640,
     "categoryId": 1
@@ -66,7 +66,7 @@
     "ingredients": [11, 14],
     "tags": [5, 10],
     "description": "Много-много моцареллы, томаты, томатный соус и итальянские травы. Классика!",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D5F7DFCC07695BBB44734525217.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F7E5442468830FC5001C72E04.avif",
     "price": 230,
     "weight": 640,
     "categoryId": 1
@@ -78,7 +78,7 @@
     "ingredients": [13],
     "tags": [4],
     "description": "Здесь все сразу — брусника и ананас со сгущенкой на слоеном тесте",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F120118208224A0FD595B2E56.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F120118208224A0FD595B2E56.avif",
     "price": 200,
     "weight": 250,
     "categoryId": 1

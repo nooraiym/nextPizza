@@ -4,7 +4,7 @@
     "name": "Подарочный сертификат",
     "new": false,
     "description": "Сертификат на любую большую пиццу. Действует на доставку, самовывоз и в ресторане, только в том городе, в котором был куплен",
-    "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796ED7801FC392F179319137AA56.jpg",
+    "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED7801FC392F179319137AA56.avif",
     "price": 500,
     "categoryId": 9
   }
