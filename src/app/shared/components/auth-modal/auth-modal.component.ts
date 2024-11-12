@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  Output,
+  inject,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -16,9 +23,10 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './auth-modal.component.html',
   styleUrl: './auth-modal.component.scss',
 })
-export class AuthModalComponent {
+export class AuthModalComponent implements OnDestroy {
   @Output() onClose = new EventEmitter<void>();
   private authService = inject(AuthService);
+  private authSubscription!: Subscription;
   private router = inject(Router);
   loginForm: FormGroup;
   errorMessage: string | null = null;
@@ -37,7 +45,7 @@ export class AuthModalComponent {
     this.loginForm.reset();
   }
   signIn(email: string, password: string) {
-    this.authService.login(email, password).subscribe({
+    this.authSubscription = this.authService.login(email, password).subscribe({
       next: () => {
         this.onClose.emit();
         this.router.navigate(['']);
@@ -48,14 +56,16 @@ export class AuthModalComponent {
     });
   }
   signUp(name: string, email: string, password: string) {
-    this.authService.register(name, email, password).subscribe({
-      next: () => {
-        this.handleToggleAuthMode();
-      },
-      error: () => {
-        this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
-      },
-    });
+    this.authSubscription = this.authService
+      .register(name, email, password)
+      .subscribe({
+        next: () => {
+          this.handleToggleAuthMode();
+        },
+        error: () => {
+          this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
+        },
+      });
   }
   handleSubmit() {
     const { name, email, password } = this.loginForm.value;
@@ -67,5 +77,9 @@ export class AuthModalComponent {
   }
   handleCloseModal() {
     this.onClose.emit();
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 }

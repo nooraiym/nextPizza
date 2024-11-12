@@ -1,6 +1,6 @@
 export enum FilterType {
-  Category = 'category',
+  New = 'new',
   Cost = 'cost',
+  Category = 'category',
   Ingredients = 'ingredients',
-  TypeOfCrust = 'typeOfCrust',
 }
