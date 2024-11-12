@@ -2,16 +2,20 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { _ingredients } from '../../../../../mock/ingredients';
 import { Product } from '../../../../shared/services/all-products/all-products.model';
-import { IngredientSelectorComponent } from './ingredient-selector/ingredient-selector.component';
 import { Ingredient } from '../../../../shared/services/ingredients/ingredients.model';
-import { BreadcrumbComponent } from "../breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
+import { IngredientSelectorComponent } from './ingredient-selector/ingredient-selector.component';
 
 @Component({
   selector: 'product-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IngredientSelectorComponent, BreadcrumbComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IngredientSelectorComponent,
+    BreadcrumbComponent,
+  ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
@@ -31,7 +35,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.options = this.route.snapshot.data['ingredients']
+    this.options = this.route.snapshot.data['ingredients'];
     this.product = this.route.snapshot.data['product'];
     this.basePrice = this.product.price;
     this.totalPrice = this.basePrice;

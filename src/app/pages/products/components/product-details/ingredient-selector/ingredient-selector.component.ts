@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { _ingredients } from '../../../../../../mock/ingredients';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Ingredient } from '../../../../../shared/services/ingredients/ingredients.model';
 
 @Component({
   selector: 'ingredient-selector',
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ingredient-selector.component.scss',
 })
 export class IngredientSelectorComponent {
-  options = _ingredients;
+  options!: Ingredient[];
   @Input({ required: true }) option!: any;
   @Output() onSelectoption = new EventEmitter();
 
