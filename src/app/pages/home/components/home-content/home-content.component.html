@@ -1,8 +1,11 @@
 <div class="custom-grid" >
-  @for (product of products; track $index) {
-    @if (isLoading) {
+  @if (isLoading) {
+    @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
       <skeleton />
-    } @else {
+    }
+  }
+  @if (!isLoading){
+    @for (product of products; track $index) {
       <product-card [cardType]="ProductCardType.Main" [product]="product" />
     }
   }

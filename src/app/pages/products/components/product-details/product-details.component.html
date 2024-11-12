@@ -1,3 +1,4 @@
+<breadcrumb [productName]="product.name" />
 <article class="flex gap-11 w-full">
   <div
     class="custom-rounded w-full md:w-1/2 bg-surface-secondary flex justify-center items-center"
@@ -13,10 +14,10 @@
       {{ product.name }}
     </h5>
     <p class="mb-3 text-gray-500">
-      25 см, традиционное тесто, {{ product.baseWeight }} г
+      30 см, традиционное тесто, {{ product.weight }} г
     </p>
     <p class="mb-3 text-gray-300">
-      {{ product.ingredients }}
+      {{ product.description }}
     </p>
     <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
       <fieldset class="fieldset">

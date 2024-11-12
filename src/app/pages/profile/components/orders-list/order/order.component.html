@@ -20,7 +20,8 @@
           </time>
         </span>
         <span class="flex gap-4 items-center">
-          <status-badge [status]="orderData.status" />
+          <!-- TODO: должен быть статус из данных -->
+          <status-badge [status]="PaymentStatus.Paid" />
           <lucide-angular
             [img]="ChevronDown"
             class="w-6 h-6"

@@ -1,36 +1,43 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { _ingredients } from '../../../../../mock/ingredients';
+import { Product } from '../../../../shared/services/all-products/all-products.model';
 import { IngredientSelectorComponent } from './ingredient-selector/ingredient-selector.component';
+import { Ingredient } from '../../../../shared/services/ingredients/ingredients.model';
+import { BreadcrumbComponent } from "../breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'product-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IngredientSelectorComponent],
+  imports: [CommonModule, ReactiveFormsModule, IngredientSelectorComponent, BreadcrumbComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',
 })
-export class ProductDetailsComponent {
-  product = {
-    name: 'Жюльен',
-    imageUrl:
-      'https://media.dodostatic.net/image/r:584x584/11EE7D5FD6097096B601585D57F44A6F.avif',
-    ingredients:
-      'Цыпленок, шампиньоны, соус сливочный с грибами, красный лук, чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо',
-    baseWeight: 430,
-    cost: 799,
-  };
-  options = _ingredients;
+export class ProductDetailsComponent implements OnInit {
+  private route = inject(ActivatedRoute);
   orderForm: FormGroup;
-  basePrice = this.product.cost;
-  totalPrice = this.basePrice;
+  product!: Product;
+  options!: Ingredient[];
+  basePrice!: number;
+  totalPrice!: number;
 
   constructor(private fb: FormBuilder) {
     this.orderForm = this.fb.group({
       size: ['30'],
       crust: ['traditional'],
     });
+  }
+
+  ngOnInit(): void {
+    this.options = this.route.snapshot.data['ingredients']
+    this.product = this.route.snapshot.data['product'];
+    this.basePrice = this.product.price;
+    this.totalPrice = this.basePrice;
+    if (!this.product) {
+      console.warn('Product data could not be loaded.');
+    }
   }
 
   updatePrice() {

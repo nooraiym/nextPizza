@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { products } from '../../../../../mock/products';
+import { Component, OnInit, inject } from '@angular/core';
+import { Product } from '../../../../shared/services/all-products/all-products.model';
+import { AllProductsService } from '../../../../shared/services/all-products/all-products.service';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductCardType } from '../product-card/product-card.model';
@@ -14,12 +15,22 @@ import { SkeletonComponent } from '../skeleton/skeleton.component';
 })
 export class HomeContentComponent implements OnInit {
   ProductCardType = ProductCardType;
-  products = products;
+  private allProductsService = inject(AllProductsService);
+  products: Product[] = [];
   isLoading = true;
 
   ngOnInit() {
     setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
+      this.allProductsService.getAllProducts().subscribe({
+        next: (data) => {
+          this.products = data;
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error loading products:', error);
+          this.isLoading = false;
+        },
+      });
+    }, 1500);
   }
 }

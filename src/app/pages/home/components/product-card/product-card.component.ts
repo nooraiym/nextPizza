@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Plus } from 'lucide-angular';
-import { Product } from '../../../../../mock/products';
+import { Product } from '../../../../shared/services/all-products/all-products.model';
 import { ProductCardType } from './product-card.model';
 
 @Component({
