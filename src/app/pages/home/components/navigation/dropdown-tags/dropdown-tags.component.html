@@ -2,7 +2,7 @@
   @for (tag of tags; track $index) {
     <li
       class="link-dropdown-menu-item text-sm"
-      [ngClass]="{ 'link-choosen': false }"
+      [ngClass]="{ 'link-active': tag === selectedTag }"
     >
       <a (click)="handleTagClick(tag)">{{ tag.name }}</a>
     </li>

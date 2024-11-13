@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChevronDown, LucideAngularModule } from 'lucide-angular';
 import { Subscription } from 'rxjs';
 import { Tag } from '../../../../shared/services/tags/tags.model';
@@ -18,6 +18,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   readonly ChevronDown = ChevronDown;
   private tagsService = inject(TagsService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private tagsSubscription!: Subscription;
   tags: Tag[] = [];
   selectedTag!: Tag;
@@ -26,7 +27,14 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.tagsSubscription = this.tagsService.getAllTags().subscribe((data) => {
       this.tags = data;
-      this.selectedTag = this.tags[0];
+      const tagName = this.route.snapshot.queryParamMap.get('tag');
+
+      if (tagName) {
+        this.selectedTag =
+          this.tags.find((tag) => tag.queryName === tagName) || this.tags[0];
+      } else {
+        this.selectedTag = this.tags[0];
+      }
     });
   }
 
@@ -34,7 +42,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.showDropdown = state;
   }
   selectTag(tag: Tag) {
-    this.router.navigate([''], { queryParams: { tag: tag.queryName }});
+    this.router.navigate([''], {
+      queryParams: { tag: tag.queryName },
+      queryParamsHandling: 'merge',
+    });
     this.selectedTag = tag;
   }
 

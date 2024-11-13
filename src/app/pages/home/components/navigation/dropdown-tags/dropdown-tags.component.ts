@@ -13,9 +13,10 @@ import { Tag } from '../../../../../shared/services/tags/tags.model';
 export class DropdownTagsComponent {
   readonly ChevronUp = ChevronUp;
   @Input({ required: true }) tags!: Tag[];
+  @Input({ required: true }) selectedTag!: Tag;
   @Output() onTagClick = new EventEmitter();
 
   handleTagClick(tag: Tag) {
     this.onTagClick.emit(tag);
-  };
+  }
 }

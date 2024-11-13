@@ -22,6 +22,7 @@
         <dropdown-tags
           class="custom-shadow custom-rounded absolute left-0 bg-white shadow-md mt-1 z-10"
           [tags]="tags.slice(5)"
+          [selectedTag]="selectedTag"
           (onTagClick)="selectTag($event)"
         />
       }

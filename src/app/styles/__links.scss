@@ -13,3 +13,6 @@
 .link-dropdown-menu-item {
   @apply block px-4 py-2 hover:bg-brand-secondary-light hover:text-brand-primary-normal;
 }
+.link-active {
+  @apply bg-brand-secondary-light text-brand-primary-normal;
+}
