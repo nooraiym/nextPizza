@@ -1,14 +1,14 @@
 <h3 class="text-xl font-extrabold pt-8">Фильтрация</h3>
-<filter [filterType]="FilterType.New" class="pb-6 break" />
+<newest-filtering class="pb-6 break" />
 <section>
   <h4 class="font-bold pb-4">Цена от и до:</h4>
-  <filter [filterType]="FilterType.Cost" class="flex gap-4 pb-6 break relative" />
+  <price-filtering class="flex gap-4 pb-6 break relative" />
 </section>
 <section>
-  <filter [filterType]="FilterType.Category" class="flex gap-4 pb-6 break" />
+  <category-filtering class="flex gap-4 pb-6 break min-h-0 overflow-auto" />
 </section>
 <section>
   <h4 class="font-bold pb-4">Ингредиенты:</h4>
-  <filter [filterType]="FilterType.Ingredients" class="flex gap-4" />
+  <ingredients-filtering class="flex gap-4 min-h-0 overflow-auto" />
 </section>
 <button class="btn btn-size btn-primary">Применить</button>

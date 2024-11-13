@@ -1,19 +1,16 @@
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ingredient } from '../../../../../shared/services/ingredients/ingredients.model';
 import { IngredientsService } from '../../../../../shared/services/ingredients/ingredients.service';
-import { FilterType } from './filter.model';
 
 @Component({
-  selector: 'filter',
+  selector: 'ingredients-filtering',
   standalone: true,
   imports: [],
-  templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss',
+  templateUrl: './ingredients-filtering.component.html',
+  styleUrl: './ingredients-filtering.component.scss',
 })
-export class FilterComponent implements OnInit, OnDestroy {
-  FilterType = FilterType;
-  @Input({ required: true }) filterType!: FilterType;
+export class IngredientsFilteringComponent implements OnInit, OnDestroy {
   private ingredientsService = inject(IngredientsService);
   private ingredientsSubscription!: Subscription;
   ingredients: Ingredient[] = [];
