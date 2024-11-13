@@ -50,6 +50,15 @@ export class AllProductsService {
     );
   }
 
+  getProductsByNewest(): Observable<Product[]> {
+    return this.getAllProducts().pipe(
+      map((products) => {
+        const filteredProducts = products.filter((product) => product.new);
+        return filteredProducts;
+      })
+    );
+  }
+
   getRandomRecommendations(count: number): Observable<Product[]> {
     return this.getAllProducts().pipe(
       map((products) => {

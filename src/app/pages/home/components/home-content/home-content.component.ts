@@ -32,12 +32,18 @@ export class HomeContentComponent implements OnInit, OnDestroy {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
         const tag = params['tag'];
+        const isNewOnly = params['isNewOnly'] === 'true';
+
         if (tag) {
           tag === 'all'
             ? this.loadAllProducts()
             : this.filterProductsByTag(tag);
         } else {
           this.loadAllProducts();
+        }
+
+        if (isNewOnly) {
+          this.filterProductsByNewest();
         }
       }
     );
@@ -66,6 +72,22 @@ export class HomeContentComponent implements OnInit, OnDestroy {
         error: (error) =>
           handleError(
             'Error loading filtered products:',
+            error,
+            this.stopLoading
+          ),
+      });
+  }
+  filterProductsByNewest() {
+    this.allProductsSubscription = this.allProductsService
+      .getProductsByNewest()
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          this.stopLoading();
+        },
+        error: (error) =>
+          handleError(
+            'Error loading newest products:',
             error,
             this.stopLoading
           ),

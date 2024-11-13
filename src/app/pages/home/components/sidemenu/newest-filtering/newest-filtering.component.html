@@ -1,6 +1,13 @@
 <ul class="list">
   <li class="list-item">
-    <input class="checkbox" id="checkbox-new" value="" type="checkbox" />
+    <input
+      class="checkbox"
+      id="checkbox-new"
+      value=""
+      type="checkbox"
+      [checked]="isNewOnly"
+      (change)="toggleNewFilter($event)"
+    />
     <label for="checkbox-new">Новинки</label>
   </li>
 </ul>

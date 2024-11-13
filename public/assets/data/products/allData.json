@@ -58,7 +58,7 @@
   {
     "id": 4,
     "name": "Чоризо фреш 🌶",
-    "new": true,
+    "new": false,
     "ingredients": [
       2,
       9,
