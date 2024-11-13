@@ -9,7 +9,7 @@ import { ProductsLayoutComponent } from './pages/products/layout/layout.componen
 import { routes as productsRoute } from './pages/products/products.routes';
 import { ProfileLayoutComponent } from './pages/profile/layout/layout.component';
 import { routes as profileRoutes } from './pages/profile/profile.routes';
-import { authGuard } from './shared/services/auth.guard';
+import { authGuard } from './shared/services/auth/auth.guard';
 
 export const routes: Routes = [
   {

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { AuthActionsComponent } from './auth-actions/auth-actions.component';
 import { CartActionsComponent } from './cart-actions/cart-actions.component';
