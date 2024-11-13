@@ -43,7 +43,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
   selectTag(tag: Tag) {
     this.router.navigate([''], {
-      queryParams: { tag: tag.queryName },
+      queryParams: { tag: tag.queryName !== "all" ? tag.queryName : null },
       queryParamsHandling: 'merge',
     });
     this.selectedTag = tag;
