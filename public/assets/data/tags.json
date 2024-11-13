@@ -1,12 +1,12 @@
 [
-  { "id": 1, "name": "Все" },
-  { "id": 2, "name": "Мясные" },
-  { "id": 3, "name": "Острые" },
-  { "id": 4, "name": "Сладкие" },
-  { "id": 5, "name": "Вегетарианские" },
-  { "id": 6, "name": "С курицей" },
-  { "id": 7, "name": "С морепродуктами" },
-  { "id": 8, "name": "Без глютена" },
-  { "id": 9, "name": "Много сыра" },
-  { "id": 10, "name": "Диетические" }
+  { "id": 1, "queryName": "all", "name": "Все" },
+  { "id": 2, "queryName": "meaty", "name": "Мясные" },
+  { "id": 3, "queryName": "spicy", "name": "Острые" },
+  { "id": 4, "queryName": "sweety", "name": "Сладкие" },
+  { "id": 5, "queryName": "vegeterian", "name": "Вегетарианские" },
+  { "id": 6, "queryName": "with-chicken", "name": "С курицей" },
+  { "id": 7, "queryName": "with-seafood", "name": "С морепродуктами" },
+  { "id": 8, "queryName": "gluten-free", "name": "Без глютена" },
+  { "id": 9, "queryName": "cheesy", "name": "Много сыра" },
+  { "id": 10, "queryName": "dietary", "name": "Диетические" }
 ]

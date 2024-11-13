@@ -1,13 +1,12 @@
 <ul class="custom-rounded max-w-fit flex items-center gap-1.5 bg-input-primary p-1">
   @for (tag of (tags.slice(0, 5)); track $index) {
-    <!-- TODO: правильная отработка выбранной опции -->
     <li
       class="link"
       [ngClass]="{
-          'link-choosen': false
+          'link-choosen': tag === selectedTag
         }"
     >
-      <a href="">{{ tag.name }}</a>
+      <a (click)="selectTag(tag)">{{ tag.name }}</a>
     </li>
   }
     <li
@@ -23,6 +22,7 @@
         <dropdown-tags
           class="custom-shadow custom-rounded absolute left-0 bg-white shadow-md mt-1 z-10"
           [tags]="tags.slice(5)"
+          (onTagClick)="selectTag($event)"
         />
       }
     </li>

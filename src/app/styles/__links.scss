@@ -1,5 +1,5 @@
 .link {
-  @apply custom-rounded px-5 py-2 whitespace-nowrap text-sm font-medium transition-colors;
+  @apply custom-rounded px-5 py-2 whitespace-nowrap text-sm font-medium transition-colors cursor-pointer;
 }
 .link:focus {
   @apply focus:outline-none focus:ring-2;

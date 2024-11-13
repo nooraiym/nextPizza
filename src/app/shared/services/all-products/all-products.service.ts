@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, catchError, from, map } from 'rxjs';
-import { Product } from './all-products.model';
+import { Product, TagQuery } from './all-products.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +35,17 @@ export class AllProductsService {
           throw new Error(`Product with id ${id} not found`);
         }
         return product;
+      })
+    );
+  }
+
+  getProductsByTag(tagQuery: TagQuery): Observable<Product[]> {
+    return this.getAllProducts().pipe(
+      map((products) => {
+        const filteredProducts = products.filter((product) =>
+          product.tags?.some((t) => t === tagQuery)
+        );
+        return filteredProducts;
       })
     );
   }

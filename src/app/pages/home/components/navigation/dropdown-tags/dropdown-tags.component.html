@@ -4,7 +4,7 @@
       class="link-dropdown-menu-item text-sm"
       [ngClass]="{ 'link-choosen': false }"
     >
-      <a href="">{{ tag.name }}</a>
+      <a (click)="handleTagClick(tag)">{{ tag.name }}</a>
     </li>
   }
   </ul>
