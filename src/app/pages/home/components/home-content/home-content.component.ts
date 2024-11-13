@@ -6,6 +6,7 @@ import {
   TagQuery,
 } from '../../../../shared/services/all-products/all-products.model';
 import { AllProductsService } from '../../../../shared/services/all-products/all-products.service';
+import { handleError } from '../../../../shared/utils/error-handler.util';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductCardType } from '../product-card/product-card.model';
@@ -43,28 +44,35 @@ export class HomeContentComponent implements OnInit, OnDestroy {
   }
 
   loadAllProducts() {
-    this.allProductsService.getAllProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error loading products:', error);
-        this.isLoading = false;
-      },
-    });
+    this.allProductsSubscription = this.allProductsService
+      .getAllProducts()
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          this.stopLoading();
+        },
+        error: (error) =>
+          handleError('Error loading products:', error, this.stopLoading),
+      });
   }
   filterProductsByTag(tagQuery: TagQuery) {
-    this.allProductsService.getProductsByTag(tagQuery).subscribe({
-      next: (data) => {
-        this.products = data;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error('Error loading filtered products:', error);
-        this.isLoading = false;
-      },
-    });
+    this.allProductsSubscription = this.allProductsService
+      .getProductsByTag(tagQuery)
+      .subscribe({
+        next: (data) => {
+          this.products = data;
+          this.stopLoading();
+        },
+        error: (error) =>
+          handleError(
+            'Error loading filtered products:',
+            error,
+            this.stopLoading
+          ),
+      });
+  }
+  stopLoading() {
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {
