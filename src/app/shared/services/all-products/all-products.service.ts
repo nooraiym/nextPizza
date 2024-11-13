@@ -59,6 +59,17 @@ export class AllProductsService {
     );
   }
 
+  getProductsBySearchTerms(term: string): Observable<Product[]> {
+    return this.getAllProducts().pipe(
+      map((products) => {
+        const filteredProducts = products.filter((product) =>
+          product.name.toLowerCase().includes(term.toLowerCase())
+        );
+        return filteredProducts;
+      })
+    );
+  }
+
   getRandomRecommendations(count: number): Observable<Product[]> {
     return this.getAllProducts().pipe(
       map((products) => {

@@ -15,7 +15,27 @@
   <input
     class="custom-rounded outline-none w-full bg-gray-50 pl-11"
     type="text"
-    placeholder="Найти пиццу..."
+    placeholder="Искать..."
     (focus)="handleInputFocus()"
+    (input)="handleSearch($event)"
   />
+  <!-- TODO: пофиксить старый синтаксис -->
+  <div *ngIf="focused && (searchResults$ | async) as results" class="custom-rounded absolute bg-white w-full mt-12 py-3 shadow-lg z-30">
+    @if (results.length > 0) {
+      <ul>
+        @for (product of results; track $index) {
+          <li (click)="openProductPage(product.id)" class="flex items-center gap-4 px-4 py-2 hover:bg-brand-secondary-light hover:text-brand-primary-normal cursor-pointer">
+            <img class="w-8 h-8" [src]="product.imageUrl" alt="Product's image">
+            <span>{{ product.name }}</span>
+            <span class="text-sm text-gray-500">{{ product.price }} ₽</span>
+          </li>
+        }
+      </ul>
+    }
+    @else {
+      <ng-template>
+        <div class="p-4 text-gray-500">Ничего не найдено</div>
+      </ng-template>
+    }
+  </div>
 </div>
