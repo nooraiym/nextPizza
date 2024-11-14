@@ -3,10 +3,14 @@ import { AccessDeniedComponent } from './pages/access-denied/access-denied.compo
 import { routes as homeRoutes } from './pages/home/home.routes';
 import { HomeLayoutComponent } from './pages/home/layout/layout.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { ProductsLayoutComponent } from './pages/products/layout/layout.component';
-import { routes as productsRoute } from './pages/products/products.routes';
+import { ProductComponent } from './pages/product/product.component';
 import { ProfileLayoutComponent } from './pages/profile/layout/layout.component';
 import { routes as profileRoutes } from './pages/profile/profile.routes';
+import {
+  ingredientsResolver,
+  productResolver,
+  recomendationsResolver,
+} from './app.resolvers';
 import { authGuard } from './shared/services/auth/auth.guard';
 
 export const routes: Routes = [
@@ -22,9 +26,13 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'products',
-    component: ProductsLayoutComponent,
-    children: productsRoute,
+    path: 'products/:productId',
+    component: ProductComponent,
+    resolve: {
+      product: productResolver,
+      ingredients: ingredientsResolver,
+      recomendations: recomendationsResolver,
+    },
   },
   {
     path: 'access-denied',

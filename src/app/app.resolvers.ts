@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { Product } from '../../shared/services/all-products/all-products.model';
-import { AllProductsService } from '../../shared/services/all-products/all-products.service';
-import { Ingredient } from '../../shared/services/ingredients/ingredients.model';
-import { IngredientsService } from '../../shared/services/ingredients/ingredients.service';
+import { Product } from './shared/services/all-products/all-products.model';
+import { AllProductsService } from './shared/services/all-products/all-products.service';
+import { Ingredient } from './shared/services/ingredients/ingredients.model';
+import { IngredientsService } from './shared/services/ingredients/ingredients.service';
 
 export const productResolver: ResolveFn<Product> = (route) => {
   const allProductsService = inject(AllProductsService);
