@@ -1,25 +1,39 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { PageType } from '../../shared/components/header/header.model';
 import {
   Product,
   TagQuery,
-} from '../../../../shared/services/all-products/all-products.model';
-import { AllProductsService } from '../../../../shared/services/all-products/all-products.service';
-import { handleError } from '../../../../shared/utils/error-handler.util';
-import { PaginationComponent } from '../pagination/pagination.component';
-import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductCardType } from '../product-card/product-card.model';
-import { SkeletonComponent } from '../skeleton/skeleton.component';
+} from '../../shared/services/all-products/all-products.model';
+import { AllProductsService } from '../../shared/services/all-products/all-products.service';
+import { handleError } from '../../shared/utils/error-handler.util';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductCardType } from './components/product-card/product-card.model';
+import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { SortComponent } from './components/sort/sort.component';
 
 @Component({
-  selector: 'home-content',
+  selector: 'home',
   standalone: true,
-  imports: [SkeletonComponent, ProductCardComponent, PaginationComponent],
-  templateUrl: './home-content.component.html',
-  styleUrl: './home-content.component.scss',
+  imports: [
+    SidemenuComponent,
+    NavigationComponent,
+    SortComponent,
+    HeaderComponent,
+    SkeletonComponent,
+    ProductCardComponent,
+    PaginationComponent,
+  ],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
-export class HomeContentComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
+  PageType = PageType;
   ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
   private allProductsService = inject(AllProductsService);
