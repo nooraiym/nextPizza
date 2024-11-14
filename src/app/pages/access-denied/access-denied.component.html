@@ -1,0 +1,25 @@
+<main class="custom-container min-h-screen bg-surface-primary">
+  <app-header [pageType]="PageType.Main" />
+  <article class="container mx-auto h-screen relative">
+    <main class="absolute-centered-group">
+      <section class="min-w-[445px]">
+        <h2 class="text-4xl font-extrabold pb-2.5">Доступ запрещен</h2>
+        <p class="mb-11 text-gray-300">
+          Данную страницу могут просматривать только авторизованные пользователи
+        </p>
+        <div class="flex gap-5">
+          <button class="btn btn-size btn-outline" (click)="handleRedirect()">
+            <lucide-angular [img]="MoveLeft" class="pr-1" />
+            На главную
+          </button>
+          <button class="btn btn-size btn-outline" disabled>Обновить</button>
+        </div>
+      </section>
+      <img
+        class="max-w-[340px]"
+        src="/assets/images/lock.png"
+        alt="Locker image"
+      />
+    </main>
+  </article>
+</main>

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { AccessDeniedComponent } from './pages/access-denied/components/access-denied-content/access-denied.component';
-import { AccessDeniedLayoutComponent } from './pages/access-denied/layout/layout.component';
+import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { routes as homeRoutes } from './pages/home/home.routes';
 import { HomeLayoutComponent } from './pages/home/layout/layout.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
@@ -29,8 +28,7 @@ export const routes: Routes = [
   },
   {
     path: 'access-denied',
-    component: AccessDeniedLayoutComponent,
-    children: [{ path: '', component: AccessDeniedComponent }],
+    component: AccessDeniedComponent,
   },
   {
     path: '**',
