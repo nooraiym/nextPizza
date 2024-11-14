@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { PageType } from '../../shared/components/header/header.model';
 import {
   Product,
   TagQuery,
@@ -33,7 +32,6 @@ import { SortComponent } from './components/sort/sort.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  PageType = PageType;
   ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
   private allProductsService = inject(AllProductsService);

@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LucideAngularModule, MoveLeft } from 'lucide-angular';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { PageType } from '../../shared/components/header/header.model';
 
 @Component({
   selector: 'access-denied',
@@ -12,7 +11,6 @@ import { PageType } from '../../shared/components/header/header.model';
   styleUrl: './access-denied.component.scss',
 })
 export class AccessDeniedComponent {
-  PageType = PageType;
   readonly MoveLeft = MoveLeft;
   private router = inject(Router);
 

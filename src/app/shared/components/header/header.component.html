@@ -13,14 +13,14 @@
         <h1 class="text-2xl uppercase font-black">Next Pizza</h1>
         <p class="text-sm text-gray-400 leading-3">
           {{
-            isProfilePage()
+            isProfilePage
               ? "вкусней уже точно некуда"
               : "вкусней уже некуда"
           }}
         </p>
       </div>
     </div>
-    @if (isMainPage()) {
+    @if (!isProfilePage) {
       <div class="mx-10 flex-1">
         <search-input />
       </div>
@@ -36,7 +36,7 @@
         <cart-actions (onToggleCart)="handleToggleCart()" />
       </div>
     }
-    @if (isProfilePage() && isAuthenticated) {
+    @if (isProfilePage && isAuthenticated) {
       <user-actions
         class="relative ml-auto"
       />

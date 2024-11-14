@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { AuthActionsComponent } from './auth-actions/auth-actions.component';
 import { CartActionsComponent } from './cart-actions/cart-actions.component';
-import { PageType } from './header.model';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
@@ -28,14 +27,17 @@ import { UserActionsComponent } from './user-actions/user-actions.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Input({ required: true }) pageType: PageType = PageType.Main;
   private authSubscription!: Subscription;
+  private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
   isCartOpen = false;
   isAuthModalOpen = false;
   isAuthenticated = false;
+  isProfilePage = false;
 
   ngOnInit() {
+    const path = this.route.snapshot.routeConfig?.path;
+    this.isProfilePage = path === 'profile';
     this.authSubscription = this.authService.isLoggedIn$.subscribe(
       (isLoggedIn) => {
         this.isAuthenticated = isLoggedIn;
@@ -43,12 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  isMainPage(): boolean {
-    return this.pageType === PageType.Main;
-  }
-  isProfilePage(): boolean {
-    return this.pageType === PageType.Profile;
-  }
   handleToggleCart() {
     this.isCartOpen = !this.isCartOpen;
   }

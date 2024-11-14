@@ -1,8 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LucideAngularModule, MoveLeft } from 'lucide-angular';
-import { PageType } from '../../shared/components/header/header.model';
-import { HeaderComponent } from "../../shared/components/header/header.component";
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'page-not-found',
@@ -12,7 +11,6 @@ import { HeaderComponent } from "../../shared/components/header/header.component
   styleUrl: './page-not-found.component.scss',
 })
 export class PageNotFoundComponent {
-  PageType = PageType;
   readonly MoveLeft = MoveLeft;
   private router = inject(Router);
 
