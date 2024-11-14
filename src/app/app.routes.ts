@@ -15,10 +15,12 @@ import { authGuard } from './shared/services/auth/auth.guard';
 export const routes: Routes = [
   {
     path: '',
+    title: 'Главная',
     component: HomeComponent,
   },
   {
     path: 'profile',
+    title: 'Профиль',
     component: ProfileLayoutComponent,
     children: profileRoutes,
     canActivate: [authGuard],
@@ -34,10 +36,12 @@ export const routes: Routes = [
   },
   {
     path: 'access-denied',
+    title: 'Доступ запрещен',
     component: AccessDeniedComponent,
   },
   {
     path: '**',
+    title: 'Страница не найдена',
     component: PageNotFoundComponent,
   },
 ];
