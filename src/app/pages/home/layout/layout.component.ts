@@ -5,6 +5,7 @@ import { PageType } from '../../../shared/components/header/header.model';
 import { NavigationComponent } from '../components/navigation/navigation.component';
 import { SidemenuComponent } from '../components/sidemenu/sidemenu.component';
 import { SortComponent } from '../components/sort/sort.component';
+import { FooterComponent } from "../../../shared/components/footer/footer.component";
 
 @Component({
   selector: 'home-layout',
@@ -15,7 +16,8 @@ import { SortComponent } from '../components/sort/sort.component';
     NavigationComponent,
     SortComponent,
     SidemenuComponent,
-  ],
+    FooterComponent
+],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
