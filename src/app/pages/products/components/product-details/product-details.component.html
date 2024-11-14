@@ -100,7 +100,7 @@
       <div class="w-full max-w-2xl pb-16">
         <div class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
           @for (option of options; track $index) {
-            <ingredient-selector [option]="option" class="flex-shrink-0 w-36" (onSelectoption)="handleSelectOption()"/>
+            <ingredient-selector [option]="option" class="flex-shrink-0 w-36 pb-6" (onSelectoption)="handleSelectOption()"/>
           }
         </div>
       </div>

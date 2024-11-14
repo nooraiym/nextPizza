@@ -4,7 +4,7 @@
       class="link-dropdown-menu-item text-sm"
       [ngClass]="{ 'link-active': tag === selectedTag }"
     >
-      <a (click)="handleTagClick(tag)">{{ tag.name }}</a>
+      <a class="inline-block px-5 py-2" (click)="handleTagClick(tag)">{{ tag.name }}</a>
     </li>
   }
   </ul>

@@ -1,5 +1,5 @@
 .link {
-  @apply custom-rounded px-5 py-2 whitespace-nowrap text-sm font-medium transition-colors cursor-pointer;
+  @apply custom-rounded whitespace-nowrap text-sm font-medium transition-colors cursor-pointer;
 }
 .link:focus {
   @apply focus:outline-none focus:ring-2;
@@ -11,7 +11,7 @@
   @apply custom-shadow bg-text-accent text-brand-primary-normal;
 }
 .link-dropdown-menu-item {
-  @apply block px-4 py-2 hover:bg-brand-secondary-light hover:text-brand-primary-normal;
+  @apply block hover:bg-brand-secondary-light hover:text-brand-primary-normal;
 }
 .link-active {
   @apply bg-brand-secondary-light text-brand-primary-normal;
