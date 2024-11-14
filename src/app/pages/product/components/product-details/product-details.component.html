@@ -1,112 +1,116 @@
 <breadcrumb [productName]="product.name" />
-<article class="flex gap-11 w-full">
-  <div
-    class="custom-rounded w-full md:w-1/2 bg-surface-secondary flex justify-center items-center"
-  >
-    <img
-      class="w-full max-w-[570px] h-auto object-cover pl-5 pt-5"
-      [src]="product.imageUrl"
-      alt="Product's image"
-    />
-  </div>
-  <main class="w-full md:w-1/2 flex-grow">
-    <h5 class="mb-2 text-4xl font-bold text-gray-900">
-      {{ product.name }}
-    </h5>
-    <p class="mb-3 text-gray-500">
-      30 см, традиционное тесто, {{ product.weight }} г
-    </p>
-    <p class="mb-3 text-gray-300">
-      {{ product.description }}
-    </p>
-    <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
-      <fieldset class="fieldset">
-        <label
-          class="radio-base"
-          [ngClass]="{
-            'radio-active': orderForm.get('size')?.value === '25'
-          }"
-        >
-          <input
-            type="radio"
-            formControlName="size"
-            value="25"
-            class="hidden"
-          />
-          25 см
-        </label>
-        <label
-          class="radio-base"
-          [ngClass]="{
-            'radio-active': orderForm.get('size')?.value === '30'
-          }"
-        >
-          <input
-            type="radio"
-            formControlName="size"
-            value="30"
-            class="hidden"
-            checked
-          />
-          30 см
-        </label>
-        <label
-          class="radio-base"
-          [ngClass]="{
-            'radio-active': orderForm.get('size')?.value === '35'
-          }"
-        >
-          <input
-            type="radio"
-            formControlName="size"
-            value="35"
-            class="hidden"
-          />
-          35 см
-        </label>
-      </fieldset>
-      <fieldset class="fieldset">
-        <label
-          class="radio-base"
-          [ngClass]="{
-            'radio-active': orderForm.get('crust')?.value === 'traditional'
-          }"
-        >
-          <input
-            type="radio"
-            formControlName="crust"
-            value="traditional"
-            class="hidden"
-            checked
-          />
-          Традиционное
-        </label>
-        <label
-          class="radio-base"
-          [ngClass]="{
-            'radio-active': orderForm.get('crust')?.value === 'thin'
-          }"
-        >
-          <input
-            type="radio"
-            formControlName="crust"
-            value="thin"
-            class="hidden"
-          />
-          Тонкое
-        </label>
-      </fieldset>
-      <p class="text-lg font-semibold pb-4">Ингредиенты</p>
-      <div class="w-full max-w-2xl pb-16">
-        <div class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
-          @for (option of options; track $index) {
-            <ingredient-selector [option]="option" class="flex-shrink-0 w-36 pb-6" (onSelectoption)="handleSelectOption()"/>
-          }
+@defer {
+  <article class="flex gap-11 w-full">
+    <div
+      class="custom-rounded w-full md:w-1/2 bg-surface-secondary flex justify-center items-center"
+    >
+      <img
+        class="w-full max-w-[570px] h-auto object-cover pl-5 pt-5"
+        [src]="product.imageUrl"
+        alt="Product's image"
+      />
+    </div>
+    <main class="w-full md:w-1/2 flex-grow">
+      <h5 class="mb-2 text-4xl font-bold text-gray-900">
+        {{ product.name }}
+      </h5>
+      <p class="mb-3 text-gray-500">
+        30 см, традиционное тесто, {{ product.weight }} г
+      </p>
+      <p class="mb-3 text-gray-300">
+        {{ product.description }}
+      </p>
+      <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
+        <fieldset class="fieldset">
+          <label
+            class="radio-base"
+            [ngClass]="{
+              'radio-active': orderForm.get('size')?.value === '25'
+            }"
+          >
+            <input
+              type="radio"
+              formControlName="size"
+              value="25"
+              class="hidden"
+            />
+            25 см
+          </label>
+          <label
+            class="radio-base"
+            [ngClass]="{
+              'radio-active': orderForm.get('size')?.value === '30'
+            }"
+          >
+            <input
+              type="radio"
+              formControlName="size"
+              value="30"
+              class="hidden"
+              checked
+            />
+            30 см
+          </label>
+          <label
+            class="radio-base"
+            [ngClass]="{
+              'radio-active': orderForm.get('size')?.value === '35'
+            }"
+          >
+            <input
+              type="radio"
+              formControlName="size"
+              value="35"
+              class="hidden"
+            />
+            35 см
+          </label>
+        </fieldset>
+        <fieldset class="fieldset">
+          <label
+            class="radio-base"
+            [ngClass]="{
+              'radio-active': orderForm.get('crust')?.value === 'traditional'
+            }"
+          >
+            <input
+              type="radio"
+              formControlName="crust"
+              value="traditional"
+              class="hidden"
+              checked
+            />
+            Традиционное
+          </label>
+          <label
+            class="radio-base"
+            [ngClass]="{
+              'radio-active': orderForm.get('crust')?.value === 'thin'
+            }"
+          >
+            <input
+              type="radio"
+              formControlName="crust"
+              value="thin"
+              class="hidden"
+            />
+            Тонкое
+          </label>
+        </fieldset>
+        <p class="text-lg font-semibold pb-4">Ингредиенты</p>
+        <div class="w-full max-w-2xl pb-16">
+          <div class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
+            @for (option of options; track $index) {
+              <ingredient-selector [option]="option" class="flex-shrink-0 w-36 pb-6" (onSelectoption)="handleSelectOption()"/>
+            }
+          </div>
         </div>
-      </div>
-      <button type="submit" class="btn btn-size btn-primary">
-        Добавить в корзину за {{ totalPrice }} ₽
-      </button>
-    </form>
-  </main>
-</article>
+        <button type="submit" class="btn btn-size btn-primary">
+          Добавить в корзину за {{ totalPrice }} ₽
+        </button>
+      </form>
+    </main>
+  </article>
+} @placeholder (minimum 700ms) {
+  <loader />
+}

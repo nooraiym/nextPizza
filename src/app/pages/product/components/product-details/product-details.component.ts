@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
 import { Product } from '../../../../shared/services/all-products/all-products.model';
 import { Ingredient } from '../../../../shared/services/ingredients/ingredients.model';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
@@ -15,6 +16,7 @@ import { IngredientSelectorComponent } from './ingredient-selector/ingredient-se
     ReactiveFormsModule,
     IngredientSelectorComponent,
     BreadcrumbComponent,
+    LoaderComponent,
   ],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss',

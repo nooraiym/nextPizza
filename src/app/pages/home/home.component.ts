@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private allProductsSubscription!: Subscription;
   private queryParamsSubscription!: Subscription;
   products: Product[] = [];
-  isLoading = true;
 
   ngOnInit() {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
@@ -67,10 +66,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.products = data;
-          this.stopLoading();
         },
-        error: (error) =>
-          handleError('Error loading products:', error, this.stopLoading),
+        error: (error) => handleError('Error loading products:', error),
       });
   }
   filterProductsByTag(tagQuery: TagQuery) {
@@ -79,14 +76,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.products = data;
-          this.stopLoading();
         },
         error: (error) =>
-          handleError(
-            'Error loading filtered products:',
-            error,
-            this.stopLoading
-          ),
+          handleError('Error loading filtered products:', error),
       });
   }
   filterProductsByNewest() {
@@ -95,18 +87,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.products = data;
-          this.stopLoading();
         },
-        error: (error) =>
-          handleError(
-            'Error loading newest products:',
-            error,
-            this.stopLoading
-          ),
+        error: (error) => handleError('Error loading newest products:', error),
       });
-  }
-  stopLoading() {
-    this.isLoading = false;
   }
 
   ngOnDestroy(): void {
