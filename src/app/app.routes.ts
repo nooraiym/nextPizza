@@ -4,11 +4,7 @@ import {
   productResolver,
   recomendationsResolver,
 } from './app.resolvers';
-import { AccessDeniedComponent } from './pages/access-denied/access-denied.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-import { ProductComponent } from './pages/product/product.component';
-import { ProfileLayoutComponent } from './pages/profile/layout/layout.component';
 import { routes as profileRoutes } from './pages/profile/profile.routes';
 import { authGuard } from './shared/services/auth/auth.guard';
 
@@ -21,13 +17,20 @@ export const routes: Routes = [
   {
     path: 'profile',
     title: 'Профиль',
-    component: ProfileLayoutComponent,
+    loadComponent: () =>
+      import('./pages/profile/layout/layout.component').then(
+        (m) => m.ProfileLayoutComponent
+      ),
+    // TODO: переписать на loadChildren
     children: profileRoutes,
     canActivate: [authGuard],
   },
   {
     path: 'products/:productId',
-    component: ProductComponent,
+    loadComponent: () =>
+      import('./pages/product/product.component').then(
+        (m) => m.ProductComponent
+      ),
     resolve: {
       product: productResolver,
       ingredients: ingredientsResolver,
@@ -37,11 +40,17 @@ export const routes: Routes = [
   {
     path: 'access-denied',
     title: 'Доступ запрещен',
-    component: AccessDeniedComponent,
+    loadComponent: () =>
+      import('./pages/access-denied/access-denied.component').then(
+        (m) => m.AccessDeniedComponent
+      ),
   },
   {
     path: '**',
     title: 'Страница не найдена',
-    component: PageNotFoundComponent,
+    loadComponent: () =>
+      import('./pages/page-not-found/page-not-found.component').then(
+        (m) => m.PageNotFoundComponent
+      ),
   },
 ];
