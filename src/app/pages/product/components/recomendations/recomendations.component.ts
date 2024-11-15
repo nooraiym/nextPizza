@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from '../../../../shared/services/all-products/all-products.model';
+import { Product } from '../../../../shared/services/products/products.model';
 import { ProductCardComponent } from '../../../home/components/product-card/product-card.component';
 import { ProductCardType } from '../../../home/components/product-card/product-card.model';
 

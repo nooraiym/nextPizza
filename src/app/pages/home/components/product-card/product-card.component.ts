@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideAngularModule, Plus } from 'lucide-angular';
-import { Product } from '../../../../shared/services/all-products/all-products.model';
+import { Product } from '../../../../shared/services/products/products.model';
 import { ProductCardType } from './product-card.model';
 
 @Component({
@@ -14,6 +14,7 @@ import { ProductCardType } from './product-card.model';
 })
 export class ProductCardComponent {
   readonly Plus = Plus;
+  // TODO: убрать эти продукт типы
   @Input({ required: true }) product!: Product;
   @Input({ required: true }) cardType!: ProductCardType;
   ProductCardType = ProductCardType;

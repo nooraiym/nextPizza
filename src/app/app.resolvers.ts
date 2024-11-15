@@ -1,14 +1,14 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { Product } from './shared/services/all-products/all-products.model';
-import { AllProductsService } from './shared/services/all-products/all-products.service';
 import { Ingredient } from './shared/services/ingredients/ingredients.model';
 import { IngredientsService } from './shared/services/ingredients/ingredients.service';
+import { Product } from './shared/services/products/products.model';
+import { ProductsService } from './shared/services/products/products.service';
 
-export const productResolver: ResolveFn<Product> = (route) => {
-  const allProductsService = inject(AllProductsService);
+export const productResolver: ResolveFn<Product[]> = (route) => {
+  const productsService = inject(ProductsService);
   const productId = Number(route.paramMap.get('productId'));
-  return allProductsService.getProductById(productId);
+  return productsService.getProducts({ id: productId });
 };
 
 export const ingredientsResolver: ResolveFn<Ingredient[]> = () => {
@@ -17,6 +17,6 @@ export const ingredientsResolver: ResolveFn<Ingredient[]> = () => {
 };
 
 export const recomendationsResolver: ResolveFn<Product[]> = () => {
-  const allProductsService = inject(AllProductsService);
-  return allProductsService.getRandomRecommendations(8);
+  const productsService = inject(ProductsService);
+  return productsService.getProducts({ recommendationsCount: 8 });
 };

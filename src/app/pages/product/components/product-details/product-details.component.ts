@@ -3,8 +3,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
-import { Product } from '../../../../shared/services/all-products/all-products.model';
 import { Ingredient } from '../../../../shared/services/ingredients/ingredients.model';
+import { Product } from '../../../../shared/services/products/products.model';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { IngredientSelectorComponent } from './ingredient-selector/ingredient-selector.component';
 

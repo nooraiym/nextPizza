@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import {
   ActivatedRouteSnapshot,
@@ -6,14 +6,14 @@ import {
   TitleStrategy,
 } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { AllProductsService } from './all-products/all-products.service';
+import { ProductsService } from './products/products.service';
 
 @Injectable({ providedIn: 'root' })
 export class CustomTitleStrategy extends TitleStrategy {
-  constructor(
-    private titleService: Title,
-    private allProductsService: AllProductsService
-  ) {
+  private titleService = inject(Title);
+  private productsService = inject(ProductsService);
+
+  constructor() {
     super();
   }
 
@@ -26,9 +26,11 @@ export class CustomTitleStrategy extends TitleStrategy {
       const productId = this.getRouteParam(snapshot.root, 'productId');
       if (productId) {
         const product = await firstValueFrom(
-          this.allProductsService.getProductById(+productId)
+          this.productsService.getProducts({ id: +productId })
         );
-        const dynamicTitle = product ? `${product.name}` : 'Product not found';
+        const dynamicTitle = product
+          ? `${product[0].name}`
+          : 'Product not found';
         this.titleService.setTitle(dynamicTitle);
       } else {
         this.titleService.setTitle('Next Pizza');

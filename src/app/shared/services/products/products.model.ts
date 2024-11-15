@@ -3,21 +3,10 @@ export interface Product {
   name: string;
   new: true;
   ingredients: number[];
-  tags: TagQuery[];
+  tags: string[];
   description: string;
   imageUrl: string;
   price: number;
   weight: number;
   category: string;
 }
-export type TagQuery =
-  | 'all'
-  | 'meaty'
-  | 'spicy'
-  | 'sweety'
-  | 'vegeterian'
-  | 'with-chicken'
-  | 'with-seafood'
-  | 'gluten-free'
-  | 'cheesy'
-  | 'dietary';

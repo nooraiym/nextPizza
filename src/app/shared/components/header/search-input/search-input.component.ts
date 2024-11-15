@@ -10,8 +10,8 @@ import {
   of,
   switchMap,
 } from 'rxjs';
-import { Product } from '../../../services/all-products/all-products.model';
-import { AllProductsService } from '../../../services/all-products/all-products.service';
+import { Product } from '../../../services/products/products.model';
+import { ProductsService } from '../../../services/products/products.service';
 
 @Component({
   selector: 'search-input',
@@ -23,7 +23,7 @@ import { AllProductsService } from '../../../services/all-products/all-products.
 export class SearchInputComponent {
   readonly Search = Search;
   private router = inject(Router);
-  private allProductsService = inject(AllProductsService);
+  private productsService = inject(ProductsService);
   private searchTerms = new Subject<string>();
   searchResults$: Observable<Product[]> = of([]);
   focused = false;
@@ -48,7 +48,7 @@ export class SearchInputComponent {
     if (!term.trim()) {
       return of([]);
     }
-    return this.allProductsService.getProductsBySearchTerms(term);
+    return this.productsService.getProducts({ searchTerm: term });
   }
   openProductPage(productId: number): void {
     this.router.navigate([`/products/${productId}`]);

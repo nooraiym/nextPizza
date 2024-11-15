@@ -13,12 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import {
-  Product,
-  TagQuery,
-} from '../../shared/services/all-products/all-products.model';
-import { AllProductsService } from '../../shared/services/all-products/all-products.service';
-import { handleError } from '../../shared/utils/error-handler.util';
+import { Product } from '../../shared/services/products/products.model';
+import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -49,31 +45,22 @@ import { SortComponent } from './components/sort/sort.component';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
-  private allProductsService = inject(AllProductsService);
+  private productsService = inject(ProductsService);
   private allProductsSubscription!: Subscription;
   private queryParamsSubscription!: Subscription;
   @ViewChild('nav') navElement!: ElementRef;
   products: Product[] = [];
+  tag: string = 'all';
+  isNewOnly!: boolean;
   isSticky = false;
   navOffsetTop = 0;
 
   ngOnInit() {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
-        const tag = params['tag'];
-        const isNewOnly = params['isNewOnly'] === 'true';
-
-        if (tag) {
-          tag === 'all'
-            ? this.loadAllProducts()
-            : this.filterProductsByTag(tag);
-        } else {
-          this.loadAllProducts();
-        }
-
-        if (isNewOnly) {
-          this.filterProductsByNewest();
-        }
+        this.tag = params['tag'];
+        this.isNewOnly = params['isNewOnly'] === 'true';
+        this.fetchAProducts();
       }
     );
   }
@@ -93,37 +80,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       behavior: 'smooth',
     });
   }
-
-  loadAllProducts() {
-    this.allProductsSubscription = this.allProductsService
-      .getAllProducts()
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-        },
-        error: (error) => handleError('Error loading products:', error),
-      });
-  }
-  filterProductsByTag(tagQuery: TagQuery) {
-    this.allProductsSubscription = this.allProductsService
-      .getProductsByTag(tagQuery)
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-        },
-        error: (error) =>
-          handleError('Error loading filtered products:', error),
-      });
-  }
-  filterProductsByNewest() {
-    this.allProductsSubscription = this.allProductsService
-      .getProductsByNewest()
-      .subscribe({
-        next: (data) => {
-          this.products = data;
-        },
-        error: (error) => handleError('Error loading newest products:', error),
-      });
+  fetchAProducts() {
+    this.allProductsSubscription = this.productsService
+      .getProducts({ tag: this.tag, isNew: this.isNewOnly })
+      .subscribe((data) => (this.products = data));
   }
 
   ngOnDestroy(): void {
