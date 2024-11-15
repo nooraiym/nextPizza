@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { Product } from '../../../../shared/services/products/products.model';
 import { ProductCardComponent } from '../../../home/components/product-card/product-card.component';
 import { ProductCardType } from '../../../home/components/product-card/product-card.model';
@@ -11,12 +10,7 @@ import { ProductCardType } from '../../../home/components/product-card/product-c
   templateUrl: './recomendations.component.html',
   styleUrl: './recomendations.component.scss',
 })
-export class RecomendationsComponent implements OnInit {
+export class RecomendationsComponent {
   ProductCardType = ProductCardType;
-  private route = inject(ActivatedRoute);
-  recomendations!: Product[];
-
-  ngOnInit(): void {
-    this.recomendations = this.route.snapshot.data['recomendations'];
-  }
+  @Input({ required: true }) recomendations!: Product[];
 }

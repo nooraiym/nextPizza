@@ -20,7 +20,7 @@
       <p class="mb-3 text-gray-300">
         {{ product.description }}
       </p>
-      <form [formGroup]="orderForm" (ngSubmit)="handleSubmit($event)">
+      <form [formGroup]="orderForm" (ngSubmit)="handleSubmitForm($event)">
         <fieldset class="fieldset">
           <label
             class="radio-base"
@@ -100,8 +100,8 @@
         <p class="text-lg font-semibold pb-4">Ингредиенты</p>
         <div class="w-full max-w-2xl pb-16">
           <div class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
-            @for (option of options; track $index) {
-              <ingredient-selector [option]="option" class="flex-shrink-0 w-36 pb-6" (onSelectoption)="handleSelectOption()"/>
+            @for (ingredient of ingredients; track $index) {
+              <ingredient-selector [option]="ingredient" class="flex-shrink-0 w-36 pb-6" (onSelectoption)="handleUpdatePrice()"/>
             }
           </div>
         </div>

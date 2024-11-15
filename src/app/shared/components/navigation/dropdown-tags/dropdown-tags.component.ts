@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ChevronUp, LucideAngularModule } from 'lucide-angular';
-import { Tag } from '../../../../../shared/services/tags/tags.model';
+import { Tag } from '../../../services/tags/tags.model';
 
 @Component({
   selector: 'dropdown-tags',

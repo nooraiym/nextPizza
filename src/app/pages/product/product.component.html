@@ -1,8 +1,15 @@
 <div class="custom-container min-h-screen bg-surface-primary">
   <app-header />
   <main class="container mx-auto">
-    <product-details />
-    <recomendations />
+    <product-details
+      [product]="product"
+      [ingredients]="ingredients"
+      [orderForm]="orderForm"
+      [totalPrice]="totalPrice"
+      (onSubmitForm)="submitForm()"
+      (onUpdatePrice)="updatePrice()"
+    />
+    <recomendations [recomendations]="recomendations" />
   </main>
 </div>
 <app-footer />

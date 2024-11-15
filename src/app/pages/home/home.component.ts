@@ -13,14 +13,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.component';
+import { Category } from '../../shared/services/categories/ingredients.model';
+import { CategoriesService } from '../../shared/services/categories/ingredients.service';
 import { Product } from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductCardType } from './components/product-card/product-card.model';
-import { SidemenuComponent } from './components/sidemenu/sidemenu.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SortComponent } from './components/sort/sort.component';
 
@@ -46,10 +48,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
+  private categoriesService = inject(CategoriesService);
   private allProductsSubscription!: Subscription;
   private queryParamsSubscription!: Subscription;
+  private categoriesSubscription!: Subscription;
   @ViewChild('nav') navElement!: ElementRef;
   products: Product[] = [];
+  categories: Category[] = [];
   tag: string = 'all';
   isNewOnly!: boolean;
   isSticky = false;
@@ -63,6 +68,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         this.fetchAProducts();
       }
     );
+    this.categoriesSubscription = this.categoriesService
+      .getAllCategories()
+      .subscribe((data) => {
+        this.categories = data;
+      });
   }
 
   ngAfterViewInit() {
@@ -89,5 +99,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy(): void {
     this.allProductsSubscription.unsubscribe();
     this.queryParamsSubscription.unsubscribe();
+    this.categoriesSubscription.unsubscribe();
   }
 }
