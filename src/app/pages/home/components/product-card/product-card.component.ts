@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LucideAngularModule, Plus } from 'lucide-angular';
 import { Product } from '../../../../shared/services/products/products.model';
-import { ProductCardType } from './product-card.model';
 
 @Component({
   selector: 'product-card',
@@ -12,17 +11,14 @@ import { ProductCardType } from './product-card.model';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   readonly Plus = Plus;
-  // TODO: убрать эти продукт типы
+  private route = inject(ActivatedRoute);
   @Input({ required: true }) product!: Product;
-  @Input({ required: true }) cardType!: ProductCardType;
-  ProductCardType = ProductCardType;
+  isDetailedType = false;
 
-  isMainType(): boolean {
-    return this.cardType === ProductCardType.Main;
-  }
-  isDetailedType(): boolean {
-    return this.cardType === ProductCardType.Detailed;
+  ngOnInit(): void {
+    const path = this.route.snapshot.routeConfig?.path;
+    this.isDetailedType = path === 'products/:productId';
   }
 }

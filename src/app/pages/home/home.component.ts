@@ -22,7 +22,6 @@ import { ProductsService } from '../../shared/services/products/products.service
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { ProductCardType } from './components/product-card/product-card.model';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SortComponent } from './components/sort/sort.component';
 
@@ -45,7 +44,6 @@ import { SortComponent } from './components/sort/sort.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
   private productsService = inject(ProductsService);
   private categoriesService = inject(CategoriesService);

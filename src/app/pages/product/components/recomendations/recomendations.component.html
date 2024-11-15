@@ -3,7 +3,7 @@
   <div class="flex gap-6 overflow-x-auto space-x-4 pb-4">
     @for(product of recomendations; track $index) {
       <div class="flex-shrink-0 w-[285px]">
-        <product-card [cardType]="ProductCardType.Detailed" [product]="product" />
+        <product-card [product]="product" />
       </div>
     }
   </div>
