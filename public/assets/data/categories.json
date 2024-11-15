@@ -1,11 +1,11 @@
 [
-  { "id": 1, "name": "Пиццы" },
-  { "id": 2, "name": "Закуски" },
-  { "id": 3, "name": "Завтраки" },
-  { "id": 4, "name": "Коктейли" },
-  { "id": 5, "name": "Кофе" },
-  { "id": 6, "name": "Напитки" },
-  { "id": 7, "name": "Десерты" },
-  { "id": 8, "name": "Соусы" },
-  { "id": 9, "name": "Другие" }
+  { "id": 1, "anchor": "pizzas", "name": "Пиццы" },
+  { "id": 2, "anchor": "snacks", "name": "Закуски" },
+  { "id": 3, "anchor": "breakfasts", "name": "Завтраки" },
+  { "id": 4, "anchor": "coctails", "name": "Коктейли" },
+  { "id": 5, "anchor": "coffee", "name": "Кофе" },
+  { "id": 6, "anchor": "drinks", "name": "Напитки" },
+  { "id": 7, "anchor": "desserts", "name": "Десерты" },
+  { "id": 8, "anchor": "sauces", "name": "Соусы" },
+  { "id": 9, "anchor": "others", "name": "Другие" }
 ]

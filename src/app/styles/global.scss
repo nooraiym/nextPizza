@@ -32,3 +32,6 @@
 .icon {
   @apply flex items-center justify-center;
 }
+.fixed-nav {
+  @apply fixed top-0 left-0 bg-white z-[1000] py-2 px-4 shadow-md;
+}

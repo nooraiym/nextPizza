@@ -7,7 +7,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F1CFA3D45B1621E4A3497441F.avif",
     "price": 230,
     "weight": 300,
-    "categoryId": 7
+    "category": "desserts"
   },
   {
     "id": 72,
@@ -17,7 +17,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FE8809BE8855C790C2397B237.avif",
     "price": 140,
     "weight": 300,
-    "categoryId": 7
+    "category": "desserts"
   },
   {
     "id": 73,
@@ -27,6 +27,6 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF11EE37FA3B04B37D754690C0B180.avif",
     "price": 260,
     "weight": 270,
-    "categoryId": 7
+    "category": "desserts"
   }
 ]

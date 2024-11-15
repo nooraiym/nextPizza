@@ -1,4 +1,14 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -9,6 +19,7 @@ import {
 } from '../../shared/services/all-products/all-products.model';
 import { AllProductsService } from '../../shared/services/all-products/all-products.service';
 import { handleError } from '../../shared/utils/error-handler.util';
+import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -21,6 +32,7 @@ import { SortComponent } from './components/sort/sort.component';
   selector: 'home',
   standalone: true,
   imports: [
+    CommonModule,
     SidemenuComponent,
     NavigationComponent,
     SortComponent,
@@ -29,17 +41,21 @@ import { SortComponent } from './components/sort/sort.component';
     ProductCardComponent,
     PaginationComponent,
     FooterComponent,
+    CategoryMenuComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ProductCardType = ProductCardType;
   private route = inject(ActivatedRoute);
   private allProductsService = inject(AllProductsService);
   private allProductsSubscription!: Subscription;
   private queryParamsSubscription!: Subscription;
+  @ViewChild('nav') navElement!: ElementRef;
   products: Product[] = [];
+  isSticky = false;
+  navOffsetTop = 0;
 
   ngOnInit() {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
@@ -60,6 +76,22 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  ngAfterViewInit() {
+    this.navOffsetTop =
+      this.navElement.nativeElement.getBoundingClientRect().bottom;
+  }
+
+  @HostListener('window:scroll', [])
+  handleWindowScroll() {
+    this.isSticky = window.pageYOffset > this.navOffsetTop;
+  }
+  handlescrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 
   loadAllProducts() {

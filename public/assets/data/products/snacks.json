@@ -9,7 +9,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.webp",
     "price": 250,
     "weight": 200,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 22,
@@ -21,7 +21,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp",
     "price": 195,
     "weight": 110,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 23,
@@ -33,7 +33,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp",
     "price": 195,
     "weight": 80,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 24,
@@ -45,7 +45,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F96D11392A2F6DD73599921B9.webp",
     "price": 395,
     "weight": 200,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 25,
@@ -57,6 +57,6 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp",
     "price": 395,
     "weight": 190,
-    "categoryId": 2
+    "category": "snacks"
   }
 ]

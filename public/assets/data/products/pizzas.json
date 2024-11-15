@@ -33,7 +33,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F83DA62959F8F6A9E151DD3A2.avif",
     "price": 170,
     "weight": 490,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 4,
@@ -45,7 +45,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FBD71E15F840FB37AB9651AF0.avif",
     "price": 300,
     "weight": 490,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 5,
@@ -57,7 +57,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FD668CBACBF4C3ED9D3EAF676.avif",
     "price": 370,
     "weight": 640,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 6,
@@ -69,7 +69,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F7E5442468830FC5001C72E04.avif",
     "price": 230,
     "weight": 640,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 7,
@@ -81,6 +81,6 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F120118208224A0FD595B2E56.avif",
     "price": 200,
     "weight": 250,
-    "categoryId": 1
+    "category": "pizzas"
   }
 ]

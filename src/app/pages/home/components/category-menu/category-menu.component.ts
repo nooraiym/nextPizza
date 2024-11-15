@@ -1,16 +1,16 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Category } from '../../../../../shared/services/categories/ingredients.model';
-import { CategoriesService } from '../../../../../shared/services/categories/ingredients.service';
+import { Category } from '../../../../shared/services/categories/ingredients.model';
+import { CategoriesService } from '../../../../shared/services/categories/ingredients.service';
 
 @Component({
-  selector: 'category-filtering',
+  selector: 'category-menu',
   standalone: true,
   imports: [],
-  templateUrl: './category-filtering.component.html',
-  styleUrl: './category-filtering.component.scss',
+  templateUrl: './category-menu.component.html',
+  styleUrl: './category-menu.component.scss',
 })
-export class CategoryFilteringComponent {
+export class CategoryMenuComponent implements OnInit, OnDestroy {
   private categoriesService = inject(CategoriesService);
   private categoriesSubscription!: Subscription;
   categories: Category[] = [];
@@ -22,10 +22,6 @@ export class CategoryFilteringComponent {
       .subscribe((data) => {
         this.categories = data;
       });
-  }
-
-  toggleShowAll() {
-    this.showAllOptions = !this.showAllOptions;
   }
 
   ngOnDestroy(): void {

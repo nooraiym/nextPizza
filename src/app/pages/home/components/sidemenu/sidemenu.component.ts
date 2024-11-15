@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CategoryFilteringComponent } from './category-filtering/category-filtering.component';
 import { IngredientsFilteringComponent } from './ingredients-filtering/ingredients-filtering.component';
 import { NewestFilteringComponent } from './newest-filtering/newest-filtering.component';
 import { PriceFilteringComponent } from './price-filtering/price-filtering.component';
@@ -10,7 +9,6 @@ import { PriceFilteringComponent } from './price-filtering/price-filtering.compo
   imports: [
     NewestFilteringComponent,
     IngredientsFilteringComponent,
-    CategoryFilteringComponent,
     PriceFilteringComponent,
   ],
   templateUrl: './sidemenu.component.html',

@@ -53,7 +53,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F83DA62959F8F6A9E151DD3A2.avif",
     "price": 170,
     "weight": 490,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 4,
@@ -72,7 +72,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FBD71E15F840FB37AB9651AF0.avif",
     "price": 300,
     "weight": 490,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 5,
@@ -93,7 +93,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FD668CBACBF4C3ED9D3EAF676.avif",
     "price": 370,
     "weight": 640,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 6,
@@ -111,7 +111,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5F7E5442468830FC5001C72E04.avif",
     "price": 230,
     "weight": 640,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 7,
@@ -127,7 +127,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F120118208224A0FD595B2E56.avif",
     "price": 200,
     "weight": 250,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 21,
@@ -146,7 +146,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FF0059B799A17F57A9E64C725.webp",
     "price": 250,
     "weight": 200,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 22,
@@ -161,7 +161,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp",
     "price": 195,
     "weight": 110,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 23,
@@ -177,7 +177,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp",
     "price": 195,
     "weight": 80,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 24,
@@ -192,7 +192,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F96D11392A2F6DD73599921B9.webp",
     "price": 395,
     "weight": 200,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 25,
@@ -207,7 +207,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp",
     "price": 395,
     "weight": 190,
-    "categoryId": 2
+    "category": "snacks"
   },
   {
     "id": 31,
@@ -225,7 +225,7 @@
     "description": "Горячий сытный омлет с поджаристой корочкой, ветчина, шампиньоны и моцарелла",
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp",
     "price": 240,
-    "categoryId": 3
+    "category": "breakfasts"
   },
   {
     "id": 32,
@@ -238,7 +238,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp",
     "price": 230,
     "weight": 110,
-    "categoryId": 2
+    "category": "breakfasts"
   },
   {
     "id": 41,
@@ -278,7 +278,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F93FB126693F96CB1D3E403FB.webp",
     "price": 190,
     "weight": 300,
-    "categoryId": 4
+    "category": "coctails"
   },
   {
     "id": 51,
@@ -288,7 +288,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61999EBDA59C10E216430A6093.webp",
     "price": 205,
     "weight": 300,
-    "categoryId": 5
+    "category": "coffee"
   },
   {
     "id": 52,
@@ -298,7 +298,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp",
     "price": 195,
     "weight": 300,
-    "categoryId": 5
+    "category": "coffee"
   },
   {
     "id": 53,
@@ -308,7 +308,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B19FA07090EE88B0ED347F42.webp",
     "price": 195,
     "weight": 300,
-    "categoryId": 5
+    "category": "coffee"
   },
   {
     "id": 54,
@@ -318,7 +318,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B044583596548A59078BBD33.webp",
     "price": 95,
     "weight": 300,
-    "categoryId": 5
+    "category": "coffee"
   },
   {
     "id": 55,
@@ -328,7 +328,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp",
     "price": 195,
     "weight": 300,
-    "categoryId": 5
+    "category": "coffee"
   },
   {
     "id": 61,
@@ -338,7 +338,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED07B177181EB7BE755980C4B.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   },
   {
     "id": 62,
@@ -348,7 +348,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED037D6DDAEE0FAB95CF22A5A.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   },
   {
     "id": 63,
@@ -358,7 +358,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED09AEF50BCB606364846E143.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   },
   {
     "id": 71,
@@ -368,7 +368,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796F1CFA3D45B1621E4A3497441F.avif",
     "price": 230,
     "weight": 300,
-    "categoryId": 7
+    "category": "desserts"
   },
   {
     "id": 72,
@@ -378,7 +378,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE7D5FE8809BE8855C790C2397B237.avif",
     "price": 140,
     "weight": 300,
-    "categoryId": 7
+    "category": "desserts"
   },
   {
     "id": 73,
@@ -388,7 +388,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF11EE37FA3B04B37D754690C0B180.avif",
     "price": 260,
     "weight": 270,
-    "categoryId": 7
+    "category": "desserts"
   },
   {
     "id": 81,
@@ -398,7 +398,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EEB05AC741F77388CF9BC3CF08F858.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   },
   {
     "id": 82,
@@ -408,7 +408,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED4D250A7970905C657FB3AB3.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   },
   {
     "id": 83,
@@ -418,7 +418,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE89B096F429569995CE09D19DA9F1.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   },
   {
     "id": 91,
@@ -427,6 +427,6 @@
     "description": "Сертификат на любую большую пиццу. Действует на доставку, самовывоз и в ресторане, только в том городе, в котором был куплен",
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED7801FC392F179319137AA56.avif",
     "price": 500,
-    "categoryId": 9
+    "category": "others"
   }
 ]

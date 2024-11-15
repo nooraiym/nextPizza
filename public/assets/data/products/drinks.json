@@ -7,7 +7,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED07B177181EB7BE755980C4B.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   },
   {
     "id": 62,
@@ -17,7 +17,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED037D6DDAEE0FAB95CF22A5A.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   },
   {
     "id": 63,
@@ -27,6 +27,6 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED09AEF50BCB606364846E143.avif",
     "price": 110,
     "weight": 450,
-    "categoryId": 6
+    "category": "drinks"
   }
 ]

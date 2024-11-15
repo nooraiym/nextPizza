@@ -7,7 +7,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EEB05AC741F77388CF9BC3CF08F858.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   },
   {
     "id": 82,
@@ -17,7 +17,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE796ED4D250A7970905C657FB3AB3.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   },
   {
     "id": 83,
@@ -27,6 +27,6 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EE89B096F429569995CE09D19DA9F1.avif",
     "price": 70,
     "weight": 25,
-    "categoryId": 8
+    "category": "sauces"
   }
 ]

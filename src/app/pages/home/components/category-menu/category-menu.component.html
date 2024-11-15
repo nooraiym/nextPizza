@@ -1,0 +1,7 @@
+<ul class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
+  @for (category of categories; track category.id) {
+    <li class="link">
+      <a [href]="'#' + category.anchor">{{ category.name }}</a>
+    </li>
+  }
+</ul>

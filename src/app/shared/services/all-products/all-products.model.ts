@@ -8,7 +8,7 @@ export interface Product {
   imageUrl: string;
   price: number;
   weight: number;
-  categoryId: number;
+  category: string;
 }
 export type TagQuery =
   | 'all'
