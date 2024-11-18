@@ -6,7 +6,7 @@
       <navigation />
       <sort />
     </nav>
-    <div class="w-full mx-auto relative" [ngClass]="{ 'fixed-nav': isSticky }">
+    <div #stickyMenu class="w-full mx-auto relative" [ngClass]="{ 'fixed-nav': isSticky }">
       <div class="container mx-auto flex items-center gap-6">
         @if (isSticky) {
           <div class="logo">
@@ -14,7 +14,11 @@
               <img src="logo.png" alt="Logo" class="w-8 h-8 cursor-pointer" />
             </a>
           </div>
-          <category-menu [categories]="categories" />
+          <category-menu
+            [categories]="categories"
+            [activeCategory]="activeCategory"
+            (onScrollToCategory)="scrollToCategory($event)"
+          />
         }
       </div>
     </div>
@@ -22,7 +26,14 @@
       <sidemenu class="flex flex-col max-w-60 min-h-screen gap-8 overflow-auto" />
       <div>
         @for (group of productsByCategory; track $index) {
-          <h2 class="py-8 text-2xl font-bold">{{ group.name }}</h2>
+          <h2
+            #categorySection
+            class="pt-12 pb-4 text-2xl font-bold"
+            [attr.id]="group.category"
+            [attr.data-anchor]="group.category"
+          >
+          {{ group.name }}
+          </h2>
           <div class="custom-grid">
             @defer {
               @for (product of group.products; track $index) {
