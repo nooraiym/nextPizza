@@ -70,7 +70,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.route.fragment.subscribe((fragment) => {
-      if (fragment) this.activeCategory = fragment;
+      if (fragment) {
+        this.activeCategory = fragment;
+        this.scrollToCategory(fragment);
+      }
     });
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
@@ -104,11 +107,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
   scrollToCategory(anchor: string): void {
-    const element = this.categorySections.find(
+    const element = this.categorySections?.find(
       (section) => section.nativeElement.getAttribute('data-anchor') === anchor
     );
     if (element) {
-      element.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      element.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
       this.router.navigate([], { fragment: anchor });
     }
   }
