@@ -17,7 +17,7 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
 import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.component';
 import { Category } from '../../shared/services/categories/categories.model';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
-import { Product } from '../../shared/services/products/products.model';
+import { Product, ProductGroup } from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private categoriesSubscription!: Subscription;
   @ViewChild('nav') navElement!: ElementRef;
   products: Product[] = [];
+  productsByCategory: ProductGroup[] = [];
   categories: Category[] = [];
   tag: string = 'all';
   isNewOnly!: boolean;
@@ -74,8 +75,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.navOffsetTop =
-      this.navElement.nativeElement.getBoundingClientRect().bottom;
+    if (this.navElement) {
+      this.navOffsetTop =
+        this.navElement.nativeElement.getBoundingClientRect().bottom;
+    }
   }
 
   @HostListener('window:scroll', [])
@@ -91,12 +94,18 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   fetchAProducts() {
     this.allProductsSubscription = this.productsService
       .getProducts({ tag: this.tag, isNew: this.isNewOnly })
-      .subscribe((data) => (this.products = data));
+      .subscribe((data) => (this.productsByCategory = data));
   }
 
   ngOnDestroy(): void {
-    this.allProductsSubscription.unsubscribe();
-    this.queryParamsSubscription.unsubscribe();
-    this.categoriesSubscription.unsubscribe();
+    if (this.allProductsSubscription) {
+      this.allProductsSubscription.unsubscribe();
+    }
+    if (this.queryParamsSubscription) {
+      this.queryParamsSubscription.unsubscribe();
+    }
+    if (this.categoriesSubscription) {
+      this.categoriesSubscription.unsubscribe();
+    }
   }
 }

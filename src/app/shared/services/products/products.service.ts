@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, catchError, from, map } from 'rxjs';
-import { Product } from './products.model';
+import { Injectable, inject } from '@angular/core';
+import { Observable, catchError, from, map, switchMap } from 'rxjs';
+import { CategoriesService } from '../categories/categories.service';
+import { Product, ProductGroup } from './products.model';
+import { Category } from '../categories/categories.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
+  private categoriesService = inject(CategoriesService);
   private mockAPI = 'assets/data/products/allData.json';
 
   private getAllProducts(): Observable<Product[]> {
@@ -27,13 +30,38 @@ export class ProductsService {
     );
   }
 
+  private groupByCategory(products: Product[]): Observable<ProductGroup[]> {
+    return this.categoriesService.getAllCategories().pipe(
+      map((categories) => {
+        const grouped = products.reduce((acc, product) => {
+          if (!acc[product.category]) {
+            acc[product.category] = [];
+          }
+          acc[product.category].push(product);
+          return acc;
+        }, {} as Record<string, Product[]>);
+
+        return Object.keys(grouped).map((category) => {
+          const categoryData = categories.find(
+            (cat) => cat.anchor === category
+          );
+          return {
+            category,
+            name: categoryData?.name || 'Unknown category',
+            products: grouped[category],
+          };
+        });
+      })
+    );
+  }
+
   getProducts(filters: {
     id?: number;
     tag?: string;
     isNew?: boolean;
     searchTerm?: string;
     recommendationsCount?: number;
-  }): Observable<Product[]> {
+  }): Observable<ProductGroup[]> {
     return this.getAllProducts().pipe(
       map((products) => {
         let filteredProducts = [...products];
@@ -72,6 +100,7 @@ export class ProductsService {
 
         return filteredProducts;
       }),
+      switchMap((filteredProducts) => this.groupByCategory(filteredProducts)),
       catchError((error) => {
         console.error(error);
         throw error;

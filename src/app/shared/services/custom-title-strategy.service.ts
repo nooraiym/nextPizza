@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
   TitleStrategy,
 } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { ProductsService } from './products/products.service';
 
 @Injectable({ providedIn: 'root' })
@@ -26,7 +26,9 @@ export class CustomTitleStrategy extends TitleStrategy {
       const productId = this.getRouteParam(snapshot.root, 'productId');
       if (productId) {
         const product = await firstValueFrom(
-          this.productsService.getProducts({ id: +productId })
+          this.productsService
+            .getProducts({ id: +productId })
+            .pipe(map((data) => data[0].products))
         );
         const dynamicTitle = product
           ? `${product[0].name}`

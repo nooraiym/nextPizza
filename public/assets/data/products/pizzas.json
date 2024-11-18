@@ -9,7 +9,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF1CB7AE8F7C7D9A4BB4450E6AAD2C.avif",
     "price": 350,
     "weight": 510,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF01FD41356844BE988F2C05579851.avif",
     "price": 370,
     "weight": 630,
-    "categoryId": 1
+    "category": "pizzas"
   },
   {
     "id": 3,

@@ -21,32 +21,24 @@
     <section class="container flex gap-12">
       <sidemenu class="flex flex-col max-w-60 min-h-screen gap-8 overflow-auto" />
       <div>
-        <div class="custom-grid">
-          @defer {
-            @for (product of products; track $index) {
-              <product-card [product]="product" />
+        @for (group of productsByCategory; track $index) {
+          <h2 class="py-8 text-2xl font-bold">{{ group.name }}</h2>
+          <div class="custom-grid">
+            @defer {
+              @for (product of group.products; track $index) {
+                <product-card [product]="product" />
+              }
             }
-          } @placeholder(minimum 1s) {
-            @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
-              <skeleton />
+            @placeholder(minimum 1s) {
+              @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
+                <skeleton />
+              }
             }
+          </div>
           }
-        </div>
         <pagination class="flex justify-start items-center gap-8 pb-20" />
       </div>
     </section>
   </div>
 </main>
 <app-footer />
-
-<!-- @for (category of objectKeys(groupedProducts); track $index) {
-  <h2>{{ category }}</h2>
-  <div class="product-section">
-    @for (product of groupedProducts[category]; track $index) {
-      <product-card
-        [cardType]="ProductCardType.Main"
-        [product]="product"
-      />
-    }
-  </div>
-} -->

@@ -7,6 +7,7 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
+  map,
   of,
   switchMap,
 } from 'rxjs';
@@ -48,7 +49,9 @@ export class SearchInputComponent {
     if (!term.trim()) {
       return of([]);
     }
-    return this.productsService.getProducts({ searchTerm: term });
+    return this.productsService
+      .getProducts({ searchTerm: term })
+      .pipe(map((data) => data[0].products));
   }
   openProductPage(productId: number): void {
     this.router.navigate([`/products/${productId}`]);

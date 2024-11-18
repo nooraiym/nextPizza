@@ -10,3 +10,8 @@ export interface Product {
   weight: number;
   category: string;
 }
+export interface ProductGroup {
+  category: string;
+  name: string;
+  products: Product[];
+}

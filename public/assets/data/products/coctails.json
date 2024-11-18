@@ -7,7 +7,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EEE20B8772A72A9B60CFB20012C185.webp",
     "price": 210,
     "weight": 300,
-    "categoryId": 4
+    "category": "coctails"
   },
   {
     "id": 42,
@@ -17,7 +17,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE79702E2A22E693D96133906FB1B8.webp",
     "price": 230,
     "weight": 300,
-    "categoryId": 4
+    "category": "coctails"
   },
   {
     "id": 43,
@@ -27,7 +27,7 @@
     "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FA1F50F8F8111A399E4C1A1E3.webp",
     "price": 210,
     "weight": 300,
-    "categoryId": 4
+    "category": "coctails"
   },
   {
     "id": 44,
