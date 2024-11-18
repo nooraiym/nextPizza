@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { BaseService } from '../base.service';
-import { ToastService } from '../toast/toast.service';
+import { ToastsService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,8 @@ export class AuthService extends BaseService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor(toastService: ToastService) {
-    super(toastService);
+  constructor(toastsService: ToastsService) {
+    super(toastsService);
     this.isLoggedInSubject.next(this.hasToken());
   }
 

@@ -4,25 +4,21 @@ import { ToastType } from './toast.model';
 @Injectable({
   providedIn: 'root',
 })
-export class ToastService {
-  toasts: { message: string; type: ToastType }[] = [];
+export class ToastsService {
+  toasts: { id: number; message: string; type: ToastType }[] = [];
+  private nextId = 0;
 
-  private remove(message: string): void {
-    this.toasts = this.toasts.filter((toast) => toast.message !== message);
+  remove(id: number): void {
+    this.toasts = this.toasts.filter((toast) => toast.id !== id);
   }
 
   show(
     message: string,
     type: ToastType = ToastType.Info,
-    duration: number = 30000
-  ) {
-    this.toasts.push({ message, type });
-    setTimeout(() => this.remove(message), duration);
-  }
-
-  removeToast(): void {
-    if (this.toasts.length > 0) {
-      this.toasts.shift();
-    }
+    duration: number = 1800
+  ): void {
+    const id = this.nextId++;
+    this.toasts = [{ id, message, type }, ...this.toasts];
+    setTimeout(() => this.remove(id), duration);
   }
 }

@@ -1,23 +1,22 @@
-@if (toastService.toasts.length > 0) {
+@for (toast of toastsService.toasts; track toast.id) {
   <div
-    id="toast-success"
-    class="fixed flex items-center justify-between w-full max-w-xs p-4 space-x-4 rounded-xl top-5 right-5 z-[100]"
+    class="fixed flex items-center justify-between w-full max-w-xs p-4 space-x-4 rounded-xl mt-3 right-3 z-[100]"
+    [style.top.px]="toast.id * 60"
     role="alert"
     [ngClass]="{
-        'bg-badge-bg-neutral text-badge-text-neutral': isInfo(),
-        'bg-badge-bg-success text-badge-text-success': isSuccess(),
-        'bg-badge-bg-error text-badge-text-error': isError(),
+        'bg-badge-bg-neutral text-badge-text-neutral': toast.type === ToastType.Info,
+        'bg-badge-bg-success text-badge-text-success': toast.type === ToastType.Success,
+        'bg-badge-bg-error text-badge-text-error': toast.type === ToastType.Error,
       }"
   >
     <div class="ms-3 text-sm font-normal">
-      {{ toastService.toasts[0].message }}
+      {{ toast.message }}
     </div>
     <button
       type="button"
-      class="ms-auto -mx-1.5 -my-1.5 bg-transparent text-white hover:text-gray-900 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8"
-      data-dismiss-target="#toast-success"
+      class="ms-auto -mx-1.5 -my-1.5 bg-transparent text-gray-400 hover:text-gray-900 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8"
       aria-label="Close"
-      (click)="handleCloseToast()"
+      (click)="handleCloseToast(toast.id)"
     >
       <lucide-angular [img]="X" class="w-4 h-4" />
     </button>
