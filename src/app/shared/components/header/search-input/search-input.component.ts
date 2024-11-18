@@ -50,7 +50,7 @@ export class SearchInputComponent {
       return of([]);
     }
     return this.productsService
-      .getProducts({ searchTerm: term })
+      .getProducts({ searchTerm: term }, {})
       .pipe(map((data) => data[0].products));
   }
   openProductPage(productId: number): void {

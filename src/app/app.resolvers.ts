@@ -10,7 +10,7 @@ export const productResolver: ResolveFn<Product> = (route) => {
   const productsService = inject(ProductsService);
   const productId = Number(route.paramMap.get('productId'));
   return productsService
-    .getProducts({ id: productId })
+    .getProducts({ id: productId }, {})
     .pipe(map((groups) => groups[0].products[0]));
 };
 
@@ -22,6 +22,6 @@ export const ingredientsResolver: ResolveFn<Ingredient[]> = () => {
 export const recomendationsResolver: ResolveFn<Product[]> = () => {
   const productsService = inject(ProductsService);
   return productsService
-    .getProducts({ recommendationsCount: 8 })
+    .getProducts({ recommendationsCount: 8 }, {})
     .pipe(map((groups) => groups.flatMap((g) => g.products)));
 };

@@ -25,7 +25,6 @@ import {
 } from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SortComponent } from './components/sort/sort.component';
@@ -41,7 +40,6 @@ import { SortComponent } from './components/sort/sort.component';
     HeaderComponent,
     SkeletonComponent,
     ProductCardComponent,
-    PaginationComponent,
     FooterComponent,
     CategoryMenuComponent,
   ],
@@ -67,6 +65,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   isSticky = false;
   navOffsetTop = 0;
   activeCategory: string = 'pizzas';
+  offset = 0;
+  limit = 7;
 
   ngOnInit() {
     this.route.fragment.subscribe((fragment) => {
@@ -97,6 +97,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.body.offsetHeight;
+
+    if (scrollPosition >= documentHeight - 200) {
+      this.fetchAProducts();
+    }
+  }
   handleWindowScroll() {
     this.isSticky = window.scrollY > this.navOffsetTop;
   }
@@ -110,6 +118,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const element = this.categorySections?.find(
       (section) => section.nativeElement.getAttribute('data-anchor') === anchor
     );
+
     if (element) {
       element.nativeElement.scrollIntoView({
         behavior: 'smooth',
@@ -119,9 +128,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
   fetchAProducts() {
+    const filters = { tag: this.tag, isNew: this.isNewOnly };
+    const pagination = { offset: this.offset, limit: this.limit };
     this.allProductsSubscription = this.productsService
-      .getProducts({ tag: this.tag, isNew: this.isNewOnly })
-      .subscribe((data) => (this.productsByCategory = data));
+      .getProducts(filters, pagination)
+      .subscribe({
+        next: (data) => {
+          if (data.length === 0) {
+          } else {
+            this.productsByCategory = [...this.productsByCategory, ...data];
+            this.offset += this.limit;
+          }
+        },
+      });
   }
 
   ngOnDestroy(): void {

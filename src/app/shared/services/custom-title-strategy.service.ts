@@ -27,7 +27,7 @@ export class CustomTitleStrategy extends TitleStrategy {
       if (productId) {
         const product = await firstValueFrom(
           this.productsService
-            .getProducts({ id: +productId })
+            .getProducts({ id: +productId }, {})
             .pipe(map((data) => data[0].products))
         );
         const dynamicTitle = product
