@@ -50,9 +50,6 @@ export class AuthModalComponent implements OnDestroy {
         this.onClose.emit();
         this.router.navigate(['']);
       },
-      error: () => {
-        this.errorMessage = 'Не удалось войти. Проверьте введенные данные';
-      },
     });
   }
   signUp(name: string, email: string, password: string) {
@@ -62,17 +59,14 @@ export class AuthModalComponent implements OnDestroy {
         next: () => {
           this.handleToggleAuthMode();
         },
-        error: () => {
-          this.errorMessage = 'Регистрация не прошла. Повторите попытку позже.';
-        },
       });
   }
   handleSubmit() {
     const { name, email, password } = this.loginForm.value;
     if (this.loginForm.valid) {
-      this.signIn(email, password);
-    } else {
       this.signUp(name, email, password);
+    } else {
+      this.signIn(email, password);
     }
   }
   handleCloseModal() {

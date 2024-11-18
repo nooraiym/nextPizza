@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { Tag } from './tags.model';
+import { Category } from './categories.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TagsService {
-  private mockAPI = 'assets/data/tags.json';
+export class CategoriesService {
+  private mockAPI = 'assets/data/categories.json';
 
-  getAllTags(): Observable<Tag[]> {
+  getAllCategories(): Observable<Category[]> {
     return from(
       fetch(this.mockAPI)
         .then((res) => {
           if (!res.ok) {
-            throw new Error('Failed to fetch tags');
+            throw new Error('Failed to fetch categories');
           }
           return res.json();
         })
-        .then((data) => data as Tag[])
+        .then((data) => data as Category[])
     ).pipe((data) => data);
   }
 }

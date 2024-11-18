@@ -13,6 +13,7 @@ export class OrderItemComponent {
   readonly Minus = Minus;
   readonly Plus = Plus;
   readonly X = X;
+  // TODO: избавиться от OrderItemType
   OrderItemType = OrderItemType;
   @Input({ required: true }) itemType!: OrderItemType;
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Category } from '../../../../shared/services/categories/ingredients.model';
+import { Category } from '../../../../shared/services/categories/categories.model';
 
 @Component({
   selector: 'category-menu',

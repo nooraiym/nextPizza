@@ -15,8 +15,8 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.component';
-import { Category } from '../../shared/services/categories/ingredients.model';
-import { CategoriesService } from '../../shared/services/categories/ingredients.service';
+import { Category } from '../../shared/services/categories/categories.model';
+import { CategoriesService } from '../../shared/services/categories/categories.service';
 import { Product } from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';

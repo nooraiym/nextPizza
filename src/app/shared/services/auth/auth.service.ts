@@ -1,21 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { BaseService } from '../base.service';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService extends BaseService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private tokenKey = environment.tokenKey;
-  private apiUrl = environment.apiUrl;
+  private mockAPI = environment.apiUrl;
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor() {
+  constructor(toastService: ToastService) {
+    super(toastService);
     this.isLoggedInSubject.next(this.hasToken());
   }
 
@@ -34,21 +37,29 @@ export class AuthService {
 
   register(name: string, email: string, password: string): Observable<any> {
     return this.http
-      .post<{ message: string; token: string }>(`${this.apiUrl}/users`, {
+      .post<{ message: string; token: string }>(`${this.mockAPI}/users`, {
         name,
         email,
         password,
       })
-      .pipe(tap((response) => this.setToken(response.token)));
+      .pipe(
+        tap((response) => this.setToken(response.token)),
+        catchError(() =>
+          this.handleToast('Регистрация не прошла. Повторите попытку позже.')
+        )
+      );
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http
-      .post<{ token: string }>(`${this.apiUrl}/auth`, { email, password })
+      .post<{ token: string }>(`${this.mockAPI}/auth`, { email, password })
       .pipe(
         tap((response) => {
           this.setToken(response.token);
-        })
+        }),
+        catchError(() =>
+          this.handleToast('Не удалось войти. Проверьте введенные данные')
+        )
       );
   }
 
