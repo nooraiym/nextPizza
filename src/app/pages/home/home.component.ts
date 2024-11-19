@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -49,6 +50,7 @@ import { SortComponent } from './components/sort/sort.component';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private cdr = inject(ChangeDetectorRef);
   private productsService = inject(ProductsService);
   private categoriesService = inject(CategoriesService);
   private allProductsSubscription!: Subscription;
@@ -127,15 +129,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   fetchAProducts() {
     const filters = { tag: this.tag, isNew: this.isNewOnly };
+    const currentCategory = this.productsByCategory.find(
+      (group) => group.category === this.activeCategory
+    );
+
+    if (currentCategory) {
+      const productsInCategory = currentCategory.products.length;
+      this.limit = Math.max(1, productsInCategory);
+    }
+
     const pagination = { offset: this.offset, limit: this.limit };
     this.allProductsSubscription = this.productsService
       .getProducts(filters, pagination)
       .subscribe({
         next: (data) => {
-          if (data.length === 0) {
-          } else {
+          if (data.length !== 0) {
             this.productsByCategory = [...this.productsByCategory, ...data];
             this.offset += this.limit;
+            // TODO: пофиксить баг с дублированием категорий при пагинации
+            this.cdr.detectChanges();
           }
         },
       });
