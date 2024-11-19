@@ -98,15 +98,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    this.isSticky = window.scrollY > this.navOffsetTop;
     const scrollPosition = window.innerHeight + window.scrollY;
     const documentHeight = document.body.offsetHeight;
 
     if (scrollPosition >= documentHeight - 200) {
       this.fetchAProducts();
     }
-  }
-  handleWindowScroll() {
-    this.isSticky = window.scrollY > this.navOffsetTop;
   }
   handlescrollToTop() {
     window.scrollTo({
