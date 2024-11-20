@@ -1,0 +1,62 @@
+<article class="flex flex-col gap-11 w-full pt-6">
+  <div class="flex gap-2 overflow-x-auto pb-6">
+    @for (story of stories; track $index) {
+      <div
+        class="w-48 h-44 rounded-xl overflow-hidden shadow-lg bg-gray-100"
+        (click)="handleOpenModal($index)"
+      >
+        <img
+          [src]="story.logo"
+          alt="Story image"
+          class="w-full h-full object-cover object-bottom"
+        />
+      </div>
+    }
+  </div>
+  @if (isModalOpen) {
+    <div
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
+      (click)="handleCloseModal()"
+    >
+      <div class="relative w-auto h-3/4 bg-white rounded-xl shadow-xl" (click)="$event.stopPropagation()">
+        <button
+          class="absolute rounded-full top-7 right-3 p-2 text-gray-400 bg-white hover:text-gray-900 z-10"
+          (click)="handleCloseModal()"
+        >
+          <lucide-angular [img]="X" class="w-4 h-4" />
+        </button>
+        <button
+          class="absolute left-2 top-1/2 transform -translate-y-1/2 -translate-x-20 text-white z-10"
+          (click)="prevStory()"
+        >
+          <lucide-angular [img]="ChevronLeft" class="w-6 h-6" />
+        </button>
+        <div class="relative w-[500px] h-full rounded-xl overflow-hidden">
+          <div #timeticker class="absolute top-3 inset-x-0 mx-auto flex gap-2 w-11/12 rounded-full h-1">
+              @for (progress of timetickerBars; track $index; let i = $index) {
+              <!-- TODO: пофиксить анимацию -->
+                <div class="flex-1 bg-gray-200/30 rounded-full h-1">
+                  <div
+                    class="bg-brand-primary-normal h-1 rounded-full transition-colors duration-100"
+                    [style.width]="progress + '%'"
+                  >
+                  </div>
+                </div>
+              }
+            </div>
+          <img
+            [src]="stories[currentStoryIndex].images[currentImageIndex]"
+            alt="Story image"
+            class="w-full h-full object-cover object-center rounded-xl"
+          />
+        </div>
+        <button
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 translate-x-20 text-white z-10"
+          (click)="nextStory()"
+        >
+          <lucide-angular [img]="ChevronRight" class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+  }
+</article>

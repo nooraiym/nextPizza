@@ -29,6 +29,7 @@ import { CategoryMenuComponent } from './components/category-menu/category-menu.
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SortComponent } from './components/sort/sort.component';
+import { CarouselComponent } from "../../shared/components/carousel/carousel.component";
 
 @Component({
   selector: 'home',
@@ -43,7 +44,8 @@ import { SortComponent } from './components/sort/sort.component';
     ProductCardComponent,
     FooterComponent,
     CategoryMenuComponent,
-  ],
+    CarouselComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -115,6 +117,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
   scrollToCategory(anchor: string): void {
+    //TODO: пофиксить баг с переходом по anchor tags при первой загрузке
     const element = this.categorySections?.find(
       (section) => section.nativeElement.getAttribute('data-anchor') === anchor
     );
