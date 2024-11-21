@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "dev": "nodemon ./node_modules/mock-user-auth/bin/www.js"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
