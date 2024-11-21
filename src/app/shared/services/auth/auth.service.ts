@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, tap } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, catchError, tap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { BaseService } from '../base.service';
 import { ToastsService } from '../toast/toast.service';
@@ -12,38 +12,32 @@ import { ToastsService } from '../toast/toast.service';
 export class AuthService extends BaseService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private tokenKey = environment.tokenKey;
   private mockAPI = environment.apiUrl;
-  private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  private accessToken: string | null = null;
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  isAuthenticatedSubject$: Observable<boolean> =
+    this.isAuthenticatedSubject.asObservable();
 
   constructor(toastsService: ToastsService) {
     super(toastsService);
-    this.isLoggedInSubject.next(this.hasToken());
   }
 
-  private setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-    this.isLoggedInSubject.next(true);
+  getAccessToken() {
+    return this.accessToken;
   }
 
-  private hasToken(): boolean {
-    return !!localStorage.getItem(this.tokenKey);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  register(name: string, email: string, password: string): Observable<any> {
+  register(username: string, email: string, password: string): Observable<any> {
     return this.http
-      .post<{ message: string; token: string }>(`${this.mockAPI}/register`, {
-        name,
-        email,
-        password,
-      })
+      .post(
+        `${this.mockAPI}/register`,
+        {
+          username,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
       .pipe(
-        tap((response) => this.setToken(response.token)),
         catchError(() =>
           this.handleToast('Регистрация не прошла. Повторите попытку позже.')
         )
@@ -52,24 +46,45 @@ export class AuthService extends BaseService {
 
   login(email: string, password: string): Observable<any> {
     return this.http
-      .post<{ token: string }>(`${this.mockAPI}/auth`, { email, password })
+      .post(
+        `${this.mockAPI}/login`,
+        { email, password },
+        { withCredentials: true }
+      )
       .pipe(
-        tap((response) => {
-          this.setToken(response.token);
+        tap((response: any) => {
+          this.accessToken = response.accessToken;
+          this.isAuthenticatedSubject.next(true);
         }),
-        catchError(() =>
-          this.handleToast('Не удалось войти. Проверьте введенные данные')
-        )
+        catchError(() => {
+          this.isAuthenticatedSubject.next(false);
+          this.handleToast('Сессия истекла, войдите снова');
+          return EMPTY;
+        })
       );
   }
 
-  isLoggedIn(): boolean {
-    return this.isLoggedInSubject.value;
+  getProfile(): Observable<any> {
+    if (!this.accessToken) {
+      this.handleToast('Access token is missing');
+    }
+
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${this.accessToken}`
+    );
+    return this.http.get(`${this.mockAPI}/profile`, { headers });
   }
 
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.isLoggedInSubject.next(false);
+  logout() {
     this.router.navigate(['']);
+    this.http
+      .post(`${this.mockAPI}/logout`, {}, { withCredentials: true })
+      .pipe(
+        tap(() => {
+          this.accessToken = null;
+          this.isAuthenticatedSubject.next(false);
+        })
+      );
   }
 }

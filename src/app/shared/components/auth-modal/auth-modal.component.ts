@@ -21,15 +21,14 @@ import { AuthService } from '../../services/auth/auth.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './auth-modal.component.html',
-  styleUrl: './auth-modal.component.scss',
+  styleUrls: ['./auth-modal.component.scss'],
 })
 export class AuthModalComponent implements OnDestroy {
   @Output() onClose = new EventEmitter<void>();
   private authService = inject(AuthService);
-  private authSubscription!: Subscription;
+  private subscriptions: Subscription[] = [];
   private router = inject(Router);
   loginForm: FormGroup;
-  errorMessage: string | null = null;
   isLoginMode = true;
 
   constructor(private fb: FormBuilder) {
@@ -44,36 +43,59 @@ export class AuthModalComponent implements OnDestroy {
     this.isLoginMode = !this.isLoginMode;
     this.loginForm.reset();
   }
-  signIn(email: string, password: string) {
-    this.authSubscription = this.authService.login(email, password).subscribe({
-      next: () => {
-        this.onClose.emit();
-        this.router.navigate(['']);
-      },
-    });
-  }
-  signUp(name: string, email: string, password: string) {
-    this.authSubscription = this.authService
-      .register(name, email, password)
+
+  private signIn(email: string, password: string) {
+    const loginSubscription = this.authService
+      .login(email, password)
       .subscribe({
         next: () => {
-          this.handleToggleAuthMode();
+          this.onClose.emit();
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          err.message = 'Неверные учетные данные';
         },
       });
+    this.subscriptions.push(loginSubscription);
   }
+
+  private signUp(username: string, email: string, password: string) {
+    const registerSubscription = this.authService
+      .register(username, email, password)
+      .subscribe({
+        next: () => {
+          this.authService.login(email, password).subscribe({
+            next: () => {
+              this.onClose.emit();
+              this.router.navigate(['']);
+            },
+            error: (err) => {
+              err.message = 'Не удалось войти после регистрации';
+            },
+          });
+        },
+        error: (err) => {
+          err.message = 'Регистрация не удалась';
+        },
+      });
+    this.subscriptions.push(registerSubscription);
+  }
+
   handleSubmit() {
     const { name, email, password } = this.loginForm.value;
-    if (this.loginForm.valid) {
-      this.signUp(name, email, password);
-    } else {
+
+    if (this.isLoginMode) {
       this.signIn(email, password);
+    } else {
+      this.signUp(name, email, password);
     }
   }
+
   handleCloseModal() {
     this.onClose.emit();
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

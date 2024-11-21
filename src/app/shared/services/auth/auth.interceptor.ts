@@ -13,11 +13,12 @@ export const authInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
   const authService = inject(AuthService);
-  const token = authService.getToken();
+  const accessToken = authService.getAccessToken();
 
-  const modifiedRequest = token
+
+  const modifiedRequest = accessToken
     ? req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${token}`),
+        headers: req.headers.set('Authorization', `Bearer ${accessToken}`),
       })
     : req;
 
