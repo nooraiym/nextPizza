@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: '/api/v1',
+  apiUrl: 'https://next-pizza-backend.vercel.app/api',
   tokenKey: 'authToken',
 };

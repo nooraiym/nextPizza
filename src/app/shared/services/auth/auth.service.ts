@@ -37,7 +37,7 @@ export class AuthService extends BaseService {
 
   register(name: string, email: string, password: string): Observable<any> {
     return this.http
-      .post<{ message: string; token: string }>(`${this.mockAPI}/users`, {
+      .post<{ message: string; token: string }>(`${this.mockAPI}/register`, {
         name,
         email,
         password,
