@@ -39,7 +39,7 @@
     >
       <div class="bg-white py-7 px-9 rounded-b-xl">
         @for (product of order.products; track $index) {
-        <order-item [product]="product" [itemType]="OrderItemType.MyOrders" />
+        <order-item [product]="product" />
         }
         <footer class="text-lg pt-4">
           Итого:

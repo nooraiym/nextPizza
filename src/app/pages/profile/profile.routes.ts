@@ -5,6 +5,10 @@ import { ProfileComponent } from './components/profile-content/profile.component
 
 export const routes: Routes = [
   { path: '', component: ProfileComponent },
-  { path: 'my-orders', component: OrdersListComponent },
+  {
+    path: 'my-orders',
+    component: OrdersListComponent,
+    data: { path: 'my-orders' },
+  },
   { path: 'my-cart', component: CartComponent },
 ];

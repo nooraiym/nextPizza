@@ -5,7 +5,6 @@ import {
   recomendationsResolver,
 } from './app.resolvers';
 import { HomeComponent } from './pages/home/home.component';
-import { routes as profileRoutes } from './pages/profile/profile.routes';
 import { authGuard } from './shared/services/auth/auth.guard';
 
 export const routes: Routes = [
@@ -18,13 +17,11 @@ export const routes: Routes = [
     path: 'profile',
     title: 'Профиль',
     loadChildren: () =>
-      import('./pages/profile/profile.module').then(
-        (m) => m.ProfileModule
-      ),
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
     canActivate: [authGuard],
     data: {
-      path: 'profile'
-    }
+      path: 'profile',
+    },
   },
   {
     path: 'products/:productId',

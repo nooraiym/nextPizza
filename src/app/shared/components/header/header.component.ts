@@ -27,9 +27,9 @@ import { UserActionsComponent } from './user-actions/user-actions.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private authSubscription!: Subscription;
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
+  private authSubscription!: Subscription;
   isCartOpen = false;
   isAuthModalOpen = false;
   isAuthenticated = false;

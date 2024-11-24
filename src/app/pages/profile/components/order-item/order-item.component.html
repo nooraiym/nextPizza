@@ -11,14 +11,13 @@
       </p>
     </div>
   </div>
-  @switch (itemType) {
-    @case (OrderItemType.MyOrders) {
+    @if (isOrdersPage) {
       <div>
         <p class="text-base font-bold">{{ product.price }} ₽</p>
         <p class="text-sm font-normal text-gray-300 text-right">{{ product.quantity }} шт.</p>
       </div>
     }
-    @case (OrderItemType.MyCart) {
+    @else {
       <div>
         <p class="text-base font-bold">965 ₽</p>
       </div>
@@ -35,5 +34,4 @@
         </button>
       </div>
     }
-  }
 </section>

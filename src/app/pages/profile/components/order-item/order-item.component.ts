@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LucideAngularModule, Minus, Plus, X } from 'lucide-angular';
 import { OrderProduct } from '../../../../shared/services/orders/orders.model';
-import { OrderItemType } from '../../profile.model';
 
 @Component({
   selector: 'order-item',
@@ -10,13 +10,17 @@ import { OrderItemType } from '../../profile.model';
   templateUrl: './order-item.component.html',
   styleUrl: './order-item.component.scss',
 })
-export class OrderItemComponent {
+export class OrderItemComponent implements OnInit {
   readonly Minus = Minus;
   readonly Plus = Plus;
   readonly X = X;
-  // TODO: избавиться от OrderItemType
+  private route = inject(ActivatedRoute);
   // TODO: required: true
-  OrderItemType = OrderItemType;
-  @Input({ required: true }) itemType!: OrderItemType;
   @Input() product!: OrderProduct;
+  isOrdersPage = false;
+
+  ngOnInit(): void {
+    const path = this.route.snapshot.data['path'];
+    this.isOrdersPage = path === 'my-orders';
+  }
 }
