@@ -17,12 +17,10 @@ export const routes: Routes = [
   {
     path: 'profile',
     title: 'Профиль',
-    loadComponent: () =>
-      import('./pages/profile/layout/layout.component').then(
-        (m) => m.ProfileLayoutComponent
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then(
+        (m) => m.ProfileModule
       ),
-    // TODO: переписать на loadChildren
-    children: profileRoutes,
     canActivate: [authGuard],
   },
   {
