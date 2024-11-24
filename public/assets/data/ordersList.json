@@ -9,18 +9,33 @@
       "products": [
         {
           "productId": 1,
+          "name": "Береке Ет",
+          "shortDescription": "30 см, традиционное тесто",
+          "imageUrl": "https://media.dodostatic.net/image/r:584x584/11EF1CB7AE8F7C7D9A4BB4450E6AAD2C.avif",
+          "extraOptions": ["моцарелла"],
+          "quantity": 2,
+          "price": 350
+        },
+        {
+          "productId": 31,
           "name": "Омлет с ветчиной и грибами",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7970321044479C1D1085457A36EB.webp",
+          "extraOptions": [],
           "quantity": 2,
           "price": 240
         },
         {
-          "productId": 5,
+          "productId": 22,
           "name": "Куриные наггетсы",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D618B5C7EC29350069AE9532C6E.webp",
+          "extraOptions": [],
           "quantity": 1,
           "price": 195
         }
       ],
-      "totalCost": 675,
+      "totalCost": 1454,
       "status": "pending"
     },
     {
@@ -29,14 +44,20 @@
       "orderDate": "2024-11-11T16:45:00",
       "products": [
         {
-          "productId": 8,
+          "productId": 25,
           "name": "Острый Додстер 🌶️🌶️",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796FD3B594068F7A752DF8161D04.webp",
+          "extraOptions": [],
           "quantity": 1,
           "price": 395
         },
         {
-          "productId": 12,
+          "productId": 44,
           "name": "Классический молочный коктейль 👶",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE796F93FB126693F96CB1D3E403FB.webp",
+          "extraOptions": [],
           "quantity": 1,
           "price": 190
         }
@@ -50,14 +71,20 @@
       "orderDate": "2024-11-12T11:20:00",
       "products": [
         {
-          "productId": 3,
+          "productId": 55,
           "name": "Кофе Латте",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EE7D61B0C26A3F85D97A78FEEE00AD.webp",
+          "extraOptions": [],
           "quantity": 2,
           "price": 195
         },
         {
-          "productId": 6,
+          "productId": 23,
           "name": "Картофель из печи 🌱",
+          "shortDescription": "",
+          "imageUrl": "https://media.dodostatic.net/image/r:292x292/11EED646A9CD324C962C6BEA78124F19.webp",
+          "extraOptions": [],
           "quantity": 1,
           "price": 195
         }

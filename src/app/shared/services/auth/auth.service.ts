@@ -14,7 +14,7 @@ export class AuthService extends BaseService {
   private router = inject(Router);
   private mockAPI = environment.apiUrl;
   private accessToken: string | null = null;
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
   isAuthenticatedSubject$: Observable<boolean> =
     this.isAuthenticatedSubject.asObservable();
 

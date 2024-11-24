@@ -14,14 +14,14 @@
         aria-controls="order-accordion-body-1"
       >
         <span class="flex items-center gap-4 text-xl font-bold">
-          Заказ #{{ orderData.order }}
+          Заказ #{{ order.orderId }}
           <time class="text-base font-normal text-gray-300">
-            {{ orderData.date }}
+            <!-- TODO: локаль -->
+            {{ order.orderDate | date: "MMM dd, yyyy 'at' hh:mm a" }}
           </time>
         </span>
         <span class="flex gap-4 items-center">
-          <!-- TODO: должен быть статус из данных -->
-          <status-badge [status]="PaymentStatus.Paid" />
+          <status-badge [status]="order.status" />
           <lucide-angular
             [img]="ChevronDown"
             class="w-6 h-6"
@@ -38,12 +38,12 @@
       aria-labelledby="order-accordion-header-1"
     >
       <div class="bg-white py-7 px-9 rounded-b-xl">
-        @for (order of [1,2,3]; track $index) {
-        <order-item [itemType]="OrderItemType.MyOrders" />
+        @for (product of order.products; track $index) {
+        <order-item [product]="product" [itemType]="OrderItemType.MyOrders" />
         }
         <footer class="text-lg pt-4">
           Итого:
-          <span class="font-bold"> 2895 ₽ </span>
+          <span class="font-bold">{{ order.totalCost }} ₽</span>
         </footer>
       </div>
     </main>

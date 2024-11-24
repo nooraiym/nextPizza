@@ -9,6 +9,6 @@ import { PaymentStatus } from './status-badge.model';
   styleUrl: './status-badge.component.scss',
 })
 export class StatusBadgeComponent {
-  @Input() status!: PaymentStatus;
+  @Input({ required: true }) status!: PaymentStatus;
   PaymentStatus = PaymentStatus;
 }

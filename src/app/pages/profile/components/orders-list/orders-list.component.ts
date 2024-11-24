@@ -1,12 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Order } from '../../../../shared/services/orders/orders.model';
+import { OrdersService } from '../../../../shared/services/orders/orders.service';
 import { OrderComponent } from './order/order.component';
-
-export type Order = {
-  id: number;
-  status: 'pending' | 'paid' | 'rejected';
-  order: number;
-  date: string;
-};
 
 @Component({
   selector: 'orders-list',
@@ -15,26 +11,20 @@ export type Order = {
   templateUrl: './orders-list.component.html',
   styleUrl: './orders-list.component.scss',
 })
-export class OrdersListComponent {
-  //TODO: mock
-  ordersList: Order[] = [
-    {
-      id: 1,
-      status: 'paid',
-      order: 15,
-      date: '16 февраля 2024, в 20:31',
-    },
-    {
-      id: 2,
-      status: 'rejected',
-      order: 16,
-      date: '14 февраля 2024, в 17:45',
-    },
-    {
-      id: 3,
-      status: 'pending',
-      order: 17,
-      date: '11 февраля 2024, в 16:22',
-    },
-  ];
+export class OrdersListComponent implements OnInit, OnDestroy {
+  private ordersservice = inject(OrdersService);
+  private ordersSubscription!: Subscription;
+  ordersList!: Order[];
+
+  ngOnInit(): void {
+    this.ordersSubscription = this.ordersservice
+      .getAllOrders()
+      .subscribe((data) => {
+        this.ordersList = data;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.ordersSubscription.unsubscribe();
+  }
 }
