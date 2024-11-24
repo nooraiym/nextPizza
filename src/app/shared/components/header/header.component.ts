@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isProfilePage = false;
 
   ngOnInit() {
-    const path = this.route.snapshot.routeConfig?.path;
+    const path = this.route.snapshot.data['path'];
     this.isProfilePage = path === 'profile';
     this.authSubscription = this.authService.isAuthenticatedSubject$.subscribe(
       (isLoggedIn) => {

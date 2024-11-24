@@ -22,6 +22,9 @@ export const routes: Routes = [
         (m) => m.ProfileModule
       ),
     canActivate: [authGuard],
+    data: {
+      path: 'profile'
+    }
   },
   {
     path: 'products/:productId',
