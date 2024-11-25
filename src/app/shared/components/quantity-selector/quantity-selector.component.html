@@ -1,0 +1,18 @@
+<div class="flex items-center gap-2.5">
+  <button
+    class="btn btn-size-sm btn-outline"
+    aria-label="Decrease quantity"
+    [disabled]="productQuantity <= 0"
+    (click)="handleDecrease()"
+  >
+    <lucide-angular [img]="Minus" class="w-3 h-3" />
+  </button>
+  <p class="text-base font-bold">{{ productQuantity }}</p>
+  <button
+    class="btn btn-size-sm btn-outline"
+    aria-label="Increase quantity"
+    (click)="handleIncrease()"
+  >
+    <lucide-angular [img]="Plus" class="w-3 h-3" />
+  </button>
+</div>

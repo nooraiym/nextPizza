@@ -10,5 +10,11 @@ export const routes: Routes = [
     component: OrdersListComponent,
     data: { path: 'my-orders' },
   },
-  { path: 'my-cart', component: CartComponent },
+  {
+    path: 'my-cart',
+    component: CartComponent,
+    data: {
+      path: 'my-cart',
+    },
+  },
 ];

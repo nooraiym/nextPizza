@@ -6,7 +6,7 @@
       [ingredients]="ingredients"
       [orderForm]="orderForm"
       [totalPrice]="totalPrice"
-      (onSubmitForm)="submitForm()"
+      (onSubmitForm)="submitForm($event)"
       (onUpdatePrice)="updatePrice()"
     />
     <recomendations [recomendations]="recomendations" />

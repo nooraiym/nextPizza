@@ -38,7 +38,10 @@
           <div class="custom-grid">
             @defer {
               @for (product of group.products; track $index) {
-                <product-card [product]="product" />
+                <product-card
+                  [product]="product"
+                  (onAddProductToCart)="addProductToCart($event)"
+                />
               }
             }
             @placeholder(minimum 1s) {

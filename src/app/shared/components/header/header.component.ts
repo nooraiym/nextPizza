@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { CartService } from '../../services/cart/cart.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { AuthActionsComponent } from './auth-actions/auth-actions.component';
 import { CartActionsComponent } from './cart-actions/cart-actions.component';
@@ -29,20 +30,26 @@ import { UserActionsComponent } from './user-actions/user-actions.component';
 export class HeaderComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
-  private authSubscription!: Subscription;
+  private cartService = inject(CartService);
+  private subscriptions: Subscription[] = [];
   isCartOpen = false;
   isAuthModalOpen = false;
   isAuthenticated = false;
   isProfilePage = false;
+  isCartEmpty = true;
 
   ngOnInit() {
     const path = this.route.snapshot.data['path'];
     this.isProfilePage = path === 'profile';
-    this.authSubscription = this.authService.isAuthenticatedSubject$.subscribe(
+    const authSubscription = this.authService.isAuthenticatedSubject$.subscribe(
       (isLoggedIn) => {
         this.isAuthenticated = isLoggedIn;
       }
     );
+    const cartSubscription = this.cartService.cart$.subscribe((cart) => {
+      this.isCartEmpty = cart.products.length === 0;
+    });
+    this.subscriptions.push(authSubscription, cartSubscription);
   }
 
   handleToggleCart() {
@@ -59,8 +66,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
+    if (this.subscriptions.length > 0) {
+      this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
   }
 }

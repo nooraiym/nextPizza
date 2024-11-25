@@ -31,8 +31,8 @@ export class ProductDetailsComponent {
   handleUpdatePrice() {
     this.onUpdatePrice.emit();
   }
-  handleSubmitForm(e: Event) {
+  handleSubmitForm(e: Event, product: Product) {
     e.preventDefault();
-    this.onSubmitForm.emit();
+    this.onSubmitForm.emit(product);
   }
 }

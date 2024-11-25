@@ -31,7 +31,10 @@
       от
       <span class="font-extrabold">{{ product.price }} ₽</span>
     </p>
-    <button class="btn btn-size btn-secondary gap-1.5">
+    <button
+      class="btn btn-size btn-secondary gap-1.5"
+      (click)="handleAddProductToCart(product)"
+    >
       <lucide-angular [img]="Plus" class="w-4 h-4" />
       Добавить
     </button>

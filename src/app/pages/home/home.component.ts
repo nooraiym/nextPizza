@@ -14,22 +14,21 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.component';
+import { CartService } from '../../shared/services/cart/cart.service';
 import { Category } from '../../shared/services/categories/categories.model';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
-import {
-  Product,
-  ProductGroup,
-} from '../../shared/services/products/products.model';
+import { OrderDescription, OrderProduct } from '../../shared/services/orders/orders.model';
+import { Product, ProductGroup} from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SkeletonComponent } from './components/skeleton/skeleton.component';
 import { SortComponent } from './components/sort/sort.component';
-import { CarouselComponent } from "../../shared/components/carousel/carousel.component";
 
 @Component({
   selector: 'home',
@@ -41,11 +40,11 @@ import { CarouselComponent } from "../../shared/components/carousel/carousel.com
     SortComponent,
     HeaderComponent,
     SkeletonComponent,
-    ProductCardComponent,
     FooterComponent,
     CategoryMenuComponent,
-    CarouselComponent
-],
+    CarouselComponent,
+    ProductCardComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -55,9 +54,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private cdr = inject(ChangeDetectorRef);
   private productsService = inject(ProductsService);
   private categoriesService = inject(CategoriesService);
-  private allProductsSubscription!: Subscription;
-  private queryParamsSubscription!: Subscription;
-  private categoriesSubscription!: Subscription;
+  private cartService = inject(CartService);
+  private subscriptions: Subscription[] = [];
   @ViewChild('nav') navElement!: ElementRef;
   @ViewChild('stickyMenu') stickyMenu!: ElementRef;
   @ViewChildren('categorySection') categorySections!: QueryList<ElementRef>;
@@ -73,24 +71,29 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   limit = 7;
 
   ngOnInit() {
-    this.route.fragment.subscribe((fragment) => {
+    const routeSubscription = this.route.fragment.subscribe((fragment) => {
       if (fragment) {
         this.activeCategory = fragment;
         this.scrollToCategory(fragment);
       }
     });
-    this.queryParamsSubscription = this.route.queryParams.subscribe(
+    const queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
         this.tag = params['tag'];
         this.isNewOnly = params['isNewOnly'] === 'true';
         this.fetchAProducts();
       }
     );
-    this.categoriesSubscription = this.categoriesService
+    const categoriesSubscription = this.categoriesService
       .getAllCategories()
       .subscribe((data) => {
         this.categories = data;
       });
+    this.subscriptions.push(
+      routeSubscription,
+      queryParamsSubscription,
+      categoriesSubscription
+    );
   }
 
   ngAfterViewInit() {
@@ -142,7 +145,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     const pagination = { offset: this.offset, limit: this.limit };
-    this.allProductsSubscription = this.productsService
+    const productsSubscription = this.productsService
       .getProducts(filters, pagination)
       .subscribe({
         next: (data) => {
@@ -154,17 +157,27 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         },
       });
+    this.subscriptions.push(productsSubscription);
+  }
+  addProductToCart(product: Product) {
+    const orderDescription = {
+      size: '30',
+      crust: 'traditional',
+    } as OrderDescription;
+
+    const orderedProduct: OrderProduct = {
+      ...product,
+      shortDescription: { ...orderDescription },
+      extraOptions: [],
+      quantity: 1,
+      totalPrice: product.price,
+    };
+    this.cartService.addToCart(orderedProduct);
   }
 
   ngOnDestroy(): void {
-    if (this.allProductsSubscription) {
-      this.allProductsSubscription.unsubscribe();
-    }
-    if (this.queryParamsSubscription) {
-      this.queryParamsSubscription.unsubscribe();
-    }
-    if (this.categoriesSubscription) {
-      this.categoriesSubscription.unsubscribe();
+    if (this.subscriptions.length > 0) {
+      this.subscriptions.forEach((sub) => sub.unsubscribe());
     }
   }
 }

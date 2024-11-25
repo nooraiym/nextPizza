@@ -3,7 +3,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { CartService } from '../../shared/services/cart/cart.service';
 import { Ingredient } from '../../shared/services/ingredients/ingredients.model';
+import {
+  OrderDescription,
+  OrderProduct,
+} from '../../shared/services/orders/orders.model';
 import { Product } from '../../shared/services/products/products.model';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RecomendationsComponent } from './components/recomendations/recomendations.component';
@@ -23,10 +28,12 @@ import { RecomendationsComponent } from './components/recomendations/recomendati
 })
 export class ProductComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private cartService = inject(CartService);
   orderForm: FormGroup;
   product!: Product;
   ingredients!: Ingredient[];
   recomendations!: Product[];
+  selectedOptions: Ingredient[] = [];
   basePrice!: number;
   totalPrice!: number;
 
@@ -46,15 +53,26 @@ export class ProductComponent implements OnInit {
   }
 
   updatePrice() {
-    const selectedOptions = this.ingredients.filter((opt) => opt.selected);
-    const additionalPrice = selectedOptions.reduce(
+    this.selectedOptions = this.ingredients.filter((opt) => opt.selected);
+    const additionalPrice = this.selectedOptions.reduce(
       (sum, opt) => sum + opt.price,
       0
     );
     this.totalPrice = this.basePrice + additionalPrice;
   }
-  submitForm() {
-    console.log('Выбранный размер:', this.orderForm.value.size);
-    console.log('Выбранная корочка:', this.orderForm.value.crust);
+  submitForm(product: OrderProduct) {
+    const orderDescription = {
+      size: this.orderForm.value.size,
+      crust: this.orderForm.value.crust,
+    } as OrderDescription;
+
+    const orderedProduct: OrderProduct = {
+      ...product,
+      shortDescription: { ...orderDescription },
+      extraOptions: this.selectedOptions || [],
+      quantity: 1,
+      totalPrice: this.totalPrice
+    };
+    this.cartService.addToCart(orderedProduct);
   }
 }

@@ -33,7 +33,10 @@
             class="relative ml-auto"
           />
         }
-        <cart-actions (onToggleCart)="handleToggleCart()" />
+        <cart-actions
+          (onToggleCart)="handleToggleCart()"
+          [isCartEmpty]="isCartEmpty"
+        />
       </div>
     }
     @if (isProfilePage && isAuthenticated) {

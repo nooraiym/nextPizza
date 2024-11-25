@@ -7,6 +7,7 @@
 @import "./_checkboxes";
 @import "./_radio";
 @import "./_links";
+@import "./_cart-items";
 
 .custom-grid {
   @apply w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8;
@@ -28,6 +29,9 @@
 }
 .break {
   @apply border-b border-gray-100;
+}
+.bottom-dotted-line {
+  @apply max-h-2 border-b-[1.5px] border-dotted flex-grow mt-2 mx-1;
 }
 .icon {
   @apply flex items-center justify-center;

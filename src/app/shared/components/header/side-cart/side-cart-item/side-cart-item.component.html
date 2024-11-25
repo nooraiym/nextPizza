@@ -1,0 +1,22 @@
+<section class="py-5 px-6 mb-2 flex gap-6 bg-text-accent">
+  <img class="w-16 h-16" [src]="product.imageUrl" alt="Product image" />
+  <div class="w-full">
+    <p class="text-base font-bold">{{ product.name }}</p>
+    <p class="text-sm font-normal text-gray-300">
+      {{ getFormattedDescription(product.shortDescription) }}
+    </p>
+    @if (product.extraOptions.length > 0) {
+      <p class="break pb-3 text-sm font-normal text-gray-300">
+        {{ getFormattedOptions(product.extraOptions) }}
+      </p>
+    }
+    <div class="pt-3 flex justify-between items-center">
+      <quantity-selector
+        [productQuantity]="product.quantity"
+        (onIncrease)="handleIncrease()"
+        (onDecrease)="handleDecrease()"
+      />
+      <p class="text-base font-bold">{{ product.totalPrice }} ₽</p>
+    </div>
+  </div>
+</section>

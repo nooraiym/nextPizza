@@ -1,0 +1,17 @@
+<article class="w-full border-transparent py-5 bg-surface-secondary">
+  <h3 class="break text-xl px-5 pb-5">
+    В корзине
+    <span class="font-bold">
+      {{ totalQuantity + " " + getFormattedProductsCount() }}
+    </span>
+  </h3>
+  <div>
+    @for (product of cartItems; track $index) {
+      <side-cart-item
+        [product]="product"
+        (onIncrease)="handleIncrease($event)"
+        (onDecrease)="handleDecrease($event)"
+      />
+    }
+  </div>
+</article>
