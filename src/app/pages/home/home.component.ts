@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -22,8 +21,14 @@ import { SidemenuComponent } from '../../shared/components/sidemenu/sidemenu.com
 import { CartService } from '../../shared/services/cart/cart.service';
 import { Category } from '../../shared/services/categories/categories.model';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
-import { OrderDescription, OrderProduct } from '../../shared/services/orders/orders.model';
-import { Product, ProductGroup} from '../../shared/services/products/products.model';
+import {
+  OrderDescription,
+  OrderProduct,
+} from '../../shared/services/orders/orders.model';
+import {
+  Product,
+  ProductGroup,
+} from '../../shared/services/products/products.model';
 import { ProductsService } from '../../shared/services/products/products.service';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -51,11 +56,11 @@ import { SortComponent } from './components/sort/sort.component';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private cdr = inject(ChangeDetectorRef);
   private productsService = inject(ProductsService);
   private categoriesService = inject(CategoriesService);
   private cartService = inject(CartService);
   private subscriptions: Subscription[] = [];
+  private isLoading = false;
   @ViewChild('nav') navElement!: ElementRef;
   @ViewChild('stickyMenu') stickyMenu!: ElementRef;
   @ViewChildren('categorySection') categorySections!: QueryList<ElementRef>;
@@ -81,7 +86,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       (params) => {
         this.tag = params['tag'];
         this.isNewOnly = params['isNewOnly'] === 'true';
-        this.fetchAProducts();
+        this.fetchProducts();
       }
     );
     const categoriesSubscription = this.categoriesService
@@ -105,12 +110,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:scroll', [])
   onScroll(): void {
+    if (this.isLoading) return;
     this.isSticky = window.scrollY > this.navOffsetTop;
     const scrollPosition = window.innerHeight + window.scrollY;
     const documentHeight = document.body.offsetHeight;
 
     if (scrollPosition >= documentHeight - 200) {
-      this.fetchAProducts();
+      this.isLoading = true;
+      this.fetchProducts();
     }
   }
   handlescrollToTop() {
@@ -133,7 +140,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate([], { fragment: anchor });
     }
   }
-  fetchAProducts() {
+  fetchProducts() {
     const filters = { tag: this.tag, isNew: this.isNewOnly };
     const currentCategory = this.productsByCategory.find(
       (group) => group.category === this.activeCategory
@@ -150,11 +157,24 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe({
         next: (data) => {
           if (data.length !== 0) {
-            this.productsByCategory = [...this.productsByCategory, ...data];
+            data.forEach((group) => {
+              const existingGroup = this.productsByCategory.find(
+                (existing) => existing.category === group.category
+              );
+
+              if (existingGroup) {
+                existingGroup.products = [
+                  ...existingGroup.products,
+                  ...group.products,
+                ];
+              } else {
+                this.productsByCategory.push(group);
+              }
+            });
+
             this.offset += this.limit;
-            // TODO: пофиксить баг с дублированием категорий при пагинации
-            this.cdr.detectChanges();
           }
+          this.isLoading = false;
         },
       });
     this.subscriptions.push(productsSubscription);
