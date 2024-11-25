@@ -125,7 +125,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (scrollPosition >= documentHeight - 200) {
       this.isLoading = true;
-      this.productsService.loadProducts().subscribe();
+      this.productsService.loadProducts().subscribe(() => {
+        this.applyFilters();
+        this.isLoading = false;
+      });
     }
   }
   handlescrollToTop() {
