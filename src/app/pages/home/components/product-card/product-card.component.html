@@ -31,12 +31,21 @@
       от
       <span class="font-extrabold">{{ product.price }} ₽</span>
     </p>
-    <button
-      class="btn btn-size btn-secondary gap-1.5"
-      (click)="handleAddProductToCart(product)"
-    >
-      <lucide-angular [img]="Plus" class="w-4 h-4" />
-      Добавить
-    </button>
+    @if (isCartEmpty || !orderProduct) {
+      <button
+        class="btn btn-size btn-secondary gap-1.5"
+        (click)="handleAddProductToCart(product)"
+      >
+        <lucide-angular [img]="Plus" class="w-4 h-4" />
+        Добавить
+      </button>
+    } @else {
+        <quantity-selector
+          class="py-[6px]"
+          [productQuantity]="orderProduct.quantity"
+          (onIncrease)="handleIncrease()"
+          (onDecrease)="handleDecrease()"
+        />
+    }
   </footer>
 </article>

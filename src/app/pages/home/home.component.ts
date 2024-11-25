@@ -69,11 +69,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   products: Product[] = [];
   productsByCategory: ProductGroup[] = [];
   categories: Category[] = [];
+  cartProducts: OrderProduct[] = [];
   tag: string = 'all';
   isNewOnly!: boolean;
   isSticky = false;
   navOffsetTop = 0;
   activeCategory: string = 'pizzas';
+  isCartEmpty = true;
 
   ngOnInit() {
     const routeSubscription = this.route.fragment.subscribe((fragment) => {
@@ -100,12 +102,17 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((data) => {
         this.categories = data;
       });
+    const cartSubscription = this.cartService.cart$.subscribe((cart) => {
+      this.cartProducts = cart.products;
+      this.isCartEmpty = cart.products.length === 0;
+    });
     this.loadInitialProducts();
     this.subscriptions.push(
       routeSubscription,
       productsSubscription,
       queryParamsSubscription,
-      categoriesSubscription
+      categoriesSubscription,
+      cartSubscription
     );
   }
 
@@ -182,6 +189,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       totalPrice: product.price,
     };
     this.cartService.addToCart(orderedProduct);
+  }
+  increaseQuantity(product: OrderProduct) {
+    this.cartService.increaseQuantity(product.id, []);
+  }
+  decreaseQuantity(product: OrderProduct) {
+    this.cartService.decreaseQuantity(product.id, []);
   }
 
   ngOnDestroy(): void {
