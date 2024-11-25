@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
@@ -56,6 +57,7 @@ import { SortComponent } from './components/sort/sort.component';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private cdr = inject(ChangeDetectorRef);
   private productsService = inject(ProductsService);
   private categoriesService = inject(CategoriesService);
   private cartService = inject(CartService);
@@ -72,21 +74,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   isSticky = false;
   navOffsetTop = 0;
   activeCategory: string = 'pizzas';
-  offset = 0;
-  limit = 7;
 
   ngOnInit() {
     const routeSubscription = this.route.fragment.subscribe((fragment) => {
       if (fragment) {
         this.activeCategory = fragment;
         this.scrollToCategory(fragment);
+        this.cdr.detectChanges();
       }
     });
+    const productsSubscription =
+      this.productsService.filteredProducts$.subscribe((products) => {
+        this.productsByCategory = products;
+        this.cdr.detectChanges();
+      });
     const queryParamsSubscription = this.route.queryParams.subscribe(
       (params) => {
         this.tag = params['tag'];
         this.isNewOnly = params['isNewOnly'] === 'true';
-        this.fetchProducts();
+        this.applyFilters();
       }
     );
     const categoriesSubscription = this.categoriesService
@@ -94,8 +100,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((data) => {
         this.categories = data;
       });
+    this.loadInitialProducts();
     this.subscriptions.push(
       routeSubscription,
+      productsSubscription,
       queryParamsSubscription,
       categoriesSubscription
     );
@@ -117,7 +125,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     if (scrollPosition >= documentHeight - 200) {
       this.isLoading = true;
-      this.fetchProducts();
+      this.productsService.loadProducts().subscribe();
     }
   }
   handlescrollToTop() {
@@ -140,44 +148,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate([], { fragment: anchor });
     }
   }
-  fetchProducts() {
-    const filters = { tag: this.tag, isNew: this.isNewOnly };
-    const currentCategory = this.productsByCategory.find(
-      (group) => group.category === this.activeCategory
-    );
-
-    if (currentCategory) {
-      const productsInCategory = currentCategory.products.length;
-      this.limit = Math.max(1, productsInCategory);
-    }
-
-    const pagination = { offset: this.offset, limit: this.limit };
-    const productsSubscription = this.productsService
-      .getProducts(filters, pagination)
-      .subscribe({
-        next: (data) => {
-          if (data.length !== 0) {
-            data.forEach((group) => {
-              const existingGroup = this.productsByCategory.find(
-                (existing) => existing.category === group.category
-              );
-
-              if (existingGroup) {
-                existingGroup.products = [
-                  ...existingGroup.products,
-                  ...group.products,
-                ];
-              } else {
-                this.productsByCategory.push(group);
-              }
-            });
-
-            this.offset += this.limit;
-          }
-          this.isLoading = false;
-        },
-      });
-    this.subscriptions.push(productsSubscription);
+  loadInitialProducts(): void {
+    this.productsService.reset();
+    this.productsService.loadProducts().subscribe(() => {
+      this.applyFilters();
+    });
+  }
+  applyFilters(): void {
+    const filters = {
+      tag: this.tag,
+      isNew: this.isNewOnly,
+    };
+    this.productsService.applyFilters(filters);
+  }
+  changeCategory(category: string): void {
+    this.activeCategory = category;
+    this.loadInitialProducts();
   }
   addProductToCart(product: Product) {
     const orderDescription = {

@@ -27,11 +27,10 @@ export class CustomTitleStrategy extends TitleStrategy {
       if (productId) {
         const product = await firstValueFrom(
           this.productsService
-            .getProducts({ id: +productId }, {})
-            .pipe(map((data) => data[0].products))
+            .getProductById(+productId)
         );
         const dynamicTitle = product
-          ? `${product[0].name}`
+          ? `${product.name}`
           : 'Product not found';
         this.titleService.setTitle(dynamicTitle);
       } else {

@@ -1,17 +1,14 @@
 import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { map } from 'rxjs';
 import { Ingredient } from './shared/services/ingredients/ingredients.model';
 import { IngredientsService } from './shared/services/ingredients/ingredients.service';
 import { Product } from './shared/services/products/products.model';
 import { ProductsService } from './shared/services/products/products.service';
 
-export const productResolver: ResolveFn<Product> = (route) => {
+export const productResolver: ResolveFn<Product | null> = (route) => {
   const productsService = inject(ProductsService);
   const productId = Number(route.paramMap.get('productId'));
-  return productsService
-    .getProducts({ id: productId }, {})
-    .pipe(map((groups) => groups[0].products[0]));
+  return productsService.getProductById(productId);
 };
 
 export const ingredientsResolver: ResolveFn<Ingredient[]> = () => {
@@ -21,7 +18,5 @@ export const ingredientsResolver: ResolveFn<Ingredient[]> = () => {
 
 export const recomendationsResolver: ResolveFn<Product[]> = () => {
   const productsService = inject(ProductsService);
-  return productsService
-    .getProducts({ recommendationsCount: 8 }, {})
-    .pipe(map((groups) => groups.flatMap((g) => g.products)));
+  return productsService.getRecommendations(8);
 };
