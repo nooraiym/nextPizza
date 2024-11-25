@@ -7,6 +7,7 @@ import { CartService } from '../../services/cart/cart.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { AuthActionsComponent } from './auth-actions/auth-actions.component';
 import { CartActionsComponent } from './cart-actions/cart-actions.component';
+import { HeaderStateService } from './header.service';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
   private cartService = inject(CartService);
+  private headerStateService = inject(HeaderStateService);
   private subscriptions: Subscription[] = [];
   isCartOpen = false;
   isAuthModalOpen = false;
@@ -49,7 +51,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const cartSubscription = this.cartService.cart$.subscribe((cart) => {
       this.isCartEmpty = cart.products.length === 0;
     });
-    this.subscriptions.push(authSubscription, cartSubscription);
+    const authModalSubscription =
+      this.headerStateService.authModalOpen$.subscribe((isOpen) => {
+        this.isAuthModalOpen = isOpen;
+      });
+    this.subscriptions.push(
+      authSubscription,
+      cartSubscription,
+      authModalSubscription
+    );
   }
 
   handleToggleCart() {
@@ -59,10 +69,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isCartOpen = false;
   }
   handleOpenAuthModal() {
-    this.isAuthModalOpen = true;
+    this.headerStateService.openAuthModal();
   }
   handleCloseAuthModal() {
-    this.isAuthModalOpen = false;
+    this.headerStateService.closeAuthModal();
   }
 
   ngOnDestroy() {

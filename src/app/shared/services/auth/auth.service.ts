@@ -38,6 +38,9 @@ export class AuthService extends BaseService {
         { withCredentials: true }
       )
       .pipe(
+        tap(() => {
+          this.isAuthenticatedSubject.next(true);
+        }),
         catchError(() =>
           this.handleToast('Регистрация не прошла. Повторите попытку позже.')
         )
