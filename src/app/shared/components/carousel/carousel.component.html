@@ -6,9 +6,10 @@
         (click)="handleOpenModal($index)"
       >
         <img
+          class="w-full h-full object-cover object-bottom"
           [src]="story.logo"
           alt="Story image"
-          class="w-full h-full object-cover object-bottom"
+          loading="lazy"
         />
       </div>
     }
@@ -45,9 +46,10 @@
               }
             </div>
           <img
+            class="w-full h-full object-cover object-center rounded-xl"
             [src]="stories[currentStoryIndex].images[currentImageIndex]"
             alt="Story image"
-            class="w-full h-full object-cover object-center rounded-xl"
+            loading="lazy"
           />
         </div>
         <button

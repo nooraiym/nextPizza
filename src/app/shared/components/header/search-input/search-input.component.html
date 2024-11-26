@@ -25,7 +25,12 @@
       <ul>
         @for (product of results; track $index) {
           <li (click)="openProductPage(product.id)" class="flex items-center gap-4 px-4 py-2 hover:bg-brand-secondary-light hover:text-brand-primary-normal cursor-pointer">
-            <img class="w-8 h-8" [src]="product.imageUrl" alt="Product's image">
+            <img
+              class="w-8 h-8"
+              [src]="product.imageUrl"
+              alt="Product's image"
+              loading="lazy"
+            />
             <span>{{ product.name }}</span>
             <span class="text-sm text-gray-500">{{ product.price }} ₽</span>
           </li>

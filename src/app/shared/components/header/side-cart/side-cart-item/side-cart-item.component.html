@@ -1,5 +1,10 @@
 <section class="py-5 px-6 mb-2 flex gap-6 bg-text-accent">
-  <img class="w-16 h-16" [src]="product.imageUrl" alt="Product image" />
+  <img
+    class="w-16 h-16"
+    [src]="product.imageUrl"
+    alt="Product image"
+    loading="lazy"
+  />
   <div class="w-full">
     <p class="text-base font-bold">{{ product.name }}</p>
     <p class="text-sm font-normal text-gray-300">

@@ -12,7 +12,12 @@
         @if (isSticky) {
           <div class="logo">
             <a (click)="handlescrollToTop()">
-              <img src="logo.png" alt="Logo" class="w-8 h-8 cursor-pointer" />
+              <img
+                class="w-8 h-8 cursor-pointer"
+                src="logo.png"
+                alt="Logo"
+                loading="lazy"
+              />
             </a>
           </div>
           <category-menu

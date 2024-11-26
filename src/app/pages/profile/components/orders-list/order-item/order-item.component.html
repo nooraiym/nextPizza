@@ -1,6 +1,11 @@
 <section class="break py-4 flex justify-between items-center bg-text-accent">
   <div class="flex gap-5 items-center justify-start">
-    <img class="w-16 h-16" [src]="product.imageUrl" alt="Product image" />
+    <img
+      class="w-16 h-16"
+      [src]="product.imageUrl"
+      alt="Product image"
+      loading="lazy"
+    />
     <div>
       <p class="text-base font-bold">{{ product.name }}</p>
       <p class="text-sm font-normal text-gray-300">
@@ -31,7 +36,12 @@
 
 @if (!isCartPage && !isOrdersPage) {
 <section class="py-5 px-6 flex gap-6 items-center bg-text-accent">
-  <img class="w-16 h-16" [src]="product.imageUrl" alt="Product image" />
+  <img
+    class="w-16 h-16"
+    [src]="product.imageUrl"
+    alt="Product image"
+    loading="lazy"
+    />
   <div class="w-full">
     <p class="text-base font-bold">{{ product.name }}</p>
     <p class="text-sm font-normal text-gray-300">

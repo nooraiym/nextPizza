@@ -3,7 +3,12 @@
     class="flex gap-5 items-center justify-start cursor-pointer"
     (click)="handleNavigateToProduct(product.id)"
   >
-    <img class="w-16 h-16" [src]="product.imageUrl" alt="Product image" />
+    <img
+      class="w-16 h-16"
+      [src]="product.imageUrl"
+      alt="Product image"
+      loading="lazy"
+    />
     <div>
       <p class="text-base font-bold">{{ product.name }}</p>
       <p class="text-sm font-normal text-gray-300">
