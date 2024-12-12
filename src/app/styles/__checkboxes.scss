@@ -1,5 +1,5 @@
 .checkbox {
-  @apply w-6 h-6 bg-input-secondary rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-colors duration-150 ease-in-out;
+  @apply flex-shrink-0 w-6 h-6 bg-input-secondary rounded-lg flex items-center justify-center appearance-none cursor-pointer transition-colors duration-150 ease-in-out;
 }
 .checkbox:checked {
   @apply bg-brand-primary-normal;

@@ -1,12 +1,13 @@
-<ul class="flex gap-3 overflow-x-auto space-x-4 items-stretch">
+<ul class="flex gap-3 overflow-x-auto space-x-4 items-stretch text-sm md:text-base lg:text-lg">
   @for (category of categories; track category.id) {
     <li
-      class="link"
+      class="link flex-shrink-0"
       [ngClass]="{
         'text-brand-primary-normal': activeCategory === category.anchor,
       }"
     >
       <a
+        class="block"
         [href]="'#' + category.anchor"
         (click)="handleScrollToCategory(category.anchor)"
       >

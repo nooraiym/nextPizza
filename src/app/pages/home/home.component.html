@@ -2,15 +2,15 @@
   <app-header />
   <div class="container mx-auto">
     <carousel />
-    <h2 class="text-4xl font-extrabold py-8">Все пиццы</h2>
-    <nav #nav class="flex justify-between items-center">
+    <h2 class="text-3xl font-extrabold py-2 lg:text-4xl md:py-8">Все пиццы</h2>
+    <nav #nav class="hidden md:flex justify-between items-center">
       <navigation />
       <sort />
     </nav>
     <div #stickyMenu class="w-full mx-auto relative" [ngClass]="{ 'fixed-nav': isSticky }">
-      <div class="container mx-auto flex items-center gap-6">
+      <div class="container mx-auto flex items-center gap-4 md:mx-2">
         @if (isSticky) {
-          <div class="logo">
+          <div class="flex-shrink-0">
             <a (click)="handlescrollToTop()">
               <img
                 class="w-8 h-8 cursor-pointer"
@@ -28,13 +28,25 @@
         }
       </div>
     </div>
-    <section class="container flex gap-12">
-      <sidemenu class="flex flex-col max-w-60 min-h-screen gap-8" />
+    <section class="relative container flex gap-0 md:gap-9 lg:gap-12">
+        <button
+          class="custom-rounded md:hidden absolute top-2 right-2 border-[1px] border-current text-brand-primary-normal p-2 rounded"
+          (click)="handleToggleFilters()"
+        >
+          <lucide-angular [img]="Menu" class="w-4 h-4" />
+        </button>
+        <sidemenu
+          class="fixed top-0 left-0 z-50 flex flex-col h-full gap-8 transform transition-transform duration-300 ease-in-out w-60 md:static md:translate-x-0 md:w-60"
+          [ngClass]="{
+            '-translate-x-full': !isFiltersOpen,
+            'bg-white px-4': isFiltersOpen
+          }"
+        />
       <div>
         @for (group of productsByCategory; track $index) {
           <h2
             #categorySection
-            class="pt-12 pb-4 text-2xl font-bold"
+            class="pt-4 pb-4 text-xl font-bold md:pt-8 lg:text-2xl lg:pt-12"
             [attr.id]="group.category"
             [attr.data-anchor]="group.category"
           >

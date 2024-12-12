@@ -13,6 +13,7 @@ import {
   inject,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LucideAngularModule, Menu } from 'lucide-angular';
 import { Subscription } from 'rxjs';
 import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -41,6 +42,7 @@ import { SortComponent } from './components/sort/sort.component';
   standalone: true,
   imports: [
     CommonModule,
+    LucideAngularModule,
     SidemenuComponent,
     NavigationComponent,
     SortComponent,
@@ -55,6 +57,7 @@ import { SortComponent } from './components/sort/sort.component';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  readonly Menu = Menu;
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private cdr = inject(ChangeDetectorRef);
@@ -76,6 +79,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   navOffsetTop = 0;
   activeCategory: string = 'pizzas';
   isCartEmpty = true;
+  isFiltersOpen = false;
 
   ngOnInit() {
     const routeSubscription = this.route.fragment.subscribe((fragment) => {
@@ -157,6 +161,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       });
       this.router.navigate([], { fragment: anchor });
     }
+  }
+  handleToggleFilters() {
+    this.isFiltersOpen = !this.isFiltersOpen;
   }
   loadInitialProducts(): void {
     this.productsService.reset();

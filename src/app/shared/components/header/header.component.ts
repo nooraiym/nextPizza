@@ -11,12 +11,14 @@ import { HeaderStateService } from './header.service';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { SideCartComponent } from './side-cart/side-cart.component';
 import { UserActionsComponent } from './user-actions/user-actions.component';
+import { LucideAngularModule, Search } from 'lucide-angular';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     CommonModule,
+    LucideAngularModule,
     RouterLink,
     SearchInputComponent,
     SideCartComponent,
@@ -29,6 +31,11 @@ import { UserActionsComponent } from './user-actions/user-actions.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+isSearchFocused: any;
+handleSearchFocus() {
+throw new Error('Method not implemented.');
+}
+  readonly Search = Search;
   private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
   private cartService = inject(CartService);

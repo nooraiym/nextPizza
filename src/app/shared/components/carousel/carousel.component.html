@@ -1,15 +1,15 @@
-<article class="flex flex-col gap-11 w-full pt-6">
-  <div class="flex gap-2 overflow-x-auto pb-6">
+<article class="w-full pt-6">
+  <div class="flex space-x-2 overflow-x-auto pb-6">
     @for (story of stories; track $index) {
       <div
-        class="w-48 h-44 rounded-xl overflow-hidden shadow-lg bg-gray-100"
+        class="w-48 h-44 rounded-xl overflow-hidden shadow-lg bg-gray-100 flex-shrink-0"
         (click)="handleOpenModal($index)"
       >
         <img
           class="w-full h-full object-cover object-bottom"
           [src]="story.logo"
           alt="Story image"
-          loading="lazy"
+          loading="eager"
         />
       </div>
     }
